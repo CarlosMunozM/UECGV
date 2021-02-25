@@ -27,10 +27,9 @@ $(document).ready( function() {
                     $("#regpaisAlu").val(data.nacionalidad);
                     $("#reggeneroAlu").val(data.genero);
                     $("#regImgAlum").attr("src",data.foto);
-                    //var fecha = moment(data.fecha_nacimiento);
-                    console.log(data.fecha_nacimiento);
-                    console.log( new Date(data.fecha_nacimiento));
-                    document.getElementById("regfechaNacimientoAlu").value = "2020-12-12";
+                    var fecha = new Date(data.fecha_nacimiento);
+                    fecha = fecha.getFullYear() + "-" +  fecha.getMonth() + 1 + "-"  + fecha.getDate();
+                    $("#regfechaNacimientoAlu").val(fecha);
                     $("#regnombresAlu").val(data.nombres);
                     $("#regapellidosAlu").val(data.apellidos);
                     $("#emailAlu").val(data.email);
