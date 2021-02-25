@@ -290,28 +290,28 @@
 				</div>
 				<!--======================================== Evento 2 ========================================-->
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<div class="tile-gallery">
-						<img src="assets/gallery/default.png" alt="Default">
-						<p class="text-center"><strong>Título</strong></p>
-						<span class="text-center"><strong><small>Sub-Título</small></strong></span>
-						<div class="divider-general"></div>
-						<a href="#!">
-							<i class="fa fa-picture-o"></i> &nbsp; Ver fotos
-						</a>
-					</div>
+                                    <div class="tile-gallery">
+                                        <img src="assets/gallery/default.png" alt="Default">
+                                        <p class="text-center"><strong>Título</strong></p>
+                                        <span class="text-center"><strong><small>Sub-Título</small></strong></span>
+                                        <div class="divider-general"></div>
+                                        <a href="#!">
+                                            <i class="fa fa-picture-o"></i> &nbsp; Ver fotos
+                                        </a>
+                                    </div>
 				</div>
 				<!--======================================== Evento 3 ========================================-->
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<div class="tile-gallery">
-						<img src="assets/gallery/default.png" alt="Default">
-						<p class="text-center"><strong>Título</strong></p>
-						<span class="text-center"><strong><small>Sub-Título</small></strong></span>
-						<div class="divider-general"></div>
-						<a href="#!">
-							<i class="fa fa-picture-o"></i> &nbsp; Ver fotos
-						</a>
-					</div>
-				</div>
+                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="tile-gallery">
+                                        <img src="assets/gallery/default.png" alt="Default">
+                                        <p class="text-center"><strong>Título</strong></p>
+                                        <span class="text-center"><strong><small>Sub-Título</small></strong></span>
+                                        <div class="divider-general"></div>
+                                        <a href="#!">
+                                            <i class="fa fa-picture-o"></i> &nbsp; Ver fotos
+                                        </a>
+                                    </div>
+                                </div>
 			</div>
 		</article>
 	</section>
