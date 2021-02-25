@@ -1,0 +1,52 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<header class="full-reset header">
+    <!--======================================== Logo(Nombre INS) ========================================-->
+    <div class="full-reset logo">
+        <span class="hidden-lg hidden-md col-lg-10">
+            <img src="assets/img/logo_UECGV.png"  width="60" height="60">
+        </span>
+        <span class="hidden-xs hidden-sm">
+            <img src="assets/img/logo_UECGV.png" width="60" height="60">
+            U.E.M Carmelina Granja Villanueva
+        </span>
+    </div>
+    <!--======================================== Links de navegación ========================================-->
+    <nav class="full-reset navigation">
+        <ul class="full-reset list-unstyled">
+            <li><a href="index.jsp">Inicio</a></li>
+            <li><a href="institucion.jsp">Institución</a></li>
+            <li><a href="galeria.jsp">Galería</a></li>
+            <li><a data-toggle="modal" id="btnAbrirContactenosModal" data-target="#modalcontactenos" href="#modalcontactenos">Contáctenos</a></li>
+            <li><a href="login.jsp">Iniciar Sesión</a></li>
+            <li><a href="#" class="btm-mega-menu">Más &nbsp;<i class="fa fa-caret-down"></i></a></li>
+        </ul>
+    </nav>
+    <!--======================================== Mega menu ========================================-->
+    <div class="full-reset mega-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <span class="full-reset titles">Unidad Educativa</span>
+                    <ul class="list-unstyled full-reset">
+                        <li><a href="autoridades.jsp"><i class="fa fa-graduation-cap"></i>&nbsp; Autoridades</a></li>
+                        <li><a href="actualizardatos.jsp"><i class="fa fa-user"></i>&nbsp; Actualizar Datos - Estudiante</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <span class="full-reset titles">Enlaces importantes</span>
+                    <ul class="list-unstyled full-reset">
+                        <li><a href="https://educacion.gob.ec/" class="open-link-newTab"><i class="fa fa-university"></i>&nbsp; Ministerio de Educación</a></li>
+                        <li><a href="https://juntos.educacion.gob.ec/" class="open-link-newTab"><i class="fa fa-university"></i>&nbsp; Asignación de Instituciones</a></li>
+                        <li><a href="https://educarecuador.gob.ec/" class="open-link-newTab"><i class="fa fa-gavel"></i>&nbsp; Educar Ecuador</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <i class="fa fa-times-circle btm-mega-menu close-mega-menu fa-2x"></i>
+    </div>
+    <!--======================================== Boton menu mobil ========================================-->
+    <a href="#" class=" hidden-sm hidden-md hidden-lg pull-right button-menu-mobile show-close-menu-m"><i class="fa fa-ellipsis-v"></i></a>
+</header>
+
+<%@include file="/contactenos.jspf"%>

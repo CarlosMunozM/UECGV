@@ -1,0 +1,223 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<style>
+    .texto{
+        font-size: 12.5px;
+    }
+
+    .centrar {
+        float: none;
+        margin-left: 50px;
+        margin-right: auto;
+
+    }
+    .centrardiv{
+
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .invalid {
+        background: url('/UECGV/Administracion/img/cerrar.png') no-repeat 0 50%;
+        padding-left: 22px;
+        line-height: 24px;
+        color: #ec3f41;
+    }
+
+    .valid {
+        background: url('/UECGV/Administracion/img/true.png') no-repeat 0 50%;
+        padding-left: 22px;
+        line-height: 24px;
+        color: #3a7d34;
+    }
+</style>
+
+
+<div class="modal fade" id="cambiarClave" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <br>
+            <div class="navbar navbar-default">
+                <button type="button" id="btnCerrarModal" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="smallmodalLabel"  style="color: white;text-align: center"> <b >Cambiar Contraseña</b></h5>
+            </div>
+            <br>
+            <form id="formulario">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="well">
+                            <div class="row">
+                                <div id="pswd_info">
+                                    <h6>La clave debe cumplir con los siguientes parámetros:</h6>
+                                    <ul>
+                                        <li id="letter" class="">Al menos <strong>una letra</strong></li>
+                                        <li id="capital" class="">Al menos <strong>una letra en mayúscula y una letra en minúscula</strong></li>
+                                        <li id="number" class="">Al menos <strong>un número</strong></li>
+                                        <li id="length" class="">Al menos ha de contener <strong>8 caracteres</strong></li>
+                                        <li id="igualdad" class="" hidden="">La nueva clave <strong>no debe ser igual</strong> a la anterior</li>
+                                        <li id="nuevarepetir" class="">La nueva clave <strong>debe ser igual</strong> a repetir clave.</li>
+                                    </ul>
+                                </div>
+                                <p></p>
+                                <input type="hidden" name="action" value="changepass">
+
+                                <div class="row form-group centrar" hidden="">
+                                    <div class="col-4" >
+                                        <label  style="padding-right: 10px; " >Clave Actual</label>
+                                        <input id="id_anterior" name="anterior" type="password" required=""  style="text-transform: none;">
+                                    </div>
+                                </div>
+
+                                <label style="margin-left: 150px">Nueva Clave</label>
+                                <div class="input-group col-sm-6" style="margin: 0px auto">
+                                    <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                                    <input id="id_nueva" class="validarclave form-control" name="txtModPassClave" type="password" required="" aria-autocomplete="list">
+                                </div>
+                                <br>
+                                <label style="margin-left: 150px">Repetir Clave</label>
+                                <div class="input-group col-sm-6" style="margin: 0px auto">
+                                    <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                                    <input class="validarclave form-control" id="id_repetir" name="repetir" type="password" required="">
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row-fluid" style="margin-bottom: 0">
+                                <div style="text-align: right;">
+                                    <a onclick="cambiarClave()" class="btn btn-primary btn-form" id="formbutton" style="display: none;">Guardar</a>
+                                    <input data-dismiss="modal" type="button" class="btn btn-danger" id="btnCancelar" value="Cancelar" style="width: 100px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>                    
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        
+           function reporteDocente(){
+                     //$('#btnReporte').click();       
+                     alert("se dio clic");
+                   };
+
+        $('#btnCerrarModal').click(function () {
+            limpiar();
+        });
+        
+        $('#btnCancelar').click(function () {
+            limpiar();
+        });
+
+        toastr.options = {
+            "positionClass": "toast-bottom-left",
+            "showMethod": "show",
+            "hideMethod": "hide"
+        }
+
+        $('.validarclave').keyup(function () {
+            var pswd = $(this).val();
+            var habilitar = true;
+            if (pswd.length < 8) {
+                $('#length').removeClass('valid').addClass('invalid');
+                habilitar = false;
+            } else {
+                $('#length').removeClass('invalid').addClass('valid');
+            }
+            if (pswd.match(/[A-z]/)) {
+                $('#letter').removeClass('invalid').addClass('valid');
+            } else {
+                habilitar = false;
+                $('#letter').removeClass('valid').addClass('invalid');
+            }
+            if (pswd.match(/[A-Z]/) && pswd.match(/[a-z]/)) {
+                $('#capital').removeClass('invalid').addClass('valid');
+            } else {
+                habilitar = false;
+                $('#capital').removeClass('valid').addClass('invalid');
+            }
+            if (pswd.match(/\d/)) {
+                $('#number').removeClass('invalid').addClass('valid');
+            } else {
+                habilitar = false;
+                $('#number').removeClass('valid').addClass('invalid');
+            }
+            if ($("#id_nueva").val().toLowerCase() != $("#id_anterior").val().toLowerCase()) {
+                $('#igualdad').removeClass('invalid').addClass('valid');
+            } else {
+                habilitar = false;
+                $('#igualdad').removeClass('valid').addClass('invalid');
+            }
+            if ($("#id_nueva").val() == $("#id_repetir").val()) {
+                $('#nuevarepetir').removeClass('invalid').addClass('valid');
+            } else {
+                habilitar = false;
+                $('#nuevarepetir').removeClass('valid').addClass('invalid');
+            }
+            if (habilitar) {
+                $("#formbutton").show();
+            } else {
+                $("#formbutton").hide();
+            }
+        });
+        
+       
+
+    });
+    
+     function cambiarClave() 
+     {
+            $.ajax({
+                async: true,
+                type: "POST",
+                data: $('#formulario').serialize(),
+                url: '/UECGV/srvLogin?accion=modificarclave&cambioRequerido=0',
+                success: function (responseText)
+                {
+                    var respon = responseText;
+                    if (respon === 'ok')
+                    {
+                        $("#btnCerrarModal").click();
+                        toastr.success("Contraseña Modificada");
+
+                    } else
+                    {
+                        $("#btnCerrarModal").click();
+                        toastr.error("Error al modificar Contraseña");
+                    }
+                }
+            });
+        }
+        
+        function limpiar()
+        {
+            $("#id_nueva").val('');
+            $("#id_repetir").val('');
+            $('#length').removeClass();
+            $('#letter').removeClass();
+            $('#capital').removeClass();
+            $('#number').removeClass();
+            $('#igualdad').removeClass();
+            $('#nuevarepetir').removeClass();
+            $("#formbutton").hide();
+        }
+
+</script>
+
+
+
+

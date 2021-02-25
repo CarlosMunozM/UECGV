@@ -1,0 +1,312 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+
+<!-- Modal para modificar datos del Usuarios -->
+<div class="modal fade" id="modalEditUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="navbar navbar-default">
+                <button type="button" id="btnCerrarModalModEdit" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <center>
+                    <h4 class="modal-title" style="color: white;text-align: center" id="tituloModal"><b>Datos del Usuario:</b> ${sessionScope.nombres} ${sessionScope.apellidos}</h4>
+                </center>
+            </div>
+            <form autocomplete="off" id="frmModificarDatosUsrEncabezado">
+                <input type="text" id="modEditUserIdPersona"  hidden="" name="txtIdPersona">
+                <div class="modal-body">
+                    <div class="row form">
+                        <div class="col-sm-3">
+                            <label>Tipo Identificación</label>
+                            <select id="modEditUserTipoIdentificacion" required="" class="form-control input-sm" name="sltTipoIdentificacionUser">
+                                <option></option>
+                                <option value="cedula">Cedula</option>
+                                <option value="pasaporte">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Identificación</label>
+                            <input type="text" id="modEditUserIdentificacion" onkeypress="return soloNumeros(event)" class="form-control input-sm" required="" name="txtIdentificacionUser">
+                            <input type="text" id="modEditAuxUserIdentificacion" hidden="">
+                            <span id="modEditUserErroridentificaciion" style="color: #f00;"></span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>País</label>
+                            <select id="modEditUserPais" required="" class="form-control input-sm" name="sltPaisUser">
+                                <c:forEach var="listaCountries" items="${sessionScope.listaPaisesSession}">
+                                    <option value="${listaCountries.idPais}">${listaCountries.nombre}</option>
+                                </c:forEach>     
+                            </select>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row form">
+                        <div class="col-sm-6">
+                            <label>Nombres</label>
+                            <input type="text" id="modEditUserNombres" onkeypress="return soloLetrasv2(event)" class="form-control input-sm" name="txtNombresUser" required="">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Apellidos</label>
+                            <input type="text" id="modEditUserApellidos" onkeypress="return soloLetrasv2(event)" class="form-control input-sm" name="txtApellidosUser" required="">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row form">
+                        <div class="col-sm-6">
+                            <label>Email</label>
+                            <input type="email" id="modEditUserEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  class="form-control input-sm" name="txtEmailUser" required="">
+                            <input type="text" id="modEditUserAuxEmail" hidden="">
+                            <span id="modEditUserErroremail" style="color: #f00;"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Teléfono</label>
+                            <input type="text" id="modEditUserTelefono" onkeypress="return soloNumeros(event)" class="form-control input-sm" name="txtTelefonoUser" required="">
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Género</label>   
+                            <select id="modEditUserGenero" required="" class="form-control input-sm" name="sltGeneroUser">
+                                <option></option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <label>Dirección</label>
+                            <textarea style=" resize: none; font-size: 14px" rows="2" id="modEditUserDireccion" onkeypress="return soloLetrasNumerosCaracEspe(event)" class="form-control input-sm" maxlength="200" name="txtDireccionUser" required=""></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnModificarDatosUser" >Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrarModificarUser">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>                                            
+
+<script>
+    $(document).ready(function () {
+        var valcorreo = true, validentificacion = true;
+        var errorcedula = '';
+
+        $("#modalEditUser").on("hidden.bs.modal", function () {
+            limpiarCamposCerrarModal();
+        });
+
+        $("#btnCerrarModalModEdit").click(function () {
+            limpiarCamposCerrarModal();
+        });
+
+        $("#cerrarModificarUser").click(function () {
+            limpiarCamposCerrarModal();
+        });
+
+        $("#modEditUserEmail").keyup(function () {
+            buscarCorreoModificarUser($("#modEditUserEmail").val(), $("#modEditUserAuxEmail").val());
+        });
+
+        $("#modEditUserEmail").focusout(function () {
+            buscarCorreoModificarUser($("#modEditUserEmail").val(), $("#modEditUserAuxEmail").val());
+        });
+
+        $("#modEditUserIdentificacion").keyup(function () {
+            buscarIdentificacionModificarUser($("#modEditUserIdentificacion").val(), $("#modEditAuxUserIdentificacion").val());
+        });
+
+        $("#modEditUserIdentificacion").focusout(function () {
+            buscarIdentificacionModificarUser($("#modEditUserIdentificacion").val(), $("#modEditAuxUserIdentificacion").val());
+        });
+
+        function buscarIdentificacionModificarUser(ident, aux) {
+
+            if (ident === aux)
+            {
+                validentificacion = true;
+            } else
+            {
+                $.ajax({
+                    async: true,
+                    type: "GET",
+                    url: '/WebCarmelina/srvUsuarios?accion=buscarIdentificacion&ident=' + ident + '',
+                    success: function (responseText)
+                    {
+                        if (responseText === 'ok')
+                        {
+                            validentificacion = false;
+                            $("#modEditUserErroridentificaciion").text("Ya existe en el sistema");
+
+                        } else
+                        {
+                            validentificacion = true;
+                            $("#modEditUserErroridentificaciion").text("");
+                        }
+                    }
+                });
+            }
+        }
+
+        function limpiarCamposCerrarModal()
+        {
+            valcorreo = true;
+            validentificacion = true;
+            errorcedula = '';
+            $("#modEditUserErroridentificaciion").text("");
+            $("#modEditUserErroremail").text("");
+            //alert('Se cerró el modal');
+        }
+
+        function buscarCorreoModificarUser(correo, aux) {
+
+            if (correo === aux)
+            {
+                valcorreo = true;
+            } else
+            {
+                $.ajax({
+                    async: true,
+                    type: "GET",
+                    url: '/WebCarmelina/srvLogin?accion=buscarCorreo&correo=' + correo + '',
+                    success: function (responseText)
+                    {
+                        if (responseText === 'ok')
+                        {
+                            valcorreo = false;
+                            valeditcorreo = false;
+                            $("#modEditUserErroremail").text("Este e-mail ya existe en el sistema");
+
+                        } else
+                        {
+                            valcorreo = true;
+                            valeditcorreo = true;
+                            $("#modEditUserErroremail").text("");
+                        }
+                    }
+                });
+            }
+        }
+
+        function validarIdentificacion(identificacion) {
+            return validarCedulaEC(identificacion);
+        }
+
+        $('#btnModificarDatosUser').click(function () {
+
+            //buscarIdentificacionModificar($("#modEditIdentificacion").val(), "modEditErroridentificaciion", $("#modEditAuxIdentificacion").val());
+            //buscarCorreoModificar($("#modEditEmail").val(), "modEditErroremail", $("#modEditAuxEmail").val());
+
+            if (!camposLlenos())
+            {
+                alert("Llene todos los campos");
+                return false;
+            }
+
+            if ($('#modEditUserPais').val() === '1')
+            {
+                errorcedula = validarIdentificacion($('#modEditUserIdentificacion').val());
+                if (errorcedula !== 'ok')
+                {
+                    alert(errorcedula);
+                    return false;
+                }
+            }
+
+            if (!validarEmail($('#modEditUserEmail').val()))
+            {
+                alert("E-mail incorrecto");
+                return false;
+            }
+
+            if (valcorreo && validentificacion)
+            {
+                modificarDatosUsrEncabezado();
+                //alert("correcto");
+                return true;
+            } else
+            {
+                alert("Corrija los errores");
+                return false;
+            }
+        });
+
+    });
+
+    function modificarDatosUsrEncabezado()
+    {
+        $.ajax({
+            async: true,
+            type: "POST",
+            data: $('#frmModificarDatosUsrEncabezado').serialize(),
+            url: '/DomoticaUTEQ/srvLogin?accion=modificarUsrEncabezado',
+            success: function (responseText)
+            {
+                if (responseText === 'ok')
+                {
+                    $("#btnCerrarModalModEdit").click();
+                    toastr.success("Datos Modificados");
+                    setInterval(location.reload(), '2000')
+
+                } else
+                {
+                    $("#btnCerrarModalModEdit").click();
+                    toastr.error("Error al Modificar Datos");
+                }
+            }
+        });
+    }
+
+
+    function editDatosEncabezado(identificacion, nombres, apellidos, email, telefono, direccion) {
+        $("#modEditUserTipoIdentificacion").val('${sessionScope.tipoIdentificacionModEdit}');
+        $("#modEditUserTipoIdentificacion").change();
+        $("#modEditUserPais").val('${sessionScope.paisModEdit}');
+        $("#modEditUserPais").change();
+        $("#modEditUserGenero").val('${sessionScope.generoModEdit}');
+        $("#modEditUserGenero").change();
+
+        $('#modEditUserIdentificacion').val(identificacion);
+        $('#modEditAuxUserIdentificacion').val(identificacion);
+        $('#modEditUserNombres').val(nombres);
+        $('#modEditUserApellidos').val(apellidos);
+        $('#modEditUserEmail').val(email);
+        $('#modEditUserAuxEmail').val(email);
+        $('#modEditUserTelefono').val(telefono);
+        $('#modEditUserDireccion').val(direccion);
+    }
+
+    function camposLlenos()
+    {
+        if ($("#modEditUserTipoIdentificacion").val() === '')
+            return false;
+
+        if ($('#modEditUserIdentificacion').val() === "")
+            return false;
+
+        if ($('#modEditUserNombres').val() === "")
+            return false;
+
+        if ($('#modEditUserApellidos').val() === "")
+            return false;
+
+        if ($('#modEditUserEmail').val() === "")
+            return false;
+
+        if ($('#modEditUserTelefono').val() === "")
+            return false;
+
+        if ($("#modEditUserGenero").val().trim() === '')
+            return false;
+
+        if ($('#modEditUserDireccion').val() === "")
+            return false;
+
+        return true;
+    }
+</script>

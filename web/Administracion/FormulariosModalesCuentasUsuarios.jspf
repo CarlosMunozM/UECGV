@@ -1,0 +1,90 @@
+<%-- any content can be specified here e.g.: --%>
+<meta http-equiv="Content-Type" content="text/html" charset=UTF-8">
+
+<meta lang="es">
+<meta charset="utf-8">
+
+<!-- Modal para modificar Cuenta de Usuario -->
+<div class="modal fade" id="modalModificarCuentaUsuario" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="navbar navbar-default">
+                <button type="button" id="btnCerrarModalCtaUsr" style="padding-right: 10px" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="false" style="color: red; font-weight: bold">x</span>
+                </button>
+                <center>
+                    <br>
+                    <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalEditCtaUsrLongTitleShow">
+                        
+                    </h4>
+                    <br>
+                </center>
+            </div>
+
+            <input type="text" id="modCtaUsrIdUsuario"  hidden="" name="txtIdPersona">
+            <div class="modal-body">
+                    <center>
+                        <div class="row form-group">
+                            <div class="col-3" >
+                                <label>Usuario</label>
+                                <input type="text" id="modEditCtaUsrUsuario" class="form-control input-sm" name="txtCtaUsrUsuario" required="" style="text-align:center; width: 80% " maxlength="20" autocomplete="off" autofocus="">
+                                <span id="errorusuario" style="color: #f00;"></span>
+                            </div>
+                        </div>
+                    </center>
+                
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnCerrarInfModalCtaUsr">Cerrar</button>
+                <button type="button" id="btnModificarCtaUsr"   class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>    
+
+<!-- Modal para registrar Cuenta de Usuario -->
+<div class="modal fade" id="modalRegistrarCuentaUsuario" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="navbar navbar-default">
+                <button type="button" id="btnCerrarModalAddCtaUsr" style="padding-right: 10px" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="false" style="color: red; font-weight: bold">x</span>
+                </button>
+                <center>
+                    <br>
+                    <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalAddCtaUsrLongTitleShow">
+                        <b> </b>
+                    </h4>
+                    <br>
+                </center>
+            </div>
+
+            <input type="text" id="addCtaUsrIdEmpleado"  hidden="" name="txtIdPersona">
+            <input type="text" id="addCtaUsrCorreo"  hidden="" name="txtCorreoInstitucional">
+            <div class="modal-body">
+                    <center>
+                        <div class="row form-group">
+                            <div class="col-3" >
+                                <label>Usuario</label>
+                                <input type="text" id="addEditCtaUsrUsuario" class="form-control input-sm" name="txtAddCtaUsrUsuario" required="" style="text-align:center; width: 80% " maxlength="20" autocomplete="off" autofocus="">
+                                <span id="errorusuario_add" style="color: #f00;"></span>
+                            </div>
+                        </div>
+                    </center>
+
+                <br>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnCerrarInfModalAddCtaUsr">Cerrar</button>
+                <button type="button" id="btnRegistrarCtaUsr"   class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>    
+
+
+
+
+
