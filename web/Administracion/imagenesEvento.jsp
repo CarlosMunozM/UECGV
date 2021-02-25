@@ -18,8 +18,8 @@
         <link rel="canonical" href="https://getbootstrap.com/docs/3.4/examples/starter-template/">
 
         <title>Menu - U.E.M Carmelina Granja Villanueva</title>
-
-        <!-- Bootstrap core CSS -->
+         
+        <!-- pepe -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/estilos.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css" />
