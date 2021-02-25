@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import org.json.JSONArray;
 
 /**
  *
@@ -209,5 +210,22 @@ public class ActualizarDatosDAO {
         }
         connecPostgresql.getConnection().close();
         return lista;
+    }
+    
+    public boolean actualizarEstudiante(JSONArray datos) throws ParseException, SQLException {
+        /*try {
+            connecPostgresql = new ConexionPostgreSQL();
+            ResultSet consulta;
+            //connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call mostrar_estudiante_convivencia_filtro_persona(?)}");
+            //connecPostgresql.callableStatement.setInt(1, id);
+            //consulta = connecPostgresql.callableStatement.executeQuery();
+            return true;
+
+        } catch (SQLException ex) {
+            connecPostgresql.getConnection().close();
+            System.out.println(ex.getMessage());
+        }
+        connecPostgresql.getConnection().close();*/
+        return false;
     }
 }
