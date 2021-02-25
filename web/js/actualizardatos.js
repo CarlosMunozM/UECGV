@@ -352,7 +352,6 @@ $(document).ready( function() {
             data: {modo: "actualizar_datos", datos: JSON.stringify(datos)},
             dataType: 'json',
             success: function (data) {
-                
             },
             error: function(data){
                 
