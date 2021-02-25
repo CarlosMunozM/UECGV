@@ -22,6 +22,9 @@
         <script src="js/main.js"></script>
         <script src="js/actualizardatos.js"></script>
         <script src="https://momentjs.com/downloads/moment.js"></script>
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <link href="css/toastr.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/toastr.js" type="text/javascript"></script>
     </head>
     <body>
         <!--======================================== Boton ir arriba ========================================-->
