@@ -195,11 +195,12 @@ function iniciarSesion()
 
                 if (respon != '')
                 {
-
                     if (respon == 'NO')
                         location.href = '/UECGV/MenuAplicacion/menu.jsp';
-                    else
+                    else if (respon == 'SI')
                         location.href = '/UECGV/Administracion/cambiarClave2.0.jsp';
+                    else
+                        toastr.error("Error al inicar sesión");
                 } else
                 {
                     toastr.error("Error al inicar sesión");
