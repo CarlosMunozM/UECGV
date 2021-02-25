@@ -10,7 +10,7 @@
                         </div-->
                         <div class="col-xs-12 col-sm-4">
                             <h4 class="titles text-center">Contáctenos</h4>
-                            <p class="text-center">Teléfono: +(05)&nbsp;290-3017 <br>Correo Electrónico: uemcarmelinagranjavquevedo@hotmail.com</p>
+                            <p class="text-center">Teléfono: +(05)&nbsp;290-3017 <br>Correo Electrónico: uemcarmelinagranjavquevedo@gmail.com</p>
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <h4 class="titles subtitles-footer">Siguenos en</h4>
@@ -18,6 +18,14 @@
                                 <li><a href="https://www.facebook.com/Unidad-Educativa-del-Milenio-Carmelina-Granja-Villanueva-1861831600770140" class="open-link-newTab"><i class="fa fa-facebook"></i> &nbsp; Facebook</a></li>
                                 <!--li><a href="#!" class="open-link-newTab"><i class="fa fa-twitter"></i> &nbsp; Twitter</a></li-->
                                 <!--li><a href="#!" class="open-link-newTab"><i class="fa fa-google-plus"></i> &nbsp; Google+</a></li-->
+                                <!--center>
+                                    <a title="Contador De Visitas">
+                                        <img style="border: 0px solid; display: inline;" alt="Contador de visitas" 
+                                             src="http://www.websmultimedia.com/contador-de-visitas.php?id=291062">
+                                    </a>
+                                    <br>
+                                    <a style="color: white; text-decoration: none;">Contador de visitas</a>
+                                </center-->
                             </ul>
                         </div>
                         <div class="col-xs-12 col-sm-4 text-right" style="margin-top: -15px; margin-bottom: -15px;">
