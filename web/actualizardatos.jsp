@@ -145,7 +145,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label>Foto del domicilio</label>
-                                <input type="file" id="fotoDomicilioAlu" onchange="validarFile(this)" class="form-control"  maxlength="50" required="" name="txtRegFotoDomicilio" placeholder="Foto" disabled accept="image/jpg, image/png, image/jpeg">
+                                <input type="file" id="fotoDomicilioAlu" onchange="validarFile(this)" class="form-control"  maxlength="50" name="txtRegFotoDomicilio" placeholder="Foto" disabled accept="image/jpg, image/png, image/jpeg">
                             </div>
                             <div class="col-sm-2">
                                 <label>Tipo de discapacidad</label>
@@ -202,7 +202,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>C.U.E</label>
-                                <input type="text" id="regCueRep" class="form-control"  maxlength="50" required="" name="txtRegCuePadre" placeholder="Código único electrónico" readonly>
+                                <input type="text" id="regCueRep" class="form-control"  maxlength="50" name="txtRegCuePadre" placeholder="Código único electrónico" readonly>
                             </div>
                         </div>
                         <br>
@@ -263,7 +263,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>C.U.E</label>
-                                <input type="text" id="regCueMad" class="form-control"  maxlength="50" required="" name="txtRegCuePadre" placeholder="Código único electrónico" readonly>
+                                <input type="text" id="regCueMad" class="form-control"  maxlength="50" name="txtRegCuePadre" placeholder="Código único electrónico" readonly>
                             </div>
                         </div>
                         <br>
@@ -307,7 +307,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Tipo de Identificación</label>
-                                <select id="regtipoIdentificacionRef" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdePadre" required="" disabled>
+                                <select id="regtipoIdentificacionRef" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdePadre" disabled>
                                     <option></option>
                                     <option value="Cédula">Cédula</option>
                                     <option value="Pasaporte">Pasaporte</option>
@@ -315,7 +315,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Identificación</label>
-                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"  required=""  name="txtRegFamiliarIdentificacionPadre" placeholder="IDENTIFICACIÓN" readonly="">
+                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"   name="txtRegFamiliarIdentificacionPadre" placeholder="IDENTIFICACIÓN" readonly="">
                                 <span id="erroridentificaciion" style="color: #f00;"></span>
                             </div>
                             <div class="col-sm-3">
@@ -352,7 +352,7 @@
                         <br>
                         <center>
                             <button type="button" class="btn btn-secondary btn-flat m-b-30 m-t-30" id="btnCancelar"><i class="fa fa-times"></i>&nbsp; Cancelar</button>                        
-                            <button type="button" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnGuardar"><i class="fa fa-save"></i>&nbsp; Guardar</button
+                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnGuardar"><i class="fa fa-save"></i>&nbsp; Guardar</button
                         </center>
                     </form>
                 </div>
