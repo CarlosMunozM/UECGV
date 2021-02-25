@@ -17,7 +17,9 @@ import Modelo.Referencia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -36,6 +38,10 @@ public class ActualizarDatosDAO {
             connecPostgresql.callableStatement.setString(1, identificacion);
             consulta = connecPostgresql.callableStatement.executeQuery();
             while (consulta.next()) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                String fecha = dateFormat.format(consulta.getDate("fecha_nacimiento"));
+                Date date = dateFormat.parse(fecha);
+                
                 estudiante.setId_estudiante(consulta.getInt("id_estudiante"));
                 estudiante.getCurso_educativo().setId_curso(consulta.getInt("id_curso"));
                 estudiante.getCurso_educativo().setNombre_curso(consulta.getString("nombre_curso"));
@@ -44,7 +50,7 @@ public class ActualizarDatosDAO {
                 estudiante.setTipo_identificacion(consulta.getString("tipo_identificacion"));
                 estudiante.setApellidos(consulta.getString("apellidos"));
                 estudiante.setNombres(consulta.getString("nombres"));
-                estudiante.setFecha_nacimiento(consulta.getDate("fecha_nacimiento"));
+                estudiante.setFecha_nacimiento(date);  //consulta.getDate("fecha_nacimiento"));
                 estudiante.setGenero(consulta.getString("genero"));
                 estudiante.setFoto((consulta.getString("foto") == null)? "assets/img/user-default.png":consulta.getString("foto"));
                 estudiante.setDireccion(consulta.getString("direccion"));
