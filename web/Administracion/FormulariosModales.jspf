@@ -19,6 +19,11 @@
                 </center>
             </div>
             <div class="modal-body">
+                <div class="row ">
+                                <div class="col-sm-4" style="margin-left: 37%;">
+                                    <img src="1206239525.PNG"  title="imagen" id="modVerAluFoto" style="width: 9em; height: 8em;"></img>                                                                                                                                 
+                                </div> 
+                    </div>
                 <form>
                  <div class="row " style="margin-left: 4%">
                                 <div class="col-sm-3">
@@ -41,10 +46,7 @@
                                    <label id="modVerALuGenero" style="font-size: 14p" class="form-control"b></label>
                                 </div>
                                 
-                                <div class="col-sm-2">
-                                    <label>Foto</label>
-                                     <label id="modVerAluFoto" style="font-size: 14p" class="form-control"></label>
-                                </div>
+                               
 
                             </div>
                             <br>
