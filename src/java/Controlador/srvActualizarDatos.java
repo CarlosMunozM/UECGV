@@ -15,6 +15,7 @@ import Modelo.Estudiante_Familiar;
 import Modelo.Estudiante_Referencia;
 import Modelo.Familiar;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -101,6 +102,15 @@ public class srvActualizarDatos extends HttpServlet {
                         String id = request.getParameter("id");
                         lista = actualizarDatosDAO.mostrarEstudianteConvivencia(Integer.valueOf(id));
                         out.print(new Gson().toJson(lista));
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                    break;
+                case "actualizar_datos":
+                    try {
+                        String datos = request.getParameter("datos");
+                        JsonObject datosObject = new Gson().fromJson(datos, JsonObject.class);
+                        String d = "";
                     } catch (Exception ex) {
                         System.out.println(ex.getMessage());
                     }
