@@ -62,12 +62,12 @@ function soloLetrasNumerosCaracEspe(e) {
 // validar cuando es cedula o pasaporte 
 function documetoSeleccionado(){
         
-    switch(document.getElementById("tipoIdentificacion").value) {
+    switch(document.getElementById("tipoIdentificacionAlu").value) {
         case "cedula":         
-            document.getElementById("identificacion").setAttribute("maxlength", "10");
+            document.getElementById("regidentificacionAlu").setAttribute("maxlength", "10");
         break;
         case "pasaporte":
-            document.getElementById("identificacion").setAttribute("maxlength", "15");
+            document.getElementById("regidentificacionAlu").setAttribute("maxlength", "15");
         break;
         
     }
