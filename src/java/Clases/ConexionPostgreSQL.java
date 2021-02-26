@@ -20,7 +20,7 @@ public class ConexionPostgreSQL {
 
     //DATOS PARA LA CONEXION
   
-    //String user = "postgres";
+    
     
     
 //    String password = "1234567890";
@@ -29,7 +29,7 @@ public class ConexionPostgreSQL {
     String user = "uemcarmz_postgres";
     String password = "Pa$$w0rd.uemcgv";
     String urlDatabase = "jdbc:postgresql://localhost/uemcarmz_ue_carmelina";
-    
+//    String user = "postgres";
 //    String password = "1234";
 //    String urlDatabase = "jdbc:postgresql://localhost/ue_carmelina";
     
