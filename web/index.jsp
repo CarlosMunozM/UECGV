@@ -85,8 +85,6 @@
 
             </div>
         </div>
-
-
         <div class="divider-general"></div>
         <!--======================================== Video corto & carrusel========================================-->
         <section class="full-reset" style="background-color: rgb(242, 242, 242); padding: 40px 0;">
@@ -263,41 +261,14 @@
                 </div>
             </div>
         </section>
-        <div class="divider-general"></div>
-        <!--======================================== Enlaces importantes ========================================-->
-        <!--section class="text-center important-links-index">
-            <h2 class="titles">Sitios y enlaces importantes</h2>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-graduation-cap"></i>
-                <p>MOODLE</p>
+        <div id="div-contador" style="position: relative; text-align: right; right: 2%; ">
+            <a title="Contador De Visitas">
+                <img style="border: 0px solid; display: inline;" alt="Contador de visitas" 
+                     src="http://www.websmultimedia.com/contador-de-visitas.php?id=291139">
             </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-paw"></i>
-                <p>ARA-MACAO</p>
-            </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-globe"></i>
-                <p>JOVENES A.T.T</p>
-            </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-star-o"></i>
-                <p>Promo. INS</p>
-            </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-file-text-o"></i>
-                <p>Cons.conducta</p>
-            </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-download"></i>
-                <p>Descargas</p>
-            </a>
-        </section-->
+            <br>
+            <a style="color: white; text-decoration: none;">Contador de visitas</a>
+        </div>
         <!--======================================== Pie de pagina ========================================-->
         <%@include file="estructura/social_bar.jspf" %>
         <%@include file="estructura/pie_pagina_presentacion.jspf" %>
