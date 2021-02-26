@@ -23,7 +23,7 @@ function confirmarEliminacionALU(idPersona)
     }).set('labels', {ok: 'Si', cancel: 'No'});
 }
 
-function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, genero, nombres, apellidos, fecha_nacimiento, nombre_curso, direccion, numero_hermanos, lugar_ocupa,
+function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, genero, nombres, apellidos, fecha_nacimiento, nombre_curso,tipo_de_curso, direccion, numero_hermanos, lugar_ocupa,
         carnet_discapacidad, discapacidad, tipo_discapacidad, historia_clinica, apellidosFa, nombresfa, tipo_identificacionFa, cue, celular, ocupacion, lugardeTrabajo, correo, nacionalidad, identificacion,
         nombreRef, apellidoRef, parentescoRef, celularRef, telefonoRef, correo_personal, celularAl,foto)
 {
@@ -40,7 +40,7 @@ function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, 
     $('#modVerAluApellidos').html(apellidos);
     $('#modVerAluFechaNacimiento').html(fecha_nacimiento);
     // $('#modVerAluTelefono').html("no asignado");
-    $('#modVerAluCurso').html(nombre_curso);
+    $('#modVerAluCurso').html(nombre_curso +" "+tipo_de_curso );
 
     $('#modVerAluDireccion').html(direccion);
     $('#modVerAluHermanos').html(numero_hermanos);
@@ -54,7 +54,7 @@ function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, 
     $('#modVerAluHistClinica').html(historia_clinica);
 
 
-    $('#modVerAluCelular').html("No Asignado");
+   // $('#modVerAluCelular').html("No Asignado");
 
     //datos del familiar 
     $('#modVerAluIdentificacionR').html(identificacion);
