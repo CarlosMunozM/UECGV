@@ -16,7 +16,7 @@
         <ul class="full-reset list-unstyled">
             <li><a href="index.jsp">Inicio</a></li>
             <li><a href="institucion.jsp">Institución</a></li>
-            <li><a href="galeria.jsp">Galería</a></li>
+            <!--<li><a href="galeria.jsp">Galería</a></li>-->
             <li><a data-toggle="modal" id="btnAbrirContactenosModal" data-target="#modalcontactenos" href="#modalcontactenos">Contáctenos</a></li>
             <li><a href="login.jsp">Iniciar Sesión</a></li>
             <li><a href="#" class="btm-mega-menu">Más &nbsp;<i class="fa fa-caret-down"></i></a></li>
