@@ -181,7 +181,7 @@ function validar(){
                      document.getElementById('btnRegistrar').disabled=true;
                      bandera = true;
                 }else{
-                    if(bandera == false){
+                    if(responseText === 'no'){
                       document.getElementById('btnRegistrar').disabled=false;
                       bandera = false;
                     }
