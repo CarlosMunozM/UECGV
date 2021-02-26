@@ -125,7 +125,8 @@ public class srvEstudiante extends HttpServlet {
                             String ext = n.substring(longuitud - 4, longuitud);
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Alumnos/");
-                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Estudiante", ext));
+                            // poner los cositos //
+                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Estudiante", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -368,10 +369,10 @@ public class srvEstudiante extends HttpServlet {
     }
 
     private String f_RutaModificada(String ruta) {
-
+//sumar 10 y 4 
         int longuitud = ruta.length();
-        String entrada = ruta.substring(0, longuitud - 28);
-        String rutaConcat = ruta.substring(longuitud - 22, longuitud);
+        String entrada = ruta.substring(0, longuitud - 18);
+        String rutaConcat = ruta.substring(longuitud - 18, longuitud);
         String modificada = entrada + rutaConcat;
         return modificada;
     }
