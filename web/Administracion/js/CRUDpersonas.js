@@ -410,13 +410,46 @@ function discapacidad(elemento) {
     //input.style.display ="none";
     //input.label.values("00000");
         input.disabled = true;
-       $("#regCrntDiscAlu").text("");
+        input2.disabled=true;
+       input.value="nan";
+       input2.value="NINGUNA";
     
   }else{
-      
+    input2.disabled=false;  
     input.disabled = false;
   }
     
   
 }
 
+
+function validarIdentificacion(){
+    var ident = $('#regidentificacionAlu').val();
+    if(ident.length >= 10){
+      $.ajax({
+            async: true,
+            type: "GET",
+            url: '/UECGV/srvValidacion?accion=validad_identificacionEstudiante&valor='+ident+'',
+            success: function (responseText)
+            {
+                console.log(responseText);
+                if (responseText === 'si')
+                {
+                     alert("Ya existe en la base de datos");
+                     document.getElementById('btnRegistrarestudiante').disabled=true;
+                     bandera = true;
+                }else{
+                    if(responseText === 'no'){
+                       
+                      document.getElementById('btnRegistrarestudiante').disabled=false;
+                      bandera = false;
+                    }
+                }
+            },
+            error:function (data){
+                console.log(data);
+            } 
+        });  
+        
+    }
+}
