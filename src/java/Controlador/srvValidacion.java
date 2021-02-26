@@ -6,6 +6,7 @@
 package Controlador;
 
 import DAO.EmpleadoDAO;
+import DAO.EstudianteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -38,6 +39,7 @@ public class srvValidacion extends HttpServlet {
             String accion = request.getParameter("accion");
             String valor = request.getParameter("valor");
             EmpleadoDAO empleadoDAO;
+            EstudianteDAO estudianteDAO;
             switch (accion) {
 
                 case "validar_identificacion":
@@ -63,6 +65,15 @@ public class srvValidacion extends HttpServlet {
                         empleadoDAO = new EmpleadoDAO();
                         String existeCorreoInst = empleadoDAO.ValidarCorreoInstitucional(valor.trim());
                         response.getWriter().write(""+existeCorreoInst);
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                    break;
+                    case "validad_identificacionEstudiante":
+                    try {                                                                      
+                        estudianteDAO = new EstudianteDAO();
+                        String existeCedulaEst = estudianteDAO.ValidarIdentificacionEstudiante(valor.trim());
+                        response.getWriter().write(""+existeCedulaEst);
                     } catch (Exception ex) {
                         System.out.println(ex.getMessage());
                     }
