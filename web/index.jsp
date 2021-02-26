@@ -220,7 +220,7 @@
         </section>
         <div class="divider-general"></div>
         <!--======================================== Acontecer institucional ========================================-->
-        <section class="events-ins">
+        <section class="events-ins" hidden="true">
             <div class="container-fluid">
                 <h2 class="text-center titles">ACONTECER INSTITUCIONAL</h2>
                 <br><br>
