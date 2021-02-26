@@ -17,7 +17,15 @@ public class Estudiante {
     Curso_Educativo curso_educativo = new Curso_Educativo();
     String identificacion, tipo_identificacion, apellidos, nombres,genero, foto, direccion, foto_domicilio, 
             carnet_discapacidad, discapacidad, tipo_discapacidad, historia_clinica, nacionalidad,correo,celular;
+    Estudiante_Familiar estudiante_Familiar = new Estudiante_Familiar();
 
+    public Estudiante_Familiar getEstudiante_Familiar() {
+        return estudiante_Familiar;
+    }
+
+    public void setEstudiante_Familiar(Estudiante_Familiar estudiante_Familiar) {
+        this.estudiante_Familiar = estudiante_Familiar;
+    }
     public String getCorreo() {
         return correo;
     }
