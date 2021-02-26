@@ -65,7 +65,7 @@
                                 <img id="regImgAlum" src="" height="250"/>
                                 <br>
                                 <label>Foto</label>
-                                <input type="file" id="regFotoAlu" class="form-control" maxlength="50" required="" name="txtRegFoto" placeholder="Foto" disabled accept="image/jpg, image/png, image/jpeg">
+                                <input type="file" id="regFotoAlu" name="regFotoAlu" class="form-control" maxlength="50" required="" name="txtRegFoto" placeholder="Foto" disabled accept="image/jpg, image/png, image/jpeg">
                             </div>
                         </div>
                         <br>
@@ -114,7 +114,7 @@
                                 <label>Correo Electrónico</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                    <input type="email" style="text-transform:lowercase"  id="emailAlu" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="50" required="" name="txtRegEmail" readonly>
+                                    <input type="email" style="text-transform:lowercase"  id="emailAlu" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="50" name="txtRegEmail" readonly>
                                 </div>
                                 <span id="erroremail" style="color: #f00;"></span>
                             </div>
@@ -148,14 +148,14 @@
                             </div>
                             <div class="col-sm-6">
                                 <label>Foto del domicilio</label>
-                                <input type="file" id="fotoDomicilioAlu" onchange="validarFile(this)" class="form-control"  maxlength="50" name="txtRegFotoDomicilio" placeholder="Foto" disabled accept="image/jpg, image/png, image/jpeg">
+                                <input type="file" id="fotoDomicilioAlu" class="form-control"  maxlength="50" name="txtRegFotoDomicilio" placeholder="Foto" disabled accept="image/jpg, image/png, image/jpeg">
                             </div>
                             <div class="col-sm-2">
                                 <label>Tipo de discapacidad</label>
-                                <select id="regTipoDiscAlu" style="text-transform:uppercase" onchange="discapacidad()" class="form-control" name="sltRegTipoDiscp" required disabled>
-                                    <option value="1">Ninguna</option>
-                                    <option value="2">Fisíca</option>
-                                    <option value="3">Mental</option>
+                                <select id="regTipoDiscAlu" style="text-transform:uppercase" class="form-control" name="sltRegTipoDiscp" required disabled>
+                                    <option value="NINGUNA">Ninguna</option>
+                                    <option value="FISÍCA">Fisíca</option>
+                                    <option value="MENTAL">Mental</option>
                                 </select>
                             </div>
                         </div>
@@ -163,11 +163,11 @@
                         <div class="row discapacidad-seccion">
                             <div class="col-sm-4">
                                 <label>Discapacidad</label>
-                                <input type="text" id="regDiscapacidadAlu" style="text-transform:uppercase" class="form-control" maxlength="50" name="txtRegDiscapacidad" placeholder="Discapacidad" readonly>
+                                <input type="text" id="regDiscapacidadAlu" name="regDiscapacidadAlu" style="text-transform:uppercase" class="form-control" maxlength="50" name="txtRegDiscapacidad" placeholder="Discapacidad" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label>Carnet de Discapacidad</label>
-                                <input type="text" id="regCrntDiscAlu" class="form-control" maxlength="20"  name="txtRegCarnet" readonly>
+                                <input type="text" id="regCrntDiscAlu" name="regCrntDiscAlu" class="form-control" maxlength="20" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label>Historia clínica</label>
@@ -310,7 +310,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <label>Tipo de Identificación</label>
-                                <select id="regtipoIdentificacionRef" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdePadre" disabled>
+                                <select id="regtipoIdentificacionRef" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdeRef" disabled>
                                     <option></option>
                                     <option value="Cédula">Cédula</option>
                                     <option value="Pasaporte">Pasaporte</option>
@@ -318,7 +318,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Identificación</label>
-                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"   name="txtRegFamiliarIdentificacionPadre" placeholder="IDENTIFICACIÓN" readonly="">
+                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"   name="txtRegFamiliarIdentificacionRef" placeholder="IDENTIFICACIÓN" readonly="">
                                 <span id="erroridentificaciion" style="color: #f00;"></span>
                             </div>
                             <div class="col-sm-3">
@@ -337,7 +337,7 @@
                             <div class="col-sm-3">
                                 <label>Parentesco</label>
 
-                                <input type="text" id="modEditParentescoRef"  style="text-transform:uppercase" class="form-control" maxlength="50" required=""  placeholder="parentesco" readonly>                               
+                                <input type="text" id="modEditParentescoRef"  style="text-transform:uppercase" class="form-control" maxlength="50" required=""  placeholder="parentesco" readonly name="txtRefParentesco">                               
                             </div>
 
                             <div class="col-sm-3">
