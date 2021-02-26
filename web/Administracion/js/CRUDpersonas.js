@@ -25,7 +25,7 @@ function confirmarEliminacionALU(idPersona)
 
 function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, genero, nombres, apellidos, fecha_nacimiento, nombre_curso, direccion, numero_hermanos, lugar_ocupa,
         carnet_discapacidad, discapacidad, tipo_discapacidad, historia_clinica, apellidosFa, nombresfa, tipo_identificacionFa, cue, celular, ocupacion, lugardeTrabajo, correo, nacionalidad, identificacion,
-        nombreRef, apellidoRef, parentescoRef, celularRef, telefonoRef, correo_personal, celularAl)
+        nombreRef, apellidoRef, parentescoRef, celularRef, telefonoRef, correo_personal, celularAl,foto)
 {
     
     $('#modAluTipoIdentificacion').html(tipoIdentificacion);
@@ -35,7 +35,7 @@ function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, 
         $('#modVerALuGenero').html('Masculino');
     else
         $('#modVerALuGenero').html('Femenino');
-    $('#modVerAluFoto').html("no existe aun");
+    //$('#modVerAluFoto').html("no existe aun");
     $('#modVerAluNombres').html(nombres);
     $('#modVerAluApellidos').html(apellidos);
     $('#modVerAluFechaNacimiento').html(fecha_nacimiento);
@@ -76,6 +76,14 @@ function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, 
     $('#modVerRefCeluar').html(celularRef);
     $('#modVerRefTelefono').html(telefonoRef);
 
+
+  var img = document.getElementById("modVerAluFoto");
+    if(foto === ''){
+        var ruta="assets/img/profile-pic.jpg";
+        img.setAttribute("src",ruta);
+    }else{
+        img.setAttribute("src",foto);
+    }
 
     $('#exampleModalLongTitleShow').html("Datos del Alumno: ".bold().concat(nombres, " ", apellidos));
 }
@@ -385,5 +393,30 @@ $(document).ready(function () {
             b = true;
         }
     }
+    
+
 });
+
+
+var input = document.getElementById("regCrntDiscAlu");
+var input2 = document.getElementById("regDiscapacidadAlu");
+
+
+function discapacidad(elemento) {
+  d = elemento.value;
+  
+  if(d === "1"){
+    
+    //input.style.display ="none";
+    //input.label.values("00000");
+        input.disabled = true;
+       $("#regCrntDiscAlu").text("");
+    
+  }else{
+      
+    input.disabled = false;
+  }
+    
+  
+}
 
