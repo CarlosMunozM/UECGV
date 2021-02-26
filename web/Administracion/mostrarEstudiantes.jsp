@@ -113,13 +113,13 @@
                                         <tr>
                                             <td>${Users.apellidos} ${Users.nombres}</td>
                                             <td>${Users.identificacion}</td>
-                                            <td>${Users.curso_educativo.nombre_curso}</td>
+                                            <td>${Users.curso_educativo.nombre_curso}  ${Users.curso_educativo.tipo}</td>
                                             <td style="text-align: center;">
                                                 <a href="#" data-toggle="tooltip" title="Ver Datos">
                                                     <button class="btn btn-sm btn-info" id="btnMostrarDatos" data-toggle="modal" data-target="#modalDatos" 
                                                             onclick="datosModalMostrarALU('${Users.tipo_identificacion}','${Users.identificacion}','${Users.nacionalidad}','${Users.genero}','${Users.nombres}','${Users.apellidos}','${Users.fecha_nacimiento}','${Users.curso_educativo.nombre_curso}','${Users.direccion}','${Users.numero_hermanos}','${Users.lugar_ocupa}','${Users.carnet_discapacidad}',
                                                                         '${Users.discapacidad}','${Users.tipo_discapacidad}','${Users.historia_clinica}','${Users.familiar.nombres}','${Users.familiar.apellidos}','${Users.familiar.tipo_identificacion}','${Users.familiar.cue}','${Users.familiar.celular}','${Users.familiar.ocupacion}','${Users.familiar.lugar_trabajo}','${Users.familiar.correo}','${Users.familiar.nacionalidad}','${Users.familiar.identificacion}',
-                                                                        '${Users.referencia.nombres}','${Users.referencia.apellidos}','${Users.referencia.celular}','${Users.referencia.telefono}','${Users.referencia.parentesco}','${Users.correo}','${Users.celular}')">  
+                                                                        '${Users.referencia.nombres}','${Users.referencia.apellidos}','${Users.referencia.celular}','${Users.referencia.telefono}','${Users.referencia.parentesco}','${Users.correo}','${Users.celular}','${Users.foto}')">  
                                                             
                                                   <i class="zmdi zmdi-eye "></i> </button>
                                                     
