@@ -129,7 +129,7 @@ public class srvEmpleado extends HttpServlet {
                             String ext = n.substring(longuitud - 4, longuitud);
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Empleados/");
-                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
+                            File f = new File(f_RutaModificada(fileName) + '\\' + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -284,7 +284,7 @@ public class srvEmpleado extends HttpServlet {
                             String ext = n.substring(longuitud - 4, longuitud);
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Empleados/");
-                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
+                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -521,8 +521,8 @@ public class srvEmpleado extends HttpServlet {
     private String f_RutaModificada(String ruta) {
 
         int longuitud = ruta.length();
-        String entrada = ruta.substring(0, longuitud - 29);
-        String rutaConcat = ruta.substring(longuitud - 23, longuitud);
+        String entrada = ruta.substring(0, longuitud - 19);
+        String rutaConcat = ruta.substring(longuitud - 19, longuitud);
         String modificada = entrada + rutaConcat;
         return modificada;
     }
