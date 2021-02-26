@@ -257,4 +257,27 @@ public class EstudianteDAO {
             return 0;
         }
     }
+    
+    
+      public String ValidarIdentificacionEstudiante(String identificacion) throws SQLException {
+        try {
+            String ident = "";
+            connecPostgresql = new ConexionPostgreSQL();
+            ResultSet consulta;
+            if (connecPostgresql.getMessage().equals("ok")) {
+                connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call validar_identificacion_estudiante(?)}");
+                connecPostgresql.callableStatement.setString(1, identificacion);
+                consulta = connecPostgresql.callableStatement.executeQuery();
+                if (consulta.next()) {
+                    ident = consulta.getString(1);
+                }
+                connecPostgresql.getConnection().close();
+            }
+            return ident;
+        } catch (SQLException ex) {
+            connecPostgresql.getConnection().close();
+            System.out.println(ex.getMessage());
+            return "";
+        }
+    }
 }
