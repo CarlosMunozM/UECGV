@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Identificación</label>
-                                    <input type="text" style="text-transform:uppercase" id="regidentificacionAlu" class="form-control"  maxlength="20" onkeypress="return soloNumeros(event)" required="" name="txtRegIdentificacion" placeholder="Identificacion">
+                                    <input type="text" style="text-transform:uppercase" id="regidentificacionAlu" class="form-control"  maxlength="20" onkeypress="return soloNumeros(event)" onkeyup="validarIdentificacion()" required="" name="txtRegIdentificacion" placeholder="Identificacion">
                                     <span id="erroridentificaciion" style="color: #f00;"></span>
                                 </div>
                                 <div class="col-sm-2">
@@ -257,7 +257,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Nacionalidad</label>
-                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadPadre" placeholder="codigo" onkeypress="return soloLetrasv2(event)">
+                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadPadre" placeholder="nacionalidad" onkeypress="return soloLetrasv2(event)">
 
 
                                 </div>
@@ -334,7 +334,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Nacionalidad</label>
-                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadMadre" placeholder="codigo" onkeypress="return soloLetrasv2(event)">
+                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadMadre" placeholder="nacionalidad" onkeypress="return soloLetrasv2(event)">
 
 
                                 </div>
@@ -440,7 +440,7 @@
                             </div>
                             <br>
                             <center>
-                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnRegistrar">Registrar</button>                        
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnRegistrarestudiante">Registrar</button>                        
                             </center>
                         </form>
 
