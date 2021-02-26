@@ -29,11 +29,12 @@ $(document).ready( function() {
                     $("#reggeneroAlu").val(data.genero);
                     $("#regImgAlum").attr("src",data.foto);
                     var fecha = new Date(data.fecha_nacimiento);
-                    fecha = fecha.getFullYear() + "-" +  fecha.getMonth() + 1 + "-"  + fecha.getDate();
+                    var mes = fecha.getMonth() + 1;
+                    fecha = fecha.getFullYear() + "-" +  ('0' + mes).slice(-2).toString() + "-"  + ('0' + fecha.getDate()).slice(-2).toString();
                     $("#regfechaNacimientoAlu").val(fecha);
                     $("#regnombresAlu").val(data.nombres);
                     $("#regapellidosAlu").val(data.apellidos);
-                    $("#emailAlu").val(data.email);
+                    $("#emailAlu").val(data.correo);
                     $("#regCelularAlu").val(data.celular);
                     $("#regDireccionAlu").val(data.direccion);
                     $("#regHermanoAlu").val(data.numero_hermanos);
@@ -345,6 +346,9 @@ $(document).ready( function() {
         datos.push({"name": "id_familiar2", "value": estFamiliar2});
         datos.push({"name": "id_referencia", "value": referencia});
         datos.push({"name": "id_estReferencia", "value": estReferencia});
+        datos.push({"name": "txtRegFotoDomicilio", "value": $("#fotoDomicilioAlu").val()});
+        datos.push({"name": "regFotoAlu", "value": $("#regFotoAlu").val()});
+        //console.log(datos);
         $.ajax({
             type: 'POST',
             url: "srvActualizarDatos",
