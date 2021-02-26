@@ -28,8 +28,8 @@ public class ConexionPostgreSQL {
     
    
     
-    //String password = "1234567890";
-    //String urlDatabase = "jdbc:postgresql://156.96.46.31:5432/ue_carmelina";
+   // String password = "1234";
+   // String urlDatabase = "jdbc:postgresql://localhost/ue_carmelina";
     
    
     public Connection connection;

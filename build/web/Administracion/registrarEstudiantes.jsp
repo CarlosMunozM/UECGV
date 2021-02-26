@@ -197,7 +197,8 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label>Tipo de discapacidad</label>
-                                    <select id="regTipoDiscAlu" style="text-transform:uppercase" onchange="discapacidad()" class="form-control" name="sltRegTipoDiscp" required="">
+                                    <select id="regTipoDiscAlu"  style="text-transform:uppercase" onchange="discapacidad(this)" class="form-control" name="sltRegTipoDiscp" required="">
+                                        <option></option>
                                         <option value="1">Ninguna</option>
                                         <option value="2">Fisíca</option>
                                         <option value="3">Mental</option>
@@ -218,17 +219,16 @@
                                     <label>Historia clínica</label>
                                     <input type="text" style="text-transform:uppercase" id="regHistClinicaAlu" class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosv2(event)" required="" name="txtRegHistoriaClinica" placeholder="">
                                 </div>
-                                <div class="col-sm-2" >
+                                <div class="col-sm-12" >
                                     <br>
                                     <label>¿Quién Vive Con usted?</label>
-                                    <c:forEach var="listaConvivencia" items="${listaConvivencia}">
+                                    <div class="checkbox">
+                                        <c:forEach var="listaConvivencia" items="${listaConvivencia}">
 
-                                        <div class="checkbox">
-                                            <label><input  type="checkbox" name="listaFamiliaresAlu" value="${listaConvivencia.id_convivencia}" >${listaConvivencia.familiar}</label>
-                                        </div>
+                                            <label><input  type="checkbox" name="listaFamiliaresAlu" value="${listaConvivencia.id_convivencia}">  ${listaConvivencia.familiar} &nbsp;&nbsp;&nbsp</label>
 
-                                    </c:forEach>
-
+                                        </c:forEach>
+                                    </div>
 
 
                                 </div>

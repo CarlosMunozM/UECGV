@@ -1,6 +1,7 @@
 $(document).ready( function() {
     var estudiante;
-    var estFamiliar;
+    var estFamiliar1;
+    var estFamiliar2;
     var estReferencia;
     var padre;
     var madre;
@@ -27,10 +28,9 @@ $(document).ready( function() {
                     $("#regpaisAlu").val(data.nacionalidad);
                     $("#reggeneroAlu").val(data.genero);
                     $("#regImgAlum").attr("src",data.foto);
-                    //var fecha = moment(data.fecha_nacimiento);
-                    console.log(data.fecha_nacimiento);
-                    console.log( new Date(data.fecha_nacimiento));
-                    document.getElementById("regfechaNacimientoAlu").value = "2020-12-12";
+                    var fecha = new Date(data.fecha_nacimiento);
+                    fecha = fecha.getFullYear() + "-" +  fecha.getMonth() + 1 + "-"  + fecha.getDate();
+                    $("#regfechaNacimientoAlu").val(fecha);
                     $("#regnombresAlu").val(data.nombres);
                     $("#regapellidosAlu").val(data.apellidos);
                     $("#emailAlu").val(data.email);
@@ -193,8 +193,8 @@ $(document).ready( function() {
             success: function (data) {
                 //Datos Padres
                 $.each(data, function (index, item) {
-                    estFamiliar = item.estFamiliar;
                     if (item.parentesco === "PADRE") {
+                        estFamiliar1 = item.estFamiliar;
                         padre = item.familiar.id_familiar;
                         $("#regtipoIdentificacionRep").val(item.familiar.tipo_identificacion);
                         $("#regIdentificacionRep").val(item.familiar.identificacion);
@@ -207,6 +207,7 @@ $(document).ready( function() {
                         $("#regEmailRep").val(item.familiar.correo);
                         $("#regCelularRep").val(item.familiar.celular);
                     } else {
+                        estFamiliar2 = item.estFamiliar;
                         madre = item.familiar.id_familiar;
                         $("#regtipoIdentificacionMad").val(item.familiar.tipo_identificacion);
                         $("#regIdentificacionMad").val(item.familiar.identificacion);
@@ -335,7 +336,27 @@ $(document).ready( function() {
         reader.readAsDataURL($(this).get(0).files[0]);
     });
     
-    $("#btnGuardar").click(function(){
-        
+    $("#formEstudiante").submit(function(){
+        var datos = $("#formEstudiante").serializeArray();
+        datos.push({"name": "id_estudiante", "value": estudiante});
+        datos.push({"name": "id_padre", "value": padre});
+        datos.push({"name": "id_madre", "value": madre});
+        datos.push({"name": "id_familiar1", "value": estFamiliar1});
+        datos.push({"name": "id_familiar2", "value": estFamiliar2});
+        datos.push({"name": "id_referencia", "value": referencia});
+        datos.push({"name": "id_estReferencia", "value": estReferencia});
+        $.ajax({
+            type: 'POST',
+            url: "srvActualizarDatos",
+            cache: false,
+            data: {modo: "actualizar_datos", datos: JSON.stringify(datos)},
+            dataType: 'json',
+            success: function (data) {
+                
+            },
+            error: function(data){
+                
+            }
+        });
     });
 });

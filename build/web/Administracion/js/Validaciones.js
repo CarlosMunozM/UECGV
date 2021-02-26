@@ -208,5 +208,6 @@ function validarCedulaEC(cedula){
         //alert('Esta cedula tiene menos de 10 Digitos');
         return "La cédula debe tener 10 dígitos";
      }    
+   
 
 }
