@@ -220,10 +220,7 @@
                                     <label>Parentesco</label>
                                     <label id="modVerRefParentesco" style="font-size: 14p" class="form-control"></label>                                
                                 </div>
-                                 <div class="col-sm-3">
-                                    <label>Fecha Modificacion</label>
-                                    <label id="modVerRefModificacion" style="font-size: 14p" class="form-control"></label>                                
-                            </div>
+                                
                             <div class="col-sm-3">
                                     <label>Telefono</label>
                                      <label id="modVerRefTelefono" style="font-size: 14p" class="form-control"></label>
