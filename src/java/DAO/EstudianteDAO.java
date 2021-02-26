@@ -91,7 +91,7 @@ public class EstudianteDAO {
                 estudiante.setNumero_hermanos(consulta.getInt("numero_hermanos"));
                 estudiante.setLugar_ocupa(consulta.getInt("lugar_ocupa"));
                 estudiante.setNacionalidad(consulta.getString("nacionalidad"));
-                
+
                 ResultSet consulta_familiar;
                 int id = estudiante.getId_estudiante();
                 connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call mostrar_estudiante_familiar_filtro_persona(?)}");
@@ -110,8 +110,8 @@ public class EstudianteDAO {
                     estudiante.getFamiliar().setNacionalidad(consulta_familiar.getString("nacionalidad"));
                     estudiante.getFamiliar().setTipo_identificacion(consulta_familiar.getString("tipo_identificacion"));
                     estudiante.getFamiliar().setIdentificacion(consulta_familiar.getString("identificacion"));
-                    //estudiante.getFamiliar().getEstudiante_Familiar().setParentesco(consulta_familiar.getString("parentesco"));
-                    
+            //        estudiante.getFamiliar().getEstudiante_Familiar().setParentesco(consulta_familiar.getString("parentesco"));
+
                     ResultSet consulta_referencia;
 
                     connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call mostrar_estudiante_referencia_filtro_persona(?)}");
