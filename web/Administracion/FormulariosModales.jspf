@@ -30,18 +30,18 @@
                                     <label>Tipo de Identificación</label>
                                     <label id="modAluTipoIdentificacion" style="font-size: 14p" class="form-control"></label>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label>Identificación</label>
                                     <label id="modVerAludentificacion" style="font-size: 14p" class="form-control" ></label>
                                     <span id="erroridentificaciion" style="color: #f00;"></span>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label>País</label>
                                     
                                      <label id="modVerAluPais" style="font-size: 14p" class="form-control"></label>                                                 
                                 </div>
 
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label>Género</label>
                                    <label id="modVerALuGenero" style="font-size: 14p" class="form-control"b></label>
                                 </div>
