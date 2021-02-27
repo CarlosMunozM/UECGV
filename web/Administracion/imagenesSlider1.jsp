@@ -81,7 +81,7 @@
                     <div class="page-content">
 
                         <a href="#" data-toggle="tooltip" title="Actualizar Tabla">
-                            <button  onclick=" location.href = 'srvEventoImagen?accion=Listar'" class="btn btn-primary fa fa-refresh" style="float: left"> Actualizar</button>
+                            <button  onclick=" location.href = 'srvImagenPresentacion?accion=Listar'" class="btn btn-primary fa fa-refresh" style="float: left"> Actualizar</button>
                         </a>
                         <a type="button" data-toggle="modal" data-target="#addImagenSlider" title="Registrar Imagen">
                             <button  class="btn btn-success fa fa-plus" style="float: right"> Registrar</button>
@@ -102,7 +102,7 @@
                             <table id="bootstrap-data-table"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center;">Persona que la subio </th>
+                                        <th style="text-align: center;">Registrado Por </th>
                                         <th style="text-align: center;">Imagen </th>
                                         <th style="text-align: center;"><i class="fa fa-list"></i></th>
                                     </tr>
@@ -111,9 +111,9 @@
                                     <c:forEach var="p" items="${imagenes}">
                                         <tr>
                                             <td>${p.nombre}</td>
-                                            <td><img scr="${p.ruta}"height="70" width="70" /></td>
+                                            <td><img name="" src="${p.ruta}"height="80" width="150" /></td>
                                             <td style="text-align: center;">
-                                                <a href="#" data-toggle="tooltip" title="Eliminar"><button class="btn btn-sm btn-danger" > <i class="zmdi zmdi-delete" ></i></button></a>                                       
+                                                <a href="#" data-toggle="tooltip" title="Eliminar"><button class="btn btn-sm btn-danger" onclick="confirmarEliminacionImg('${p.id_imgpresentacion}');"> <i class="zmdi zmdi-delete" ></i></button></a>                                       
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -147,20 +147,13 @@
 
                                 <div class="form-group">
                                     <label>Imagen</label>
-                                    <input type="file" id="files" name="fileImagen" class="file"  multiple=true placeholder="Seleccione su archivo" required="" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50" data-placement="top" title="Seleccione su archivo">
-                                </div>
-                                <div class="from">
-                                    <label>Estado de imagen</label>          
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="estado">Publicada
-                                    </label>
+                                    <input type="file" id="files" name="RegevtFoto" class="file"  multiple=true placeholder="Seleccione su archivo" required="" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50" data-placement="top" title="Seleccione su archivo">
+                                    <small class="text-danger">Dimensiones Ancho (3000px o 3333px) entre Alto (1000px o 1113px)</small>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button class="btn btn-primary" name="accion" value="Guardar">Guardar</button>
+                                <button id="btn-guardar" class="btn btn-primary" name="accion" value="Guardar" disabled>Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -284,9 +277,39 @@
             <script src="/UECGV/Administracion/js/Validaciones.js" type="text/javascript"></script>
             <script src="/UECGV/Administracion/js/CRUDpersonas.js" type="text/javascript"></script>
 
-
             <script src="/UECGV/Administracion/plugins/dataTable/jquery.dataTables.min.js" type="text/javascript"></script>
             <link href="/UECGV/Administracion/plugins/dataTable/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
+            <script src="/UECGV/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+            <script src="/UECGV/js/toastr.js" type="text/javascript"></script>
+            <link href="/UECGV/css/toastr.min.css" rel="stylesheet" type="text/css"/>
+            <script type="text/javascript">
+                 toastr.options = {
+                    "positionClass": "toast-bottom-right",
+                    "showMethod": "show",
+                    "hideMethod": "hide"
+                };
+                $("#files").change(function(){
+                    var file = this.files[0];
+                    var img = new Image();
+                    img.src = window.URL.createObjectURL(file);
+                    img.onload = function(){
+                        if( (this.width.toFixed(0) >= 3000 && this.width.toFixed(0) <= 3333) && (this.height.toFixed(0) >= 1000 && this.height.toFixed(0) <= 1113)){
+                            $("#btn-guardar").attr("disabled", false);
+                        }else{
+                            $("#btn-guardar").attr("disabled", true);
+                            toastr.error("Las dimensiones de la imagen no son corresctas");
+                        }
+                    };
+                });
+                
+                function confirmarEliminacionImg(idimg){
+                    alertify.confirm('Confirmación', '¿Está seguro que desea eliminar esta imagen?', function () {
+                        window.location.href = '/UECGV/srvImagenPresentacion?accion=Eliminar&id=' + idimg + '';
+                    }, function () {
+                        toastr.error("Eliminación Cancelada");
+                    }).set('labels', {ok: 'Si', cancel: 'No'});
+                }
+            </script>
     </body>
 </html>
