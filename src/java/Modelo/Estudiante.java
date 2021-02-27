@@ -15,6 +15,9 @@ public class Estudiante {
     
     int id_estudiante, numero_hermanos, lugar_ocupa;
     Curso_Educativo curso_educativo = new Curso_Educativo();
+
+    
+    Estudiante_Familiar estudiante_Familiar; //=new Estudiante_Familiar();
     String identificacion, tipo_identificacion, apellidos, nombres,genero, foto, direccion, foto_domicilio, 
             carnet_discapacidad, discapacidad, tipo_discapacidad, historia_clinica, nacionalidad,correo,celular;
 
@@ -198,5 +201,11 @@ public class Estudiante {
     }
     
     
-    
+    public Estudiante_Familiar getEstudiante_Familiar() {
+        return estudiante_Familiar;
+    }
+
+    public void setEstudiante_Familiar(Estudiante_Familiar estudiante_Familiar) {
+        this.estudiante_Familiar = estudiante_Familiar;
+    }
 }
