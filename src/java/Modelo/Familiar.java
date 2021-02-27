@@ -11,19 +11,19 @@ package Modelo;
  */
 public class Familiar {
     
-    Estudiante_Familiar estudiante_Familiar;
+//    Estudiante_Familiar estudiante_Familiar;
 
    
     int id_familiar;
     String identificacion, apellidos, nombres, cue, celular, ocupacion, 
                lugar_trabajo, correo, nacionalidad, tipo_identificacion;
-     public Estudiante_Familiar getEstudiante_Familiar() {
-        return estudiante_Familiar;
-    }
-
-    public void setEstudiante_Familiar(Estudiante_Familiar estudiante_Familiar) {
-        this.estudiante_Familiar = estudiante_Familiar;
-    }
+//     public Estudiante_Familiar getEstudiante_Familiar() {
+//        return estudiante_Familiar;
+//    }
+//
+//    public void setEstudiante_Familiar(Estudiante_Familiar estudiante_Familiar) {
+//        this.estudiante_Familiar = estudiante_Familiar;
+//    }
 
     public int getId_familiar() {
         return id_familiar;
