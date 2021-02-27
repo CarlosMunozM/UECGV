@@ -127,8 +127,8 @@ public class srvImagenPresentacion extends HttpServlet {
 private String f_RutaModificada(String ruta) {
 
         int longuitud = ruta.length();
-        String entrada = ruta.substring(0, longuitud - 27);
-        String rutaConcat = ruta.substring(longuitud - 21, longuitud);
+        String entrada = ruta.substring(0, longuitud - 17);
+        String rutaConcat = ruta.substring(longuitud - 17, longuitud);
         String modificada = entrada + rutaConcat;
         return modificada;
     }
