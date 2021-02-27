@@ -10,6 +10,7 @@ import Modelo.Imagen;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServlet;
@@ -26,41 +27,60 @@ public class ImagenDAO {
     PreparedStatement ps;
     ResultSet rs;
     int r=0;
-    public int agregar(Imagen p){
+
+    private ConexionPostgreSQL connecPostgresql;
+   
+        public boolean agregar(Imagen p) throws SQLException {
         ConexionPostgreSQL cn=new ConexionPostgreSQL();
-        String sql="INSERT INTO imagenes_presentacion (id_usuario, ruta) VALUES (?, ?)";
-        try{
-            con=cn.getConnection();
-            ps=con.prepareStatement(sql);
-            ps.setInt(1, p.getId_usuario());
-            ps.setString(2, p.getRuta());
-            //ps.setBoolean(3, p.isEstado());
-            ps.executeUpdate();
-            con.close();
-        }catch(Exception e){}
-        return r;
+        try {
+            connecPostgresql = new ConexionPostgreSQL();
+            connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call registrar_imagen_presentacion(?,?)}");
+            connecPostgresql.callableStatement.setInt(1, p.getId_usuario());
+            connecPostgresql.callableStatement.setString(2, p.getRuta());
+
+            connecPostgresql.callableStatement.executeUpdate();
+            connecPostgresql.getConnection().close();
+            return true;
+        } catch (SQLException ex) {
+            connecPostgresql.getConnection().close();
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
-    public List<Imagen>Listar(){
-        ConexionPostgreSQL cn=new ConexionPostgreSQL();
-        String sql="Select e.nombres, e.apellidos,imgp.ruta,imgp.estado,imgp.id_imgpresentacion\n" +
-" from imagenes_presentacion as imgp inner join usuario u on imgp.id_usuario=u.id_usuario\n" +
-"inner join empleado as e on e.id_empleado=u.id_empleado\n" +
-"group by imgp.id_imgpresentacion,e.nombres, e.apellidos,imgp.ruta,imgp.estado";
+    public boolean eliminarImagenSlider(Imagen img) throws SQLException {
+        try {
+            connecPostgresql = new ConexionPostgreSQL();
+            connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call eliminar_imagen_presentacion(?)}");
+            connecPostgresql.callableStatement.setInt(1, img.getId_imgpresentacion());
+
+            connecPostgresql.callableStatement.executeUpdate();
+            connecPostgresql.getConnection().close();
+            return true;
+        } catch (SQLException ex) {
+            connecPostgresql.getConnection().close();
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+    public List<Imagen>Listar() throws SQLException{
         List<Imagen>lista=new ArrayList<>();
-        try{
-            con=cn.getConnection();
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();
-            con.close();
+        connecPostgresql = new ConexionPostgreSQL();
+        try{    
+            connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call mostrar_imagen_presentacion()}");
+            rs = connecPostgresql.callableStatement.executeQuery();
             while(rs.next()){
-                Imagen p=new Imagen();
-                p.setNombre(rs.getString(1));
-                p.setRuta(rs.getString(3));
-                p.setEstado(Boolean.valueOf(rs.getString(4)));
+                Imagen p = new Imagen();
+                p.setNombre(rs.getString("nombres")+" "+rs.getString("apellidos"));
+                p.setRuta(rs.getString("ruta"));
+                p.setId_imgpresentacion(Integer.parseInt(rs.getString("id_imgpresentacion")));
                 lista.add(p);
             }
+            connecPostgresql.getConnection().close();
             
-        }catch(Exception e){}
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            connecPostgresql.getConnection().close();
+        }
         return lista;
     }
 }
