@@ -33,47 +33,10 @@
 
         <div class="row">
             <div class="col-lg-12">
-
-
-                <div id="slider-ins" class="carousel slide" data-ride="carousel">
-                    <!-- Indicadores -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#slider-ins" data-slide-to="0" class="active"></li>
-                        <li data-target="#slider-ins" data-slide-to="1"></li>
-                        <li data-target="#slider-ins" data-slide-to="2"></li>
-                    </ol>
-
-                    <!-- Imagenes -->
-                    <div class="carousel-inner" role="listbox">
-
-                        <!-- Primera imagen -->
-                        <div class="item active">
-                            <img src="assets/img/Banner_bachillerato_asistente.png" alt="Default">
-                            <div class="carousel-caption">
-                                Imágen 1
-                            </div>
-                        </div>
-
-                        <!-- Segunda imagen -->
-                        <div class="item">
-                            <img src="assets/img/Banner_bachillerato_contador.png" alt="Default">
-                            <div class="carousel-caption">
-                                Imágen 2
-                            </div>
-                        </div>
-
-                        <!-- Tercera imagen -->
-                        <div class="item">
-                            <img src="assets/img/Banner_bachillerato_electro.png" alt="Default">
-                            <div class="carousel-caption">
-                                Imágen 3
-                            </div>
-                        </div>
-
-                    </div>
-
+                <div id="slider-ins" class="carousel slide principal-slide" data-ride="carousel">
+                    
                     <!-- Controles -->
-                    <a class="left carousel-control" href="#slider-ins" role="button" data-slide="prev">
+                    <a id="left-carousel" class="left carousel-control" href="#slider-ins" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
@@ -82,7 +45,6 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-
             </div>
         </div>
         <div class="divider-general"></div>
