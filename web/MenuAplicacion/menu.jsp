@@ -179,7 +179,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-3 " hidden="true">
+                                            <div class="col-xs-12 col-sm-3 ">
                                                 <br>
                                                 <div class="div-square panel-footer">
                                                     <a href="../srvImagenPresentacion?accion=Listar" >
