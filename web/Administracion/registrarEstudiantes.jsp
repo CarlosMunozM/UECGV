@@ -217,7 +217,7 @@
 
                                 <div class="col-sm-2">
                                     <label>Historia clínica</label>
-                                    <input type="text" style="text-transform:uppercase" id="regHistClinicaAlu" class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosv2(event)" required="" name="txtRegHistoriaClinica" placeholder="">
+                                    <input type="text" style="text-transform:uppercase" id="regHistClinicaAlu" class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosv2(event)" required="false" name="txtRegHistoriaClinica" placeholder="">
                                 </div>
                                 <div class="col-sm-12" >
                                     <br>
@@ -257,7 +257,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Nacionalidad</label>
-                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadPadre" placeholder="nacionalidad" onkeypress="return soloLetrasv2(event)">
+                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadPadre" placeholder="nacionalidad" onkeypress="return soloLetrasv2(event)" value="ECUATORIANA">
 
 
                                 </div>
@@ -265,7 +265,7 @@
 
                                 <div class="col-sm-2">
                                     <label>C.U.E</label>
-                                    <input type="text" id="regCueRep" class="form-control"  maxlength="50" required="" name="txtRegCuePadre" placeholder="codigo" onkeypress="return soloNumeros(event)">
+                                    <input type="text" id="regCueRep" class="form-control"  maxlength="50"  name="txtRegCuePadre" placeholder="codigo" onkeypress="return soloNumeros(event)">
                                 </div>
 
                             </div>
@@ -329,12 +329,12 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Identificación</label>
-                                    <input type="text" id="regIdentificacionRep" class="form-control"  maxlength="20" onkeypress="return soloNumeros(event)" required=""  name="txtRegFamiliarIdentificacionMadre" placeholder="Identificacion">
+                                    <input type="text" id="regIdentificacionRep" style="text-transform:uppercase" class="form-control"  maxlength="20" onkeypress="return soloNumeros(event)" required=""  name="txtRegFamiliarIdentificacionMadre" placeholder="Identificacion">
                                     <span id="erroridentificaciion" style="color: #f00;"></span>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Nacionalidad</label>
-                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadMadre" placeholder="nacionalidad" onkeypress="return soloLetrasv2(event)">
+                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadMadre" placeholder="nacionalidad" onkeypress="return soloLetrasv2(event)" value="ECUATORIANA">
 
 
                                 </div>
@@ -343,7 +343,7 @@
 
                                 <div class="col-sm-2">
                                     <label>C.U.E</label>
-                                    <input type="text" id="regCueRep" class="form-control"  maxlength="50" required="" name="txtRegCueMadre" placeholder="codigo" onkeypress="return soloNumeros(event)">
+                                    <input type="text" id="regCueRep" class="form-control"  maxlength="50"  name="txtRegCueMadre" placeholder="codigo" onkeypress="return soloNumeros(event)">
                                 </div>
 
                             </div>
@@ -396,7 +396,7 @@
                                 <h4><b>Datos de Contacto</b></h4><br>
                             </center>
                             <div class="row" style="margin-left: 4%">
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <label>Tipo de Identificación</label>
                                     <select id="regtipoIdentificacionRep" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="sltRegTipoIdentificacionRef" required="">
                                         <option></option>
@@ -406,8 +406,8 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label>Cedula</label>
-                                    <input type="text" id="modEditCedulaRef" style="text-transform:uppercase" class="form-control" onkeypress="return soloNumeros(event)" maxlength="50" required="" name="txtRegCedulaRef" placeholder="cedula">
+                                    <label>Identificacion</label>
+                                    <input type="text" id="modEditCedulaRef" style="text-transform:uppercase" class="form-control" onkeypress="return soloNumeros(event)" maxlength="50" required="" name="txtRegCedulaRef" placeholder="Identificacion">
 
                                 </div>
                                 <div class="col-sm-3">
@@ -420,21 +420,21 @@
                                     <input type="text" id="modEditApellidoRef"  style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidosRef" placeholder="apellidos">
 
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <label>Parentesco</label>
 
-                                    <input type="text" id="modEditParentescoRef"  style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegParentescoRef" placeholder="parentesco">                               
+                                    <input type="text" id="modEditParentescoRef"  style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="20" required="" name="txtRegParentescoRef" placeholder="parentesco">                               
                                 </div>
 
                                 <div class="col-sm-3">
                                     <label>Telefono</label>
-                                    <input type="text" id="modEditTelefonoRef" style="text-transform:uppercase" class="form-control" onkeypress="return soloNumeros(event)" maxlength="50" required="" name="txtRegtelefonoRef" placeholder="telefono">                               
+                                    <input type="text" id="modEditTelefonoRef" style="text-transform:uppercase" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10"  name="txtRegtelefonoRef" placeholder="telefono">                               
 
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Celular</label>
 
-                                    <input type="text" maxlength="10" id="modEditcelularRef" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasNumerosv2(event)" maxlength="50" required="" name="txtRegCelularRef" placeholder="celular">                               
+                                    <input type="text" maxlength="10" id="modEditcelularRef" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasNumerosv2(event)" maxlength="10" required="" name="txtRegCelularRef" placeholder="celular">                               
 
                                 </div>
                             </div>
