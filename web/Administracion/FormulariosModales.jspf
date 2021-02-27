@@ -119,7 +119,7 @@
                             <br>
                             <div class="row" style="margin-left: 4%">
                              <div class="col-sm-4">
-                                    <label>Discapacidad</label>
+                                    <label> Discapacidad </label>
                                    <label id="modVerAluDiscapacidad" style="font-size: 14p" class="form-control"></label>
                              </div>
                                 <div class="col-sm-4">
