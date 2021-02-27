@@ -7,17 +7,26 @@ package Controlador;
 
 import DAO.ImagenDAO;
 import Modelo.Imagen;
+import com.google.gson.Gson;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -27,6 +36,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author ASUS
  */
+@MultipartConfig
 @WebServlet(name = "srvImagenPresentacion", urlPatterns = {"/srvImagenPresentacion"})
 public class srvImagenPresentacion extends HttpServlet {
 
@@ -40,7 +50,7 @@ public class srvImagenPresentacion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -52,26 +62,36 @@ public class srvImagenPresentacion extends HttpServlet {
                 case "Guardar":
                     ArrayList<String> lista = new ArrayList<>();
                     try {
-                        FileItemFactory file = new DiskFileItemFactory();
-                        ServletFileUpload fileUpload = new ServletFileUpload(file);
-                        List items = fileUpload.parseRequest(request);
-                        for (int i = 0; i < items.size(); i++) {
-                            FileItem fileItem = (FileItem) items.get(i);
-                            if (!fileItem.isFormField()) {
-                                File f = new File("D:\\imagenes\\" + fileItem.getName());
-                                fileItem.write(f);
-                                img.setRuta("D:\\imagenes\\" + fileItem.getName());
-                            } else {
-                                lista.add(fileItem.getString());
-                            }
-                        }
                          img.setId_usuario(Integer.parseInt(request.getSession().getAttribute("id_usuario").toString()));
-                        //img.setNombre(lista.get(0));
-                        img.setEstado(Boolean.parseBoolean("True"));
-                        imgdao.agregar(img);
-
+                         //img.setEstado(Boolean.valueOf(request.getParameter("txtestado").trim()));    
+                         Part arch = request.getPart("RegevtFoto");
+                        String n = arch.getSubmittedFileName();
+                        if (ValidarFichero(n)) {
+                            int longuitud = n.length();
+                            String name=String.valueOf(System.currentTimeMillis());
+                            String ext = n.substring(longuitud - 4, longuitud);
+                            
+                            InputStream is = arch.getInputStream();
+                            
+                            String fileName = this.getServletContext().getRealPath("/Imagenes/Sliders/");
+                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado("as", name, ext));
+                            String ruta = f.toString();
+                            FileOutputStream ous = new FileOutputStream(f);
+                            //Ruta para base de datos
+                            String rutaBase = "Imagenes/Sliders/" + nombrarImagenEmpleado("as", name, ext) + "";
+                            img.setRuta(rutaBase);
+                            imgdao.agregar(img);
+                            
+                            int dato = is.read();
+                            while (dato != -1) {
+                                ous.write(dato);
+                                dato = is.read();
+                            }
+                            ous.close();
+                            is.close();
+                        }
                     } catch (Exception e) {
-
+                        System.out.println(e.getMessage());
                     }
                     request.getRequestDispatcher("srvImagenPresentacion?accion=Listar").forward(request, response);
                     break;
@@ -80,12 +100,59 @@ public class srvImagenPresentacion extends HttpServlet {
                     request.setAttribute("imagenes", imgs);
                     request.getRequestDispatcher("/Administracion/imagenesSlider1.jsp").forward(request, response);
                     break;
+                case "Eliminar":
+                         try {
+                        Imagen im = new Imagen();
+                        ImagenDAO imDAO = new ImagenDAO();
+                        
+                        im.setId_imgpresentacion(Integer.parseInt(request.getParameter("id")));
+                        
+                        if (imDAO.eliminarImagenSlider(im)) {
+                        request.getRequestDispatcher("srvImagenPresentacion?accion=Listar").forward(request, response);
+                        }else{
+                        request.getRequestDispatcher("srvImagenPresentacion?accion=Listar").forward(request, response);                
+                        }
+                         }catch(Exception e){}
+                    break;
+                case "Listar_index":
+                    response.setContentType("application/json;charset=UTF-8");
+                    List<Imagen> imagenes = imgdao.Listar();
+                    out.print(new Gson().toJson(imagenes));
+                    break;
                 default:
                     throw new AssertionError();
             }
         }
     }
+private String f_RutaModificada(String ruta) {
 
+        int longuitud = ruta.length();
+        String entrada = ruta.substring(0, longuitud - 27);
+        String rutaConcat = ruta.substring(longuitud - 21, longuitud);
+        String modificada = entrada + rutaConcat;
+        return modificada;
+    }
+
+    private String nombrarImagenEmpleado(String Cedula, String Apellidos, String ext) {
+        String NombreImagen = Cedula + "" + Apellidos + "" + ext;
+        return NombreImagen;
+    }
+
+    private String generarNombre(String codigo) {
+        String NombreImagen = "ImagenSlider" + codigo;
+        return NombreImagen;
+    }
+
+    private boolean ValidarFichero(String nombre) {
+        int longuitud = nombre.length();
+        String formato = nombre.substring(longuitud - 4, longuitud);
+        String hola = "";
+        if (formato.equals(".jpg") || formato.equals(".PNG") || formato.equals(".png") || formato.equals(".gif") || formato.equals(".gif") || formato.equals("JPEG")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -98,7 +165,11 @@ public class srvImagenPresentacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(srvImagenPresentacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -112,7 +183,11 @@ public class srvImagenPresentacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(srvImagenPresentacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
