@@ -115,8 +115,8 @@ public class srvEstudiante extends HttpServlet {
                         estudiante.setNumero_hermanos(Integer.parseInt(request.getParameter("txtRegNumHermanos")));
                         estudiante.setLugar_ocupa(Integer.parseInt(request.getParameter("txtRegLugHermanos")));
                         estudiante.setNacionalidad(request.getParameter("txtRegNacionalidad"));
-                        estudiante.setCorreo(request.getParameter(""));
-                        estudiante.setCelular(request.getParameter(""));
+                        estudiante.setCorreo(request.getParameter("txtRegEmail"));
+                        estudiante.setCelular(request.getParameter("txtRegCelular"));
 
                         Part arch = request.getPart("txtRegFoto");
                         String n = arch.getSubmittedFileName();
@@ -126,7 +126,7 @@ public class srvEstudiante extends HttpServlet {
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Alumnos/");
                             // poner los cositos //
-                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Estudiante", ext));
+                            File f = new File(f_RutaModificada(fileName) + "//" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Estudiante", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -140,7 +140,7 @@ public class srvEstudiante extends HttpServlet {
                                 String extD = nd.substring(longuitudD - 4, longuitudD);
                                 InputStream isD = archdomicilio.getInputStream();
                                 String fileNameDomi = this.getServletContext().getRealPath("/Imagenes/Alumnos/");
-                                File fd = new File(f_RutaModificada(fileNameDomi) + "\\" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Domicilio", ext));
+                                File fd = new File(f_RutaModificada(fileNameDomi) + "//" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Domicilio", ext));
                                 String rutad = fd.toString();
                                 FileOutputStream ousD = new FileOutputStream(fd);
                                 //Ruta para base de datos
@@ -369,10 +369,10 @@ public class srvEstudiante extends HttpServlet {
     }
 
     private String f_RutaModificada(String ruta) {
-//sumar 10 y 4 
+//sumar 10 y 4 o restar
         int longuitud = ruta.length();
-        String entrada = ruta.substring(0, longuitud - 18);
-        String rutaConcat = ruta.substring(longuitud - 18, longuitud);
+        String entrada = ruta.substring(0, longuitud - 28);
+        String rutaConcat = ruta.substring(longuitud - 22, longuitud);
         String modificada = entrada + rutaConcat;
         return modificada;
     }
