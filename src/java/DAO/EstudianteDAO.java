@@ -110,7 +110,9 @@ public class EstudianteDAO {
                     estudiante.getFamiliar().setNacionalidad(consulta_familiar.getString("nacionalidad"));
                     estudiante.getFamiliar().setTipo_identificacion(consulta_familiar.getString("tipo_identificacion"));
                     estudiante.getFamiliar().setIdentificacion(consulta_familiar.getString("identificacion"));
+                    //estudiante.getEstudiante_Familiar().setParentesco(consulta_familiar.getString("parentesco"));
             //        estudiante.getFamiliar().getEstudiante_Familiar().setParentesco(consulta_familiar.getString("parentesco"));
+            
 
                     ResultSet consulta_referencia;
 
