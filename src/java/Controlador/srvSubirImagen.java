@@ -121,8 +121,8 @@ public class srvSubirImagen extends HttpServlet {
     private String f_RutaModificada(String ruta) {
     //sumar 10 y 4 o restar
         int longuitud = ruta.length();
-        String entrada = ruta.substring(0, longuitud - 28);
-        String rutaConcat = ruta.substring(longuitud - 22, longuitud);
+        String entrada = ruta.substring(0, longuitud - 18);
+        String rutaConcat = ruta.substring(longuitud - 18, longuitud);
         String modificada = entrada + rutaConcat;
         return modificada;
     }
