@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -84,7 +85,7 @@
                             <button  onclick=" location.href = 'srvImagenPresentacion?accion=Listar'" class="btn btn-primary fa fa-refresh" style="float: left"> Actualizar</button>
                         </a>
                         <a type="button" data-toggle="modal" data-target="#addImagenSlider" title="Registrar Imagen">
-                            <button  class="btn btn-success fa fa-plus" style="float: right"> Registrar</button>
+                            <button id="btnRegistrarImgPresentacion" class="btn btn-success fa fa-plus" style="float: right"> Registrar</button>
                         </a>
                         <center>
                             <h3><b>Imagenes</b></h3><br>
@@ -138,9 +139,10 @@
             <div class="modal fade" id="addImagenSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <form method="post" action="srvImagenPresentacion?accion=Guardar"enctype="multipart/form-data">
+                        <%-- <form method="post" action="srvImagenPresentacion?accion=Guardar" enctype="multipart/form-data"> --%>
+                        <form autocomplete="off" id="frmImagenPresentacion"  enctype="multipart/form-data">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalmgPresentacion"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Agregar imagen</h4>
                             </div>
                             <div class="modal-body">
@@ -153,7 +155,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button id="btn-guardar" class="btn btn-primary" name="accion" value="Guardar" disabled>Guardar</button>
+                                <button id="btn-guardar" type="submit" class="btn btn-primary" name="accion" value="Guardar" disabled>Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -173,8 +175,8 @@
         <script src="assets/js/jquery-1.11.3.min.js"></script>
         <![endif]-->
             <script type="text/javascript">
-                                if ('ontouchstart' in document.documentElement)
-                                    document.write("<script src='/UECGV/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+                if ('ontouchstart' in document.documentElement)
+                    document.write("<script src='/UECGV/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
             </script>
             <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
@@ -187,83 +189,63 @@
 
             <script type="text/javascript">
 
-                                jQuery(function ($) {
-                                    var $sidebar = $('.sidebar').eq(0);
-                                    if (!$sidebar.hasClass('h-sidebar'))
-                                        return;
+                jQuery(function ($) {
+                    var $sidebar = $('.sidebar').eq(0);
+                    if (!$sidebar.hasClass('h-sidebar'))
+                        return;
 
-                                    $(document).on('settings.ace.top_menu', function (ev, event_name, fixed) {
-                                        if (event_name !== 'sidebar_fixed')
-                                            return;
+                    $(document).on('settings.ace.top_menu', function (ev, event_name, fixed) {
+                        if (event_name !== 'sidebar_fixed')
+                            return;
 
-                                        var sidebar = $sidebar.get(0);
-                                        var $window = $(window);
+                        var sidebar = $sidebar.get(0);
+                        var $window = $(window);
 
-                                        //return if sidebar is not fixed or in mobile view mode
-                                        var sidebar_vars = $sidebar.ace_sidebar('vars');
-                                        if (!fixed || (sidebar_vars['mobile_view'] || sidebar_vars['collapsible'])) {
-                                            $sidebar.removeClass('lower-highlight');
-                                            //restore original, default marginTop
-                                            sidebar.style.marginTop = '';
+                        //return if sidebar is not fixed or in mobile view mode
+                        var sidebar_vars = $sidebar.ace_sidebar('vars');
+                        if (!fixed || (sidebar_vars['mobile_view'] || sidebar_vars['collapsible'])) {
+                            $sidebar.removeClass('lower-highlight');
+                            //restore original, default marginTop
+                            sidebar.style.marginTop = '';
 
-                                            $window.off('scroll.ace.top_menu')
-                                            return;
-                                        }
-
-
-                                        var done = false;
-                                        $window.on('scroll.ace.top_menu', function (e) {
-
-                                            var scroll = $window.scrollTop();
-                                            scroll = parseInt(scroll / 4);//move the menu up 1px for every 4px of document scrolling
-                                            if (scroll > 17)
-                                                scroll = 17;
+                            $window.off('scroll.ace.top_menu')
+                            return;
+                        }
 
 
-                                            if (scroll > 16) {
-                                                if (!done) {
-                                                    $sidebar.addClass('lower-highlight');
-                                                    done = true;
-                                                }
-                                            } else {
-                                                if (done) {
-                                                    $sidebar.removeClass('lower-highlight');
-                                                    done = false;
-                                                }
-                                            }
+                        var done = false;
+                        $window.on('scroll.ace.top_menu', function (e) {
 
-                                            sidebar.style['marginTop'] = (17 - scroll) + 'px';
-                                        }).triggerHandler('scroll.ace.top_menu');
+                            var scroll = $window.scrollTop();
+                            scroll = parseInt(scroll / 4);//move the menu up 1px for every 4px of document scrolling
+                            if (scroll > 17)
+                                scroll = 17;
 
-                                    }).triggerHandler('settings.ace.top_menu', ['sidebar_fixed', $sidebar.hasClass('sidebar-fixed')]);
 
-                                    $(window).on('resize.ace.top_menu', function () {
-                                        $(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed', $sidebar.hasClass('sidebar-fixed')]);
-                                    });
-                                });
+                            if (scroll > 16) {
+                                if (!done) {
+                                    $sidebar.addClass('lower-highlight');
+                                    done = true;
+                                }
+                            } else {
+                                if (done) {
+                                    $sidebar.removeClass('lower-highlight');
+                                    done = false;
+                                }
+                            }
+
+                            sidebar.style['marginTop'] = (17 - scroll) + 'px';
+                        }).triggerHandler('scroll.ace.top_menu');
+
+                    }).triggerHandler('settings.ace.top_menu', ['sidebar_fixed', $sidebar.hasClass('sidebar-fixed')]);
+
+                    $(window).on('resize.ace.top_menu', function () {
+                        $(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed', $sidebar.hasClass('sidebar-fixed')]);
+                    });
+                });
             </script>
 
             <script src="/UECGV/js/jquery-3.3.1.min.js" type="text/javascript"></script>
-
-
-
-
-            <!-- inline scripts related to this page -->
-            <script type="text/javascript">
-
-                                $(document).ready(function () {
-                                    var valeditcorreo = true, valeditidentificacion = true;
-
-                                    $('#bootstrap-data-table').DataTable({
-                                        "scrollX": true,
-                                        "language": {
-                                            "url": "/UECGV/Administracion/plugins/dataTable/Spanish.json"
-                                        }
-                                    });
-
-                                });
-
-            </script>
 
             <script src="<%=request.getContextPath()%>/js/toastr.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/css/toastr.min.css" rel="stylesheet" type="text/css"/>
@@ -280,36 +262,103 @@
             <script src="/UECGV/Administracion/plugins/dataTable/jquery.dataTables.min.js" type="text/javascript"></script>
             <link href="/UECGV/Administracion/plugins/dataTable/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
-            <script src="/UECGV/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+>
             <script src="/UECGV/js/toastr.js" type="text/javascript"></script>
             <link href="/UECGV/css/toastr.min.css" rel="stylesheet" type="text/css"/>
+            
             <script type="text/javascript">
-                 toastr.options = {
-                    "positionClass": "toast-bottom-right",
-                    "showMethod": "show",
-                    "hideMethod": "hide"
-                };
-                $("#files").change(function(){
+                
+                 $(document).ready(function () {
+                    
+                    $('#bootstrap-data-table').DataTable({
+                        "scrollX": true,
+                        "language": {
+                            "url": "/UECGV/Administracion/plugins/dataTable/Spanish.json"
+                        }
+                    });
+                    
+                     toastr.options = {
+                        "positionClass": "toast-bottom-right",
+                        "showMethod": "show",
+                        "hideMethod": "hide"
+                    };
+                    
+                    $('#btn-guardar').click(function () {
+                        guardarImagenPresentacion();
+                    });
+                    
+                    $('#btnRegistrarImgPresentacion').click(function () {
+                        //alert('click');
+                        $("#RegevtFoto").val(null);
+                    });
+                    
+                });
+                
+                function guardarImagenPresentacion()
+                {
+                    $('#btn-guardar').text("Registrando...");
+                    $('#btn-guardar').attr("disabled", true);
+
+                    var form = $('#frmImagenPresentacion')[0];
+                    var data = new FormData(form);
+
+                    $.ajax({
+
+                        type: "POST",
+                        enctype: 'multipart/form-data',
+                        data: data,
+                        url: '/UECGV/srvImagenPresentacion?accion=Guardar',
+                        processData: false,  // Important!
+                        contentType: false,
+                        cache: false,
+                        success: function (responseText)
+                        {
+                            var respon = responseText;
+                            if (respon === 'ok')
+                            {
+                                //$('#btn-guardar').text("Registrar");
+                                //$('#btn-guardar').attr("disabled", false);
+
+                                //location.href = '/UECGV/srvImagenPresentacion?accion=Listar';
+                                //$("#btnCerrarModalmgPresentacion").click();
+                                //toastr.success("Guardado");
+
+                            } else
+                            {
+                                
+                                $('#btn-guardar').text("Registrar");
+                                $('#btn-guardar').attr("disabled", false);
+
+                                $("#btnCerrarModalmgPresentacion").click();
+                                toastr.error(respon);
+                                
+                            }
+                        }
+                    });
+                }
+               
+                $("#files").change(function () {
                     var file = this.files[0];
                     var img = new Image();
                     img.src = window.URL.createObjectURL(file);
-                    img.onload = function(){
-                        if( (this.width.toFixed(0) >= 3000 && this.width.toFixed(0) <= 3333) && (this.height.toFixed(0) >= 1000 && this.height.toFixed(0) <= 1113)){
+                    img.onload = function () {
+                        if ((this.width.toFixed(0) >= 3000 && this.width.toFixed(0) <= 3333) && (this.height.toFixed(0) >= 1000 && this.height.toFixed(0) <= 1113)) {
                             $("#btn-guardar").attr("disabled", false);
-                        }else{
+                        } else {
                             $("#btn-guardar").attr("disabled", true);
                             toastr.error("Las dimensiones de la imagen no son corresctas");
                         }
                     };
                 });
-                
-                function confirmarEliminacionImg(idimg){
+
+                function confirmarEliminacionImg(idimg) {
                     alertify.confirm('Confirmación', '¿Está seguro que desea eliminar esta imagen?', function () {
                         window.location.href = '/UECGV/srvImagenPresentacion?accion=Eliminar&id=' + idimg + '';
                     }, function () {
                         toastr.error("Eliminación Cancelada");
                     }).set('labels', {ok: 'Si', cancel: 'No'});
                 }
+                
             </script>
     </body>
 </html>
