@@ -17,15 +17,20 @@ import Modelo.Familiar;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -111,8 +116,11 @@ public class srvActualizarDatos extends HttpServlet {
                 case "actualizar_datos":
                     try {
                         String datos = request.getParameter("datos");
-                        JSONArray jsona = new JSONArray(datos);
-                        boolean respuesta = actualizarDatosDAO.actualizarEstudiante(jsona);
+                        JSONObject jsona = new JSONObject(datos);
+                        boolean respuesta = false;
+                        respuesta = actualizarDatosDAO.actualizarEstudiante(jsona);
+                        boolean[] res = {respuesta};
+                        out.print(new Gson().toJson(res));
                     } catch (Exception ex) {
                         System.out.println(ex.getMessage());
                     }
@@ -121,7 +129,7 @@ public class srvActualizarDatos extends HttpServlet {
             
         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
