@@ -28,7 +28,7 @@
         <!--======================================== Navegación ========================================-->
         <%@include file="estructura/encabezado_presentacion.jspf" %>
         <!--======================================== Contenido de la pagina ========================================-->
-        <section class="full-reset" style="background-color: #fff; padding: 20px 0;">
+        <section id="section-autoridades" class="full-reset mb-200" style="background-color: #fff; padding: 20px 0;">
             <div class="container">
                 <div class="row">
                     <section class="col-xs-12">
