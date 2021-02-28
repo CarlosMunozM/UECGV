@@ -54,25 +54,29 @@ public class srvImagenPresentacion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String accion = request.getParameter("accion");
-            HttpSession session= request.getSession();
-            Imagen img = new Imagen();
-            ImagenDAO imgdao = new ImagenDAO();
+           String accion = request.getParameter("accion");
+            HttpSession session = request.getSession();
+            Imagen img;
+            ImagenDAO imgdao;
+
             switch (accion) {
                 case "Guardar":
                     ArrayList<String> lista = new ArrayList<>();
                     try {
-                         img.setId_usuario(Integer.parseInt(request.getSession().getAttribute("id_usuario").toString()));
-                         //img.setEstado(Boolean.valueOf(request.getParameter("txtestado").trim()));    
-                         Part arch = request.getPart("RegevtFoto");
+                        img = new Imagen();
+                        imgdao = new ImagenDAO();
+
+                        img.setId_usuario(Integer.parseInt(request.getSession().getAttribute("id_usuario").toString()));
+                        //img.setEstado(Boolean.valueOf(request.getParameter("txtestado").trim()));    
+                        Part arch = request.getPart("RegevtFoto");
                         String n = arch.getSubmittedFileName();
                         if (ValidarFichero(n)) {
                             int longuitud = n.length();
-                            String name=String.valueOf(System.currentTimeMillis());
+                            String name = String.valueOf(System.currentTimeMillis());
                             String ext = n.substring(longuitud - 4, longuitud);
-                            
+
                             InputStream is = arch.getInputStream();
-                            
+
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Sliders/");
                             File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado("as", name, ext));
                             String ruta = f.toString();
@@ -80,8 +84,7 @@ public class srvImagenPresentacion extends HttpServlet {
                             //Ruta para base de datos
                             String rutaBase = "Imagenes/Sliders/" + nombrarImagenEmpleado("as", name, ext) + "";
                             img.setRuta(rutaBase);
-                            imgdao.agregar(img);
-                            
+
                             int dato = is.read();
                             while (dato != -1) {
                                 ous.write(dato);
@@ -89,38 +92,61 @@ public class srvImagenPresentacion extends HttpServlet {
                             }
                             ous.close();
                             is.close();
+
+                            if (imgdao.agregar(img)) {
+                                //response.getWriter().write("ok");
+                                
+                                img = new Imagen();
+                                imgdao = new ImagenDAO();
+
+                                List<Imagen> imgsListar = imgdao.Listar();
+                                request.setAttribute("imagenes", imgsListar);
+                                
+                                //request.getRequestDispatcher("/Administracion/imagenesSlider1.jsp").forward(request, response);
+                                
+                            } else {
+                                response.getWriter().write("No se pudo registrar la imagen");
+                            }
+                            response.sendRedirect("srvImagenPresentacion?accion=Listar");
                         }
+                        
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-                    request.getRequestDispatcher("srvImagenPresentacion?accion=Listar").forward(request, response);
+
                     break;
                 case "Listar":
-                    List<Imagen> imgs = imgdao.Listar();
-                    request.setAttribute("imagenes", imgs);
+                    img = new Imagen();
+                    imgdao = new ImagenDAO();
+
+                    List<Imagen> imgsListar = imgdao.Listar();
+                    request.setAttribute("imagenes", imgsListar);
                     request.getRequestDispatcher("/Administracion/imagenesSlider1.jsp").forward(request, response);
                     break;
                 case "Eliminar":
-                         try {
-                        Imagen im = new Imagen();
-                        ImagenDAO imDAO = new ImagenDAO();
-                        
-                        im.setId_imgpresentacion(Integer.parseInt(request.getParameter("id")));
-                        
-                        if (imDAO.eliminarImagenSlider(im)) {
-                        request.getRequestDispatcher("srvImagenPresentacion?accion=Listar").forward(request, response);
-                        }else{
-                        request.getRequestDispatcher("srvImagenPresentacion?accion=Listar").forward(request, response);                
-                        }
-                         }catch(Exception e){}
+                    try {
+                        img = new Imagen();
+                        imgdao = new ImagenDAO();
+
+                        img.setId_imgpresentacion(Integer.parseInt(request.getParameter("id")));
+
+                        imgdao.eliminarImagenSlider(img);
+
+                        List<Imagen> img3 = imgdao.Listar();
+                        request.setAttribute("imagenes", img3);
+                        response.sendRedirect("srvImagenPresentacion?accion=Listar");
+                        //request.getRequestDispatcher("/Administracion/imagenesSlider1.jsp").forward(request, response);
+
+                    } catch (Exception e) {
+                    }
                     break;
                 case "Listar_index":
                     response.setContentType("application/json;charset=UTF-8");
+                    imgdao = new ImagenDAO();
                     List<Imagen> imagenes = imgdao.Listar();
                     out.print(new Gson().toJson(imagenes));
                     break;
-                default:
-                    throw new AssertionError();
+
             }
         }
     }
