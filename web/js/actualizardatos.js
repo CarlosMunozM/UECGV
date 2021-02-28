@@ -6,11 +6,14 @@ $(document).ready( function() {
     var padre;
     var madre;
     var referencia;
+    var file_foto;
+    var file_domicilio;
     
     $("#btnCancelar").attr("disabled", true);
     $("#btnGuardar").attr("disabled", true);
     
     $("#btn-buscarEst").click(function(){
+        desabilitarInput();
         $.ajax({
             type: 'POST',
             url: "srvActualizarDatos",
@@ -20,6 +23,7 @@ $(document).ready( function() {
             success: function (data) {
                 if(data.id_estudiante !== 0){
                     estudiante = data.id_estudiante;
+                    $("#idEstd").val(estudiante);
                     //Cursos
                     listarCursos("listar_cursos", data.curso_educativo.id_curso);
                     listarConvivencia("listar_convivencia", data.id_estudiante);
@@ -48,6 +52,9 @@ $(document).ready( function() {
                         $("#regHistClinicaAlu").val(data.historia_clinica);
                     }else{
                         $(".discapacidad-seccion").slideUp("slow");
+                        $("#regDiscapacidadAlu").val("");
+                        $("#regCrntDiscAlu").val("");
+                        $("#regHistClinicaAlu").val("");
                     }
                     
                     //Datos Padres
@@ -195,8 +202,8 @@ $(document).ready( function() {
                 //Datos Padres
                 $.each(data, function (index, item) {
                     if (item.parentesco === "PADRE") {
-                        estFamiliar1 = item.estFamiliar;
-                        padre = item.familiar.id_familiar;
+                        estFamiliar1 = (item.estdFamiliar === 0 || item.estdFamiliar === undefined) ? 0: item.estdFamiliar;
+                        padre = (item.familiar.id_familiar === 0 || item.familiar.id_familiar === undefined) ? 0: item.familiar.id_familiar;
                         $("#regtipoIdentificacionRep").val(item.familiar.tipo_identificacion);
                         $("#regIdentificacionRep").val(item.familiar.identificacion);
                         $("#regNacionalidadRep").val(item.familiar.nacionalidad);
@@ -208,8 +215,8 @@ $(document).ready( function() {
                         $("#regEmailRep").val(item.familiar.correo);
                         $("#regCelularRep").val(item.familiar.celular);
                     } else {
-                        estFamiliar2 = item.estFamiliar;
-                        madre = item.familiar.id_familiar;
+                        estFamiliar2 = (item.estdFamiliar === 0 || item.estdFamiliar === undefined) ? 0: item.estdFamiliar;
+                        madre = (item.familiar.id_familiar === 0 || item.familiar.id_familiar === undefined) ? 0: item.familiar.id_familiar;
                         $("#regtipoIdentificacionMad").val(item.familiar.tipo_identificacion);
                         $("#regIdentificacionMad").val(item.familiar.identificacion);
                         $("#regNacionalidadMad").val(item.familiar.nacionalidad);
@@ -237,7 +244,7 @@ $(document).ready( function() {
             data: {id: id, modo: modo},
             dataType: 'json',
             success: function (data) {
-                estReferencia = data.estdReferencia;
+                estReferencia = (data.estdReferencia === 0 || data.estdReferencia === undefined) ? 0: data.estdReferencia;
                 referencia = data.referencia.id_referencia;
                 $("#modEditParentescoRef").val(data.referencia.telefono);
                 $("#regtipoIdentificacionRef").val(data.referencia.tipo_identificacion);
@@ -300,9 +307,9 @@ $(document).ready( function() {
                         $.each(data, function (index, item) {
                             var input = "";
                             if ($.inArray(item.id_convivencia, arrayItem) >= 0) {
-                                input = '<input  type="checkbox" value="' + item.id_convivencia + '" checked="checked">' + item.familiar + '&nbsp;&nbsp;&nbsp;</label>';
+                                input = '<input  name="'+item.familiar+'" type="checkbox" value="' + item.id_convivencia + '" checked="checked">' + item.familiar + '&nbsp;&nbsp;&nbsp;</label>';
                             } else {
-                                input = '<input  type="checkbox" value="' + item.id_convivencia + '" >' + item.familiar + '&nbsp;&nbsp;&nbsp;</label>';
+                                input = '<input  name="'+item.familiar+'" type="checkbox" value="' + item.id_convivencia + '" >' + item.familiar + '&nbsp;&nbsp;&nbsp;</label>';
                             }
                             var option = $('<label />', {
                                 html: input
@@ -314,7 +321,7 @@ $(document).ready( function() {
                         console.log(reponse);
                         $("#check-convivencia").html("");
                         $.each(data, function (index, item) {
-                            var input = '<input  type="checkbox" value="' + item.id_convivencia + '" >' + item.familiar + '&nbsp;&nbsp;&nbsp;</label>';
+                            var input = '<input name="'+item.familiar+'" type="checkbox" value="' + item.id_convivencia + '" >' + item.familiar + '&nbsp;&nbsp;&nbsp;</label>';
                             var option = $('<label />', {
                                 html: input
                             });
@@ -329,37 +336,196 @@ $(document).ready( function() {
         });
     }
     
+    function desabilitarInput(){
+        $("#regFotoAlu").attr("disabled", true);
+        
+        $("#tipoIdentificacionAlu").attr("disabled", true);
+        $("#regidentificacionAlu").attr("readonly", true);
+        $("#regpaisAlu").attr("readonly", true);
+        $("#reggeneroAlu").attr("disabled", true);
+        $("#regfechaNacimientoAlu").attr("readonly", true);
+        $("#regnombresAlu").attr("readonly", true);
+        $("#regapellidosAlu").attr("readonly", true);
+        $("#emailAlu").attr("readonly", true);
+        $("#regCelularAlu").attr("readonly", true);
+        $("#regCursoAlu").attr("disabled", true);
+        $("#regDireccionAlu").attr("readonly", true);
+        $("#regHermanoAlu").attr("readonly", true);
+        $("#regLugarHnosAlu").attr("readonly", true);
+        $("#fotoDomicilioAlu").attr("disabled", true);
+        $("#regTipoDiscAlu").attr("disabled", true);
+        $("#regDiscapacidadAlu").attr("readonly", true);
+        $("#regHistClinicaAlu").attr("readonly", true);
+         $("#regCrntDiscAlu").attr("readonly", true);
+        
+        //Datos padres
+        $("#regtipoIdentificacionRep").attr("disabled", true);
+        $("#regIdentificacionRep").attr("readonly", true);
+        $("#regNacionalidadRep").attr("readonly", true);
+        $("#regCueRep").attr("readonly", true);
+        $("#regnombresRep").attr("readonly", true);
+        $("#regApellidosRep").attr("readonly", true);
+        $("#regOcupacionRep").attr("readonly", true);
+        $("#regTrabajoRep").attr("readonly", true);
+        $("#regEmailRep").attr("readonly", true);
+        $("#regCelularRep").attr("readonly", true);
+        
+        $("#regtipoIdentificacionMad").attr("disabled", true);
+        $("#regIdentificacionMad").attr("readonly", true);
+        $("#regNacionalidadMad").attr("readonly", true);
+        $("#regCueMad").attr("readonly", true);
+        $("#regnombresMad").attr("readonly", true);
+        $("#regApellidosMad").attr("readonly", true);
+        $("#regOcupacionMad").attr("readonly", true);
+        $("#regTrabajoMad").attr("readonly", true);
+        $("#regEmailMad").attr("readonly", true);
+        $("#regCelularMad").attr("readonly", true);
+        
+        //Referencia
+        $("#modEditParentescoRef").attr("readonly", true);
+        $("#regtipoIdentificacionRef").attr("disabled", true);
+        $("#regIdentificacionRef").attr("readonly", true);
+        $("#modEditNonbresRef").attr("readonly", true);
+        $("#modEditApellidoRef").attr("readonly", true);
+        $("#modEditTelefonoRef").attr("readonly", true);
+        $("#modEditcelularRef").attr("readonly", true);
+        
+        $("#btnCancelar").attr("disabled", true);
+        $("#btnGuardar").attr("disabled", true);
+    }
+    
+    
     $("#regFotoAlu").change(function(){
         var reader = new FileReader();
         reader.onload = function(e) {
           $('#regImgAlum').attr('src', e.target.result);
         };
         reader.readAsDataURL($(this).get(0).files[0]);
+        file_foto = $(this).get(0).files[0];
     });
     
-    $("#formEstudiante").submit(function(){
-        var datos = $("#formEstudiante").serializeArray();
-        datos.push({"name": "id_estudiante", "value": estudiante});
-        datos.push({"name": "id_padre", "value": padre});
-        datos.push({"name": "id_madre", "value": madre});
-        datos.push({"name": "id_familiar1", "value": estFamiliar1});
-        datos.push({"name": "id_familiar2", "value": estFamiliar2});
-        datos.push({"name": "id_referencia", "value": referencia});
-        datos.push({"name": "id_estReferencia", "value": estReferencia});
-        datos.push({"name": "txtRegFotoDomicilio", "value": $("#fotoDomicilioAlu").val()});
-        datos.push({"name": "regFotoAlu", "value": $("#regFotoAlu").val()});
-        //console.log(datos);
-        $.ajax({
-            type: 'POST',
-            url: "srvActualizarDatos",
-            cache: false,
-            data: {modo: "actualizar_datos", datos: JSON.stringify(datos)},
-            dataType: 'json',
-            success: function (data) {
-            },
-            error: function(data){
-                
+    /*$("#regFotoAlu").change(function () {
+        console.log(this.files[0]);
+    });*/
+    
+    $("#btnGuardar").click(function(e){
+        
+        if($("#tipoIdentificacionAlu").val() !== "" && $("#regidentificacionAlu").val() !== "" && $("#regpaisAlu").val() !== "" && 
+            $("#reggeneroAlu").val() !== "" && $("#regfechaNacimientoAlu") !== "" && $("#regnombresAlu").val() !== "" && $("#regapellidosAlu").val() !== "" &&
+             $("#regCursoAlu").val() !== "" && $("#regDireccionAlu").val() !== "" &&
+            $("#regHermanoAlu").val() !== "" && $("#regLugarHnosAlu").val() !== "" && $("#regTipoDiscAlu").val() !== "" &&
+            $("#regtipoIdentificacionRep").val() !== "" && $("#regIdentificacionRep").val() !== "" && $("#regNacionalidadRep").val() !== "" && $("#regnombresRep").val() !== "" &&
+            $("#regApellidosRep").val() !== "" && $("#regOcupacionRep").val() !== "" && $("#regTrabajoRep").val() !== "" && $("#regtipoIdentificacionMad").val() !== "" &&
+            $("#regIdentificacionMad").val() !== "" && $("#regNacionalidadMad").val() !== "" && $("#regnombresMad").val() !== "" && $("#regApellidosMad").val() !== "" &&
+            $("#regOcupacionMad").val() !== "" && $("#regTrabajoMad").val() !== "" && $("#modEditParentescoRef").val() !== "" && $("#modEditNonbresRef").val() !== "" &&
+            $("#modEditApellidoRef").val() !== "" && $("#modEditcelularRef").val() !== ""){
+            
+            $("#btnGuardar").attr("disabled", true);
+            $("#btnGuardar").text("Guardando..");
+            
+            var datos = $("#formEstudiante").serializeArray();
+            datos.push({"name": "id_estudiante", "value": estudiante});
+            datos.push({"name": "id_padre", "value": padre});
+            datos.push({"name": "id_madre", "value": madre});
+            datos.push({"name": "id_familiar1", "value": estFamiliar1});
+            datos.push({"name": "id_familiar2", "value": estFamiliar2});
+            datos.push({"name": "id_referencia", "value": referencia});
+            datos.push({"name": "id_estdReferencia", "value": estReferencia});
+            datos.push({"name": "txtRegFotoDomicilio", "value": $("#fotoDomicilioAlu").val()});
+            datos.push({"name": "regFotoAlu", "value": $("#regFotoAlu").val()});
+
+            datos_form = {};
+            $.each(datos, function(index, item){
+               datos_form[item.name] = item.value;
+            });
+            toastr.options = {
+                        "positionClass": "toast-bottom-right",
+                        "showMethod": "show",
+                        "hideMethod": "hide"
+                    };
+            
+            $.ajax({
+                type: 'POST',
+                url: "srvActualizarDatos",
+                cache: false,
+                data: {modo: "actualizar_datos", datos: JSON.stringify(datos_form)},
+                dataType: 'json',
+                success: function (data) {
+                    if(data){
+                        ///Actualizar Foto
+                        var form = $("#formEstudiante")[0];
+                        var data_form = new FormData(form);
+                        $.ajax({
+                            type: "POST",
+                            enctype: 'multipart/form-data',
+                            data: data_form,
+                            url: '/UECGV/srvSubirImagen',
+                            processData: false, // Important!
+                            contentType: false,
+                            cache: false,
+                            success: function (response){
+                                if(response){
+                                    toastr.success("Datos Actualizados");
+                                    $("#section-datos").addClass("mb-200");
+                                    $(".form-datos").slideUp("slow");
+                                    $("#btnGuardar").attr("disabled", false);
+                                    $("#btnGuardar").text("Guardar");
+                                    $("#fotoDomicilioAlu").val("");
+                                    $("#regFotoAlu").val("");
+                                }else{
+                                    toastr.success("Datos Actualizados");
+                                    toastr.error("Error Actualización de Imagen");
+                                    $("#btnGuardar").attr("disabled", false);
+                                    $("#btnGuardar").text("Guardar");
+                                }
+                            }
+                        });                        
+                        
+                    }else{
+                        toastr.error("Error de Actualización");
+                    }
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
+        }else{
+            toastr.error("Rellene todos los campos obligatorios");
+        }
+    });
+    
+    $("#regTipoDiscAlu").change(function(e){
+        if(this.value !== 'NINGUNA'){
+            $(".discapacidad-seccion").slideDown("slow");
+            $("#regDiscapacidadAlu").val("");
+            $("#regCrntDiscAlu").val("");
+            $("#regHistClinicaAlu").val("");
+        }else{
+            if(this.value === "NINGUNA"){
+                $(".discapacidad-seccion").slideUp("slow");
+                $("#regDiscapacidadAlu").val("");
+                $("#regCrntDiscAlu").val("");
+                $("#regHistClinicaAlu").val("");
             }
-        });
+        }
+    });
+    
+    function convet_minuscula(e) {
+        e.value = e.value.toLowerCase();
+        alert(e.value);
+    }
+    
+    $("#regHermanoAlu").on('input', function(){
+        var cant = parseInt(this.value, 10);
+        if(cant <= -1){
+            this.value = 0;
+        }
+    });
+    
+     $("#regLugarHnosAlu").on('input', function(){
+        var cant = parseInt(this.value, 10);
+        if(cant <= -1){
+            this.value = 0;
+        }
     });
 });
