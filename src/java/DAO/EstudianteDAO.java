@@ -83,7 +83,7 @@ public class EstudianteDAO {
                 estudiante.setGenero(consulta.getString("genero"));
                 estudiante.setFoto(consulta.getString("foto"));
                 estudiante.setDireccion(consulta.getString("direccion"));
-                estudiante.setFoto_domicilio(consulta.getString("foto_domicilio"));
+               // estudiante.setFoto_domicilio(consulta.getString("foto_domicilio"));
                 estudiante.setCarnet_discapacidad(consulta.getString("carnet_discapacidad"));
                 estudiante.setDiscapacidad(consulta.getString("discapacidad"));
                 estudiante.setTipo_discapacidad(consulta.getString("tipo_discapacidad"));
@@ -91,6 +91,8 @@ public class EstudianteDAO {
                 estudiante.setNumero_hermanos(consulta.getInt("numero_hermanos"));
                 estudiante.setLugar_ocupa(consulta.getInt("lugar_ocupa"));
                 estudiante.setNacionalidad(consulta.getString("nacionalidad"));
+                estudiante.setFoto_domicilio(consulta.getString("foto_domicilio"));
+                
 
                 ResultSet consulta_familiar;
                 int id = estudiante.getId_estudiante();
