@@ -30,15 +30,15 @@
                     <br>
                             <div class="row form" style="margin-left: 4%">
                                 <div class="col-sm-3">
-                                    <label>Tipo de IdentificaciÛn</label>
+                                    <label>Tipo de Identificaci√≥n</label>
                                     <label id="modVerTipoIdentificacion" class="form-control input-sm" style="font-size: 14px"></label>                  
                                 </div>
                                 <div class="col-sm-2">
-                                    <label>IdentificaciÛn</label>
+                                    <label>Identificaci√≥n</label>
                                     <label id="modVerIdentificacion" class="form-control input-sm"  style="font-size: 14px"></label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label>CantÛn</label>                                        
+                                    <label>Cant√≥n</label>                                        
                                     <label id="modVerCanton" class="form-control input-sm" style="font-size: 14px"></label>
                                 </div>
 
@@ -71,11 +71,11 @@
                                         <label id="modVerEmail" class="form-control" style="font-size: 14px"></label>                                                                      
                                 </div>
                                 <div class="col-sm-2">
-                                    <label>TelÈfono</label>
+                                    <label>Tel√©fono</label>
                                     <label id="modVerTelefono" class="form-control" style="font-size: 14px"></label>
                                 </div>                                                                                           
                                 <div class="col-sm-2">
-                                    <label>GÈnero</label>
+                                    <label>G√©nero</label>
                                     <label id="modVerGenero" class="form-control" style="font-size: 14px"></label>                                                               
                                 </div>
                                 <div class="col-sm-3">
@@ -94,7 +94,7 @@
                                     <label id="modVerContrato" class="form-control" style="font-size: 14px"></label>
                                 </div>                               
                                  <div class="col-sm-3">
-                                    <label>EscalafÛn</label>                                    
+                                    <label>Escalaf√≥n</label>                                    
                                     <label id="modVerEscalafon" class="form-control" style="font-size: 14px"></label>
                                 </div>                               
                                
@@ -118,15 +118,15 @@
                             <br>
                             <div class="row form-group" style="margin-left: 4%">
                                 <div class="col-sm-11">
-                                    <label>DirecciÛn</label>
-                                    <textarea style=" resize: none;" rows="2" id="modVerDireccion" class="form-control"  maxlength="200" required="" name="txtRegDireccion" onkeypress="return soloLetrasNumerosCaracEspe(event)" placeholder="DirecciÛn"></textarea>
-                                    <%--pattern="[A-Za-z0-9Ò]+"--%>
+                                    <label>Direcci√≥n</label>
+                                    <textarea style=" resize: none;" rows="2" id="modVerDireccion" class="form-control"  maxlength="200" required="" name="txtRegDireccion" onkeypress="return soloLetrasNumerosCaracEspe(event)" placeholder="Direcci√≥n"></textarea>
+                                    <%--pattern="[A-Za-z0-9√±]+"--%>
                                 </div>
                             </div>
                             <br>
 
                              <center id="editTituloTutorias">
-                            <h4><b>TUTORÕAS</b></h4><br>
+                            <h4><b>TUTOR√çAS</b></h4><br>
                              </center>
                             <div class="row form" style="margin-left: 4%" id="EditTutoria">                                                               
                                 <div class="col-sm-6">
@@ -176,19 +176,19 @@
                     <div class="row " style="margin-left: 4%">
                         
                                 <div class="col-sm-3">
-                                    <label>Tipo de IdentificaciÛn</label>
-                                    <select id="modEditEmpTipoIdentificacion" class="form-control" name="EditEmpTipoIdentificacion" required="">
-                                        <option value="CÈdula">CÈdula</option>
+                                    <label>Tipo de Identificaci√≥n</label>
+                                    <select id="modEditEmpTipoIdentificacion" class="form-control" name="EditEmpTipoIdentificacion" required="" onchange="validarActualizacionLongitudIdent()">
+                                        <option value="C√©dula">C√©dula</option>
                                         <option value="Pasaporte">Pasaporte</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label>IdentificaciÛn</label>
+                                    <label>Identificaci√≥n</label>
                                     <input type="text" id="modEditEmpIdentificacion" class="form-control"  maxlength="15" onkeypress="return soloNumeros(event)" onkeyup="EditvalidarIdentificacion()" required="" name="EditEmpIdentificacion" placeholder="Identificacion">
                                     <span id="erroridentificaciion" style="color: #f00;"></span>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label>CantÛn</label>                                   
+                                    <label>Cant√≥n</label>                                   
                                     <select id="modEditEmpCanton" required="" class="form-control input-sm"  name="EditEmpIdCanton">
                                         <option></option>                                      
                                         <c:forEach var="lista" items="${listaCantones}">
@@ -229,16 +229,16 @@
                                 <div class="col-sm-5">
                                     <label>Correo Personal</label> 
                                     
-                                    <input type="email" id="modEditEmpEmail" class="form-control" style="text-transform:lowercase" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" required="" name="EditEmpEmail" onkeyup="EditValidarCorreoPersonal()" placeholder="E-mail">
+                                    <input type="email" id="modEditEmpEmail" class="form-control" style="text-transform:lowercase" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" maxlength="100" required="" name="EditEmpEmail" onkeyup="EditValidarCorreoPersonal()" placeholder="E-mail">
                                     
                                     <span id="erroremail" style="color: #f00;"></span>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label>TelÈfono</label>
-                                    <input type="text" id="modEditEmpTelefono" class="form-control" maxlength="10" onkeypress="return soloNumeros(event)" required="" name="EditEmpTelefono" placeholder="TelÈfono">
+                                    <label>Tel√©fono</label>
+                                    <input type="text" id="modEditEmpTelefono" class="form-control" maxlength="10" onkeypress="return soloNumeros(event)" required="" name="EditEmpTelefono" placeholder="Tel√©fono">
                                 </div>                                                                                           
                                 <div class="col-sm-3">
-                                    <label>GÈnero</label>
+                                    <label>G√©nero</label>
                                     <select id="modEditEmpGenero" class="form-control" name="EditEmpGenero" required="">
                                         <option></option>
                                         <option value="M">Masculino</option>
@@ -251,7 +251,7 @@
                                 <div class="col-sm-4">
                                     <label>Correo Institucional</label>
                                                                     
-                                    <input type="email" id="modEditEmpEmailInstitucional" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" required="" style="text-transform:lowercase" name="EditEmpEmailInstitucional"onkeyup="EditValidarCorreoInstitucional()" placeholder="">
+                                    <input type="email" id="modEditEmpEmailInstitucional" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" maxlength="100" required="" style="text-transform:lowercase" name="EditEmpEmailInstitucional"onkeyup="EditValidarCorreoInstitucional()" placeholder="">
                                    
                                     <span id="erroremail" style="color: #f00;"></span>
                                 </div>                                
@@ -264,19 +264,19 @@
                                     </select>
                                 </div>                                
                                  <div class="col-sm-2">
-                                    <label>EscalafÛn</label>
+                                    <label>Escalaf√≥n</label>
                                     <select id="modEditEmpEscalafon" class="form-control" name="EditEmpEscalafon" required=""> 
                                         <option value=""></option>
-                                        <option value="CategorÌa A">CategorÌa A</option>
-                                        <option value="CategorÌa B">CategorÌa B</option>
-                                        <option value="CategorÌa C">CategorÌa C</option>
-                                        <option value="CategorÌa D">CategorÌa D</option>
-                                        <option value="CategorÌa E">CategorÌa E</option>
-                                        <option value="CategorÌa F">CategorÌa F</option>
-                                        <option value="CategorÌa G">CategorÌa G</option>
-                                        <option value="CategorÌa H">CategorÌa H</option>
-                                        <option value="CategorÌa I">CategorÌa I</option>
-                                        <option value="CategorÌa J">CategorÌa J</option>
+                                        <option value="Categor√≠a A">Categor√≠a A</option>
+                                        <option value="Categor√≠a B">Categor√≠a B</option>
+                                        <option value="Categor√≠a C">Categor√≠a C</option>
+                                        <option value="Categor√≠a D">Categor√≠a D</option>
+                                        <option value="Categor√≠a E">Categor√≠a E</option>
+                                        <option value="Categor√≠a F">Categor√≠a F</option>
+                                        <option value="Categor√≠a G">Categor√≠a G</option>
+                                        <option value="Categor√≠a H">Categor√≠a H</option>
+                                        <option value="Categor√≠a I">Categor√≠a I</option>
+                                        <option value="Categor√≠a J">Categor√≠a J</option>
                                     </select>
                                 </div>                               
                                 <div class="col-sm-2">
@@ -298,7 +298,7 @@
                                         <option value="Soltero">Soltero</option>
                                         <option value="Casado">Casado</option>
                                         <option value="Divorciado">Divorciado</option>
-                                        <option value="UniÛn de hecho">UniÛn de hecho</option>
+                                        <option value="Uni√≥n de hecho">Uni√≥n de hecho</option>
                                     </select>
                                 </div>                                
                                  <div class="col-sm-3">
@@ -313,14 +313,14 @@
                             <br>
                             <div class="row" style="margin-left: 4%">
                                 <div class="col-sm-11">
-                                    <label>DirecciÛn</label>
-                                    <textarea style=" resize: none;" rows="2" id="modEditEmpDireccion" class="form-control"  maxlength="200" required="" name="EditEmpDireccion" onkeypress="return soloLetrasNumerosCaracEspe(event)" placeholder="DirecciÛn"></textarea>
-                                    <%--pattern="[A-Za-z0-9Ò]+"--%>
+                                    <label>Direcci√≥n</label>
+                                    <textarea style=" resize: none;" rows="2" id="modEditEmpDireccion" class="form-control"  maxlength="200" required="" name="EditEmpDireccion" onkeypress="return soloLetrasNumerosCaracEspe(event)" placeholder="Direcci√≥n"></textarea>
+                                    <%--pattern="[A-Za-z0-9√±]+"--%>
                                 </div>
                             </div>
                             <br>
                             <center id="modEditTituloTutorias" style="display: none">
-                            <h4><b>TUTORÕAS</b></h4>
+                            <h4><b>TUTOR√çAS</b></h4>
                              </center>
                             <div class="row" style="margin-left: 4%; display: none" id="modEditTutoria">
                                <di class="row" style="margin-left: 4%">
