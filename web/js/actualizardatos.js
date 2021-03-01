@@ -14,6 +14,11 @@ $(document).ready( function() {
     
     $("#btn-buscarEst").click(function(){
         desabilitarInput();
+        toastr.options = {
+            "positionClass": "toast-bottom-right",
+            "showMethod": "show",
+            "hideMethod": "hide"
+        };
         $.ajax({
             type: 'POST',
             url: "srvActualizarDatos",
@@ -65,7 +70,8 @@ $(document).ready( function() {
                     $("#section-datos").removeClass("mb-200");
                     $(".form-datos").slideDown("slow");
                 }else{
-                    console.log("No data");
+                    toastr.error("Registro no existente.");
+                    toastr.error("Contacte con la Administración.");
                 }
             },
             error: function (data) {
@@ -434,6 +440,11 @@ $(document).ready( function() {
     });*/
     
     $("#btnGuardar").click(function(e){
+        toastr.options = {
+                        "positionClass": "toast-bottom-right",
+                        "showMethod": "show",
+                        "hideMethod": "hide"
+                    };
         
         if($("#tipoIdentificacionAlu").val() !== "" && $("#regidentificacionAlu").val() !== "" && $("#regpaisAlu").val() !== "" && 
             $("#reggeneroAlu").val() !== "" && $("#regfechaNacimientoAlu") !== "" && $("#regnombresAlu").val() !== "" && $("#regapellidosAlu").val() !== "" &&
@@ -463,11 +474,6 @@ $(document).ready( function() {
             $.each(datos, function(index, item){
                datos_form[item.name] = item.value;
             });
-            toastr.options = {
-                        "positionClass": "toast-bottom-right",
-                        "showMethod": "show",
-                        "hideMethod": "hide"
-                    };
             
             $.ajax({
                 type: 'POST',
