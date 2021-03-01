@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -129,7 +129,7 @@ public class srvEmpleado extends HttpServlet {
                             String ext = n.substring(longuitud - 4, longuitud);
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Empleados/");
-                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
+                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -146,13 +146,13 @@ public class srvEmpleado extends HttpServlet {
                                 cargoEmpleado = new Cargo_Empleado();                            
                                 cargoEmpleadoDAO = new Cargo_EmpleadoDAO();                            
                                 int idEmp = empleadoDAO.obtenerIdEmpleado(empleado);                            
-                                if(idEmp>0){                               
+                                if(idEmp > 0){                               
                                     cargoEmpleado.getEmpleado().setId_empleado(idEmp);                                
                                     cargoEmpleado.getCargo().setId_cargo(Integer.parseInt(request.getParameter("RegEmpIdCargo")));                                                               
                                     if(cargoEmpleadoDAO.registrarCargoEmpleado(cargoEmpleado)){
                                         if(cargoEmpleado.getCargo().getId_cargo() == 5){
                                             String notutor=request.getParameter("RegEmpIdCurso");
-                                            if(notutor != ""){                                           
+                                            if(!"".equals(notutor)){                                           
                                                 String idCargEmpAct = request.getParameter("RegIDCargoEmpleado");                                           
                                                 tutores = new Tutores();                                               
                                                 tutoresDAO = new TutoresDAO();
@@ -284,7 +284,7 @@ public class srvEmpleado extends HttpServlet {
                             String ext = n.substring(longuitud - 4, longuitud);
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Empleados/");
-                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
+                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -521,8 +521,8 @@ public class srvEmpleado extends HttpServlet {
     private String f_RutaModificada(String ruta) {
 
         int longuitud = ruta.length();
-        String entrada = ruta.substring(0, longuitud - 19);
-        String rutaConcat = ruta.substring(longuitud - 19, longuitud);
+        String entrada = ruta.substring(0, longuitud - 29);
+        String rutaConcat = ruta.substring(longuitud - 23, longuitud);
         String modificada = entrada + rutaConcat;
         return modificada;
     }
