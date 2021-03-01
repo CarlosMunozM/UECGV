@@ -26,6 +26,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -110,6 +112,13 @@ public class srvEstudiante extends HttpServlet {
                         estudiante.setDireccion(request.getParameter("txtRegDireccion"));
                         estudiante.setCarnet_discapacidad(request.getParameter("txtRegCarnet"));
                         estudiante.setDiscapacidad(request.getParameter("txtRegDiscapacidad"));
+                        if (request.getParameter("sltRegTipoDiscp").equals("1")) {
+                            estudiante.setTipo_discapacidad("NINGUNA");
+                        }if (request.getParameter("sltRegTipoDiscp").equals("2")) {
+                            estudiante.setTipo_discapacidad("FISÍCA");
+                        }if (request.getParameter("sltRegTipoDiscp").equals("3")) {
+                            estudiante.setTipo_discapacidad("MENTAL");
+                        }
                         estudiante.setTipo_discapacidad(request.getParameter("sltRegTipoDiscp"));
                         estudiante.setHistoria_clinica(request.getParameter("txtRegHistoriaClinica"));
                         estudiante.setNumero_hermanos(Integer.parseInt(request.getParameter("txtRegNumHermanos")));
@@ -126,7 +135,7 @@ public class srvEstudiante extends HttpServlet {
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Alumnos/");
                             // poner los cositos //
-                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Estudiante", ext));
+                            File f = new File(f_RutaModificada(fileName) + "//" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Estudiante", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -140,7 +149,7 @@ public class srvEstudiante extends HttpServlet {
                                 String extD = nd.substring(longuitudD - 4, longuitudD);
                                 InputStream isD = archdomicilio.getInputStream();
                                 String fileNameDomi = this.getServletContext().getRealPath("/Imagenes/Alumnos/");
-                                File fd = new File(f_RutaModificada(fileNameDomi) + "" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Domicilio", ext));
+                                File fd = new File(f_RutaModificada(fileNameDomi) + "//" + nombrarImagenEmpleado(estudiante.getIdentificacion(), "Domicilio", ext));
                                 String rutad = fd.toString();
                                 FileOutputStream ousD = new FileOutputStream(fd);
                                 //Ruta para base de datos
@@ -211,16 +220,16 @@ public class srvEstudiante extends HttpServlet {
                                     int idfa = familiarDAO.obtenerIdFamiliar(familiar);
                                     int idfa2 = familiarDAO.obtenerIdFamiliar(familiar2);
                                     int idref = referenciaDAO.obtenerIdReferencia(referencia);
-
+//
                                     //insertar tablas intermedias 
                                     if (idest > 0 && idfa > 0) {
-                                        estudiantefPapa.setParentesco("PAPÁ");
+                                        estudiantefPapa.setParentesco("PADRE");
                                         estudiantefPapa.setIdFamiliar(idfa);
                                         estudiantefPapa.setIdestudiante(idest);
                                         if (estudiante_familiarDAO.registrarEstudianteFamiliar(estudiantefPapa)) {
 
                                             if (idest > 0 && idfa2 > 0) {
-                                                estudiantefMama.setParentesco("MAMÁ");
+                                                estudiantefMama.setParentesco("MADRE");
                                                 estudiantefMama.setIdFamiliar(idfa2);
                                                 estudiantefMama.setIdestudiante(idest);
                                                 if (estudiante_familiarDAO.registrarEstudianteFamiliar(estudiantefMama)) {
@@ -237,62 +246,63 @@ public class srvEstudiante extends HttpServlet {
                                                                 estudiante_convivencia.getConvivencia().setId_convivencia(idconv);
                                                                 estudiante_convivenciaDAO.registrarEstudianteFamiliar(estudiante_convivencia);
 
-
-                                                               
-                                                            }                                                          
-                                                                    session.setAttribute("registrar", "ok");
-                                                                    response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
+                                                            }
+                                                             response.getWriter().write("ok");
+                                                            //session.setAttribute("registrar", "ok");
+                                                            //response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
 
                                                         } else {
-                                                            session.setAttribute("registrar", "error");
-                                                            response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
+                                                           response.getWriter().write("ERROR ");
+                                                            //response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
 
                                                         }
 
                                                     } else {
-                                                        session.setAttribute("registrar", "error");
-                                                        response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
+                                                         response.getWriter().write("ERROR ");
+                                                        //response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
 
                                                     }
 
                                                 } else {
-                                                    session.setAttribute("registrar", "error");
-                                                    response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
+                                                    response.getWriter().write("ERROR ");
+                                                   // response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
                                                 }
                                             } else {
-                                                session.setAttribute("registrar", "error");
-                                                response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
+                                                 response.getWriter().write("ERROR ");
+                                                //response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
                                             }
 
                                         } else {
-                                            session.setAttribute("registrar", "error");
-                                            response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
+                                             response.getWriter().write("ERROR ");
+                                            //response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
                                         }
                                     } else {
-                                        session.setAttribute("registrar", "error");
-                                        response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
+                                         response.getWriter().write("ERROR ");;
+                                        //response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
                                     }
 
                                 } else {
 
-                                    response.getWriter().write("error");
+                                     response.getWriter().write("ERROR ");
                                 }
                             }
                         }
-                    } catch (Exception ex) {
+                    } catch (IOException | NumberFormatException | SQLException | ParseException | ServletException ex) {
                         System.out.println(ex.getMessage());
+                        
+                        
                     }
                     break;
                 case "mostrar_estudiante":
                     try {
-                        estudiante = new Estudiante();
+                       // estudiante = new Estudiante();
                         estudianteDAO = new EstudianteDAO();
 
                         listaEstudiantes = estudianteDAO.mostrarEstudiantes();
                         //liatafamiliar=familiarDAO.mostrarFamiliar();
 
                         request.setAttribute("listaUsuarios", listaEstudiantes);
-                        
+
                         request.getRequestDispatcher("/Administracion/mostrarEstudiantes.jsp").forward(request, response);
                     } catch (Exception ex) {
                         System.out.println(ex.getMessage());
@@ -356,7 +366,7 @@ public class srvEstudiante extends HttpServlet {
 
                         if (estudianteDAO.eliminarEstudiante(estudiante)) {
                             response.getWriter().write("ok");
-                             response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
+                            response.sendRedirect("srvEstudiante?accion=mostrar_estudiante");
                         } else {
                             response.getWriter().write("error");
                         }
@@ -371,8 +381,10 @@ public class srvEstudiante extends HttpServlet {
     private String f_RutaModificada(String ruta) {
 //sumar 10 y 4 o restar
         int longuitud = ruta.length();
-        String entrada = ruta.substring(0, longuitud - 18);
-        String rutaConcat = ruta.substring(longuitud - 18, longuitud);
+        String entrada = ruta.substring(0, longuitud - 28);
+        String rutaConcat = ruta.substring(longuitud - 22, longuitud);
+//        String entrada = ruta.substring(0, longuitud - 18);
+//        String rutaConcat = ruta.substring(longuitud - 18, longuitud);
         String modificada = entrada + rutaConcat;
         return modificada;
     }
