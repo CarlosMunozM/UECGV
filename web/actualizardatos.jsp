@@ -82,7 +82,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Identificación</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" style="text-transform:uppercase" id="regidentificacionAlu" class="form-control"  maxlength="20" required="" name="txtRegIdentificacion" placeholder="Identificacion" readonly>
+                                <input type="text" style="text-transform:uppercase" id="regidentificacionAlu" class="form-control"  maxlength="20" required="" name="txtRegIdentificacion" placeholder="Identificacion" readonly onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                 <span id="erroridentificaciion" style="color: #f00;"></span>
                             </div>
                             <div class="col-sm-2">
@@ -198,7 +198,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Identificación</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" id="regIdentificacionRep" class="form-control"  maxlength="20"  required=""  name="txtRegFamiliarIdentificacionPadre" placeholder="IDENTIFICACIÓN" readonly>
+                                <input type="text" id="regIdentificacionRep" class="form-control"  maxlength="20"  required=""  name="txtRegFamiliarIdentificacionPadre" placeholder="IDENTIFICACIÓN" readonly onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                 <span id="erroridentificaciion" style="color: #f00;"></span>
                             </div>
                             <div class="col-sm-3">
@@ -259,7 +259,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Identificación</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" id="regIdentificacionMad" class="form-control"  maxlength="20"  required=""  name="txtRegFamiliarIdentificacionMadre" placeholder="IDENTIFICACIÓN" readonly>
+                                <input type="text" id="regIdentificacionMad" class="form-control"  maxlength="20"  required=""  name="txtRegFamiliarIdentificacionMadre" placeholder="IDENTIFICACIÓN" readonly onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                 <span id="erroridentificaciion" style="color: #f00;"></span>
                             </div>
                             <div class="col-sm-3">
@@ -320,7 +320,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Identificación</label>
-                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"   name="txtRegFamiliarIdentificacionRef" placeholder="IDENTIFICACIÓN" readonly="">
+                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"   name="txtRegFamiliarIdentificacionRef" placeholder="IDENTIFICACIÓN" readonly="" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                 <span id="erroridentificaciion" style="color: #f00;"></span>
                             </div>
                             <div class="col-sm-3">
