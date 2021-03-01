@@ -176,7 +176,7 @@
                     <div class="row " style="margin-left: 4%">
                         
                                 <div class="col-sm-3">
-                                    <label>Tipo de IdentificaciÓn</label>
+                                    <label>Tipo de Identificación</label>
                                     <select id="modEditEmpTipoIdentificacion" class="form-control" name="EditEmpTipoIdentificacion" required="" onchange="validarActualizacionLongitudIdent()">
                                         <option value="Cédula">Cédula</option>
                                         <option value="Pasaporte">Pasaporte</option>
@@ -267,16 +267,16 @@
                                     <label>Escalafón</label>
                                     <select id="modEditEmpEscalafon" class="form-control" name="EditEmpEscalafon" required=""> 
                                         <option value=""></option>
-                                        <option value="CategorÃ­a A">Categoría A</option>
-                                        <option value="CategorÃ­a B">Categoría B</option>
-                                        <option value="CategorÃ­a C">Categoría C</option>
-                                        <option value="CategorÃ­a D">Categoría D</option>
-                                        <option value="CategorÃ­a E">Categoría E</option>
-                                        <option value="CategorÃ­a F">Categoría F</option>
-                                        <option value="CategorÃ­a G">Categoría G</option>
-                                        <option value="CategorÃ­a H">Categoría H</option>
-                                        <option value="CategorÃ­a I">Categoría I</option>
-                                        <option value="CategorÃ­a J">Categoría J</option>
+                                        <option value="Categoría A">Categoría A</option>
+                                        <option value="Categoría B">Categoría B</option>
+                                        <option value="Categoría C">Categoría C</option>
+                                        <option value="Categoría D">Categoría D</option>
+                                        <option value="Categoría E">Categoría E</option>
+                                        <option value="Categoría F">Categoría F</option>
+                                        <option value="Categoría G">Categoría G</option>
+                                        <option value="Categoría H">Categoría H</option>
+                                        <option value="Categoría I">Categoría I</option>
+                                        <option value="Categoría J">Categoría J</option>
                                     </select>
                                 </div>                               
                                 <div class="col-sm-2">
