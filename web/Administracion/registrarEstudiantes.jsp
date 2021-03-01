@@ -34,8 +34,15 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/ace-rtl.min.css" />
 
         <script src="<%=request.getContextPath()%>/js/ace-extra.min.js"></script>
-    </head>
 
+    </head>
+    <style>
+        .form-group input:required~label::before {
+            content: "* ";
+            color: red;
+            font-weight: bold;
+        }
+    </style>
     <body class="no-skin">
         <%@include file="../EstructuraAplicacion/encabezado.jsp" %>
 
@@ -84,21 +91,21 @@
                             <h4><b>Registrar Estudiantes</b></h4><br>
                         </center>
 
-                        <form autocomplete="on"  action="/UECGV/srvEstudiante?accion=registrar_estudiante" method="post" enctype="multipart/form-data">
+                        <form autocomplete="on"  enctype="multipart/form-data" id="formRegistrarAlu">
                             <div class="row " style="margin-left: 4%">
                                 <div class="col-sm-2">
                                     <label>Tipo de Identificación</label>
-                                    <select id="tipoIdentificacionAlu" style="text-transform:uppercase" class="form-control" name="sltRegTipoIdentificacion" required=""onchange="documetoSeleccionado()">
+                                    <select id="tipoIdentificacionAlu" style="text-transform:uppercase" class="form-control" name="sltRegTipoIdentificacion" required="" onchange="documetoSeleccionado()">
                                         <option></option>
 
                                         <option value="cedula">Cédula</option>
                                         <option value="pasaporte">Pasaporte</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 form-group">
                                     <label>Identificación</label>
-                                    <input type="text" style="text-transform:uppercase" id="regidentificacionAlu" class="form-control"  maxlength="20" onkeypress="return soloNumeros(event)" onkeyup="validarIdentificacion()" required="" name="txtRegIdentificacion" placeholder="Identificacion">
-                                    <span id="erroridentificaciion" style="color: #f00;"></span>
+                                    <input type="text" style="text-transform:uppercase" id="regidentificacionAlu" class="form-control "  maxlength="20" onkeypress="return soloNumeros(event)" onkeyup="validarIdentificacion()" required="" name="txtRegIdentificacion" placeholder="Identificacion">
+
                                 </div>
                                 <div class="col-sm-2">
                                     <label>Nacionalidad</label>
@@ -117,7 +124,7 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <label>Foto</label>
+                                    <label>Foto Del Estudiante</label>
                                     <input type="file" id="regFotoAlu" class="form-control"  onchange="validarFile(this)"maxlength="50" required="" name="txtRegFoto" placeholder="Foto">
                                 </div>
 
@@ -137,15 +144,23 @@
                                     <input type="date" id="regfechaNacimientoAlu" class="form-control"   required="" name="txtRegFecha" placeholder="">
                                 </div>
 
-
                                 <div class="col-sm-2">
-                                    <label>Teléfono</label>
-                                    <input type="text" style="text-transform:uppercase"  id="telefonoAlu" class="form-control" maxlength="10" onkeypress="return soloNumeros(event)" required="" name="txtRegTelefono" placeholder="Teléfono">
+                                    <label>Curso</label>
+                                    <select id="regCursoAlu" style="text-transform:uppercase" class="form-control" name="sltRegCurso" required="">
+                                        <c:forEach var="listaCursos" items="${listaCursos}">
+                                            <option value="${listaCursos.id_curso}">${listaCursos.nombre_curso} ${listaCursos.tipo}</option>
+                                        </c:forEach>  
+
+                                    </select>
                                 </div>
+
                             </div>
                             <br>
                             <div class="row" style="margin-left: 4%">
-
+                                <div class="col-sm-3">
+                                    <label>Foto del domicilio</label>
+                                    <input type="file" id="fotoDomicilioAlu" onchange="validarFile(this)" class="form-control"  maxlength="50" name="txtRegFotoDomicilio" placeholder="Foto">
+                                </div>
                                 <div class="col-sm-5">
                                     <label>E-mail</label>
                                     <div class="input-group">
@@ -162,28 +177,18 @@
 
 
                                 </div>
-                                <div class="col-sm-3">
-                                    <label>Curso</label>
-                                    <select id="regCursoAlu" style="text-transform:uppercase" class="form-control" name="sltRegCurso" required="">
-                                        <c:forEach var="listaCursos" items="${listaCursos}">
-                                            <option value="${listaCursos.id_curso}">${listaCursos.nombre_curso} ${listaCursos.tipo}</option>
-                                        </c:forEach>  
 
-                                    </select>
-                                </div>
 
                             </div>
                             <br>
                             <div class="row" style="margin-left: 4%">
+
                                 <div class="col-sm-8">
                                     <label>Dirección</label>
                                     <input type="text" id="regDireccionAlu" style="text-transform:uppercase"  class="form-control" onkeypress="return soloLetrasNumerosCaracEspe(event)" maxlength="50" required="" name="txtRegDireccion" placeholder="Dirección">
                                     <%--pattern="[A-Za-z0-9ñ]+"--%>
                                 </div>
-                                <div class="col-sm-3">
-                                    <label>Foto del domicilio</label>
-                                    <input type="file" id="fotoDomicilioAlu" onchange="validarFile(this)" class="form-control"  maxlength="50" required="" name="txtRegFotoDomicilio" placeholder="Foto">
-                                </div>
+
                             </div>
                             <br>
                             <div class="row" style="margin-left: 4%">
@@ -197,7 +202,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label>Tipo de discapacidad</label>
-                                    <select id="regTipoDiscAlu"  style="text-transform:uppercase" onchange="discapacidad(this)" class="form-control" name="sltRegTipoDiscp" required="">
+                                    <select id="regTipoDiscAlu"  style="text-transform:uppercase" onchange="discapacidad(this)" class="form-control" name="sltRegTipoDiscp" required="TRUE">
                                         <option></option>
                                         <option value="1">Ninguna</option>
                                         <option value="2">Fisíca</option>
@@ -243,7 +248,7 @@
                             <div class="row " style="margin-left: 4%">
                                 <div class="col-sm-3">
                                     <label>Tipo de Identificación</label>
-                                    <select id="regtipoIdentificacionRep" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdePadre" required="">
+                                    <select id="regtipoIdentificacionRepP" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdePadre" required="">
                                         <option></option>
 
                                         <option value="cedula">Cédula</option>
@@ -252,12 +257,12 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Identificación</label>
-                                    <input type="text" id="regIdentificacionRep" class="form-control"  maxlength="20" onkeypress="return soloNumeros(event)" required=""  name="txtRegFamiliarIdentificacionPadre" placeholder="Identificacion">
+                                    <input type="text" id="regIdentificacionRepP" class="form-control"  maxlength="20" onkeypress="return soloNumeros(event)" required=""  name="txtRegFamiliarIdentificacionPadre" placeholder="Identificacion">
                                     <span id="erroridentificaciion" style="color: #f00;"></span>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Nacionalidad</label>
-                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadPadre" placeholder="nacionalidad" onkeypress="return soloLetrasv2(event)" value="ECUATORIANA">
+                                    <input type="text" style="text-transform:uppercase" id="regNacionalidadRepP" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadPadre" placeholder="nacionalidad" onkeypress="return soloLetrasv2(event)" value="ECUATORIANA">
 
 
                                 </div>
@@ -265,7 +270,7 @@
 
                                 <div class="col-sm-2">
                                     <label>C.U.E</label>
-                                    <input type="text" id="regCueRep" class="form-control"  maxlength="50"  name="txtRegCuePadre" placeholder="codigo" onkeypress="return soloNumeros(event)">
+                                    <input type="text" id="regCueRepP" class="form-control"  maxlength="50"  name="txtRegCuePadre" placeholder="codigo" onkeypress="return soloNumeros(event)">
                                 </div>
 
                             </div>
@@ -273,21 +278,21 @@
                             <div class="row" style="margin-left: 4%">
                                 <div class="col-sm-3">
                                     <label>Nombres</label>
-                                    <input type="text" id="regnombresRep" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegNombresPadre" placeholder="Nombres">
+                                    <input type="text" id="regnombresRepP" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegNombresPadre" placeholder="Nombres">
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Apellidos</label>
-                                    <input type="text" id="regApellidosRep" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidosPadre" placeholder="Apellido">
+                                    <input type="text" id="regApellidosRepP" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidosPadre" placeholder="Apellido">
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Ocupación</label>
-                                    <input type="text" id="regOcupacionRep" style="text-transform:uppercase"  class="form-control"   required="" name="txtRegFamiliarOcupacionPadre" placeholder="Ocupación">
+                                    <input type="text" id="regOcupacionRepP" style="text-transform:uppercase"  class="form-control"   required="" name="txtRegFamiliarOcupacionPadre" placeholder="Ocupación">
                                 </div>
 
 
                                 <div class="col-sm-2">
                                     <label>Lugar de Trabajo</label>
-                                    <input type="text" id="regTelefonoRep" style="text-transform:uppercase"  class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosCaracEspe()(event)" required="" name="txtRegFamiliarLugarPadre" placeholder="Lugar de Trabajo">
+                                    <input type="text" id="regTelefonoRepP" style="text-transform:uppercase"  class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosCaracEspe()(event)" required="" name="txtRegFamiliarLugarPadre" placeholder="Lugar de Trabajo">
                                 </div>
                             </div>
                             <br>
@@ -297,7 +302,7 @@
                                     <label>E-mail</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                        <input type="email" id="regEmailRep" style="text-transform:lowercase"  class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" required="" name="txtRegEmailPadre" placeholder="E-mail">
+                                        <input type="email" id="regEmailRepP" style="text-transform:lowercase"  class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" required="" name="txtRegEmailPadre" placeholder="E-mail">
                                     </div>
                                     <span id="erroremail" style="color: #f00;"></span>
                                 </div>
@@ -305,7 +310,7 @@
 
                                 <div class="col-sm-3">
                                     <label>Celular</label>                                         
-                                    <input type="text" id="regCelularRep" placeholder="0000000000" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10" required="" name="txtRegCelularPadre">
+                                    <input type="text" id="regCelularRepP" placeholder="CELULAR" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10" required="" name="txtRegCelularPadre">
 
 
                                 </div>
@@ -383,7 +388,7 @@
 
                                 <div class="col-sm-3">
                                     <label>Celular</label>                                         
-                                    <input type="text" id="regCelularRep" placeholder="0000000000" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10" required="" name="txtRegCelular">
+                                    <input type="text" id="regCelularRep" placeholder="CELULAR" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10" required="" name="txtRegCelular">
 
 
                                 </div>
@@ -393,7 +398,7 @@
                             <br>
 
                             <center>
-                                <h4><b>Datos de Contacto</b></h4><br>
+                                <h4><b>Datos de un Contacto Adicional </b></h4><br>
                             </center>
                             <div class="row" style="margin-left: 4%">
                                 <div class="col-sm-2">
@@ -440,7 +445,7 @@
                             </div>
                             <br>
                             <center>
-                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnRegistrarestudiante">Registrar</button>                        
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnRegistrarestudiante" >Registrar</button>                        
                             </center>
                         </form>
 
@@ -560,7 +565,57 @@
                     return;
                 }
             }
+
+
+            function enviarRegintrarEstudiante()
+            {
+                $('#btnRegistrarestudiante').text("Enviando");
+                $('#btnRegistrarestudiante').attr("disabled", true);
+                var form = $('#formRegistrarAlu')[0];
+                var data = new FormData(form);
+                $.ajax({
+                    // async: true,
+                    enctype: 'multipart/form-data',
+                    type: "POST",
+                    data: data,
+                    url: '/UECGV/srvEstudiante?accion=registrar_estudiante',
+                    processData: false, // Important!
+                    contentType: false,
+                    cache: false,
+                    success: function (responseText)
+                    {
+                        var respon = responseText;
+                        if (respon === 'ok')
+                        {
+                            $('#btnRegistrarestudiante').text("Registrar");
+                            $('#btnRegistrarestudiante').attr("disabled", false);
+
+                            //$("#btnCerrarModalContactenos").click();
+                            toastr.success("Mensaje enviado");
+                            window.location.href = '/UECGV/srvEstudiante?accion=mostrar_estudiante';
+
+                        } else
+                        {
+                            //toastr.success("Exito al Registrar");
+                            $('#btnRegistrarestudiante').text("Registrar");
+                            $('#btnRegistrarestudiante').attr("disabled", false);
+
+
+                            // $("#btnCerrarModalContactenos").click();
+                            toastr.error(respon);
+                        }
+                    }
+                });
+            }
+            $(document).ready(function () {
+                $('#btnRegistrarestudiante').click(function () {
+                    enviarRegintrarEstudiante();
+                    // alert("si vale");
+                });
+            });
         </script>
+
+
         <!-- Sistemas  -->
         <script src="/UECGV/js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="/UECGV/Administracion/js/Validaciones.js" type="text/javascript"></script>
