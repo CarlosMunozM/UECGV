@@ -1,0 +1,212 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<!-- Modal para modificar datos del Usuarios -->
+<div class="modal fade" id="modalModificarDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="navbar navbar-default">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <center>
+                    <br>
+                    <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalEditLongTitleShow"></h4>
+              <br>
+                </center>
+            </div>
+            <form autocomplete="off" action="srvEmpleado?accion=modificar_empleado" method="post" enctype="multipart/form-data">
+                <input type="text" id="modEditEmpIdEmpleado"  hidden="" name="EditEmpIdEmpleado">
+                <input type="text" id="modEditEmpAuxFoto"  hidden="" name="EditEmpAuxFoto">
+                <input type="text" id="modEditIDCargoEmpleado"  hidden="" name="EditIDCargoEmpleado">
+                <div class="modal-body">
+                    
+    
+                    <br>
+                    <div class="row " style="margin-left: 4%">
+                        
+                                <div class="col-sm-3">
+                                    <label>Tipo de IdentificaciÓn</label>
+                                    <select id="modEditEmpTipoIdentificacion" class="form-control" name="EditEmpTipoIdentificacion" required="" onchange="validarActualizacionLongitudIdent()">
+                                        <option value="Cédula">Cédula</option>
+                                        <option value="Pasaporte">Pasaporte</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>Identificación</label>
+                                    <input type="text" id="modEditEmpIdentificacion" class="form-control"  maxlength="15" onkeypress="return soloNumeros(event)" onkeyup="EditvalidarIdentificacion()" required="" name="EditEmpIdentificacion" placeholder="Identificacion">
+                                    <span id="erroridentificaciion" style="color: #f00;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Cantón</label>                                   
+                                    <select id="modEditEmpCanton" required="" class="form-control input-sm"  name="EditEmpIdCanton">
+                                        <option></option>                                      
+                                        <c:forEach var="lista" items="${listaCantones}">
+                                            <option value="${lista.id_canton}">${lista.nombre_canton}</option>
+                                        </c:forEach>     
+                                    </select>                                                 
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Provincia</label>
+                                    <input type="text" id="modEditEmpProvincia" class="form-control"  maxlength="10" required="" name="EditEmpProvincia" placeholder="Provincia">
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="row" style="margin-left: 4%">
+                                <div class="col-sm-4">
+                                    <label>Nombres</label>
+                                    <input type="text" id="modEditEmpNombres" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="EditEmpNombres" placeholder="Nombres">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label>Apellidos</label>
+                                    <input type="text" id="modEditEmpApellidos" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="EditEmpApellidos" placeholder="">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Cargo</label>
+                                    <select id="modEditEmpCargo" class="form-control" name="EditEmpIdCargo" required="" onchange="MostrarTxtActualizarTutoria()">
+                                        <option></option>
+                                        <c:forEach var="cargo" items="${listaCargos}">
+                                            <option value="${cargo.id_cargo}">${cargo.nombre_cargo}</option>
+                                        </c:forEach>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" style="margin-left: 4%">
+
+                                <div class="col-sm-5">
+                                    <label>Correo Personal</label> 
+                                    
+                                    <input type="email" id="modEditEmpEmail" class="form-control" style="text-transform:lowercase" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" maxlength="100" required="" name="EditEmpEmail" onkeyup="EditValidarCorreoPersonal()" placeholder="E-mail">
+                                    
+                                    <span id="erroremail" style="color: #f00;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Teléfono</label>
+                                    <input type="text" id="modEditEmpTelefono" class="form-control" maxlength="10" onkeypress="return soloNumeros(event)" required="" name="EditEmpTelefono" placeholder="TelÃ©fono">
+                                </div>                                                                                           
+                                <div class="col-sm-3">
+                                    <label>Género</label>
+                                    <select id="modEditEmpGenero" class="form-control" name="EditEmpGenero" required="">
+                                        <option></option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                    </select>
+                                </div>                                
+                            </div>
+                            <br>
+                            <div class="row" style="margin-left: 4%">
+                                <div class="col-sm-4">
+                                    <label>Correo Institucional</label>
+                                                                    
+                                    <input type="email" id="modEditEmpEmailInstitucional" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" maxlength="100" required="" style="text-transform:lowercase" name="EditEmpEmailInstitucional"onkeyup="EditValidarCorreoInstitucional()" placeholder="">
+                                   
+                                    <span id="erroremail" style="color: #f00;"></span>
+                                </div>                                
+                                <div class="col-sm-3">
+                                    <label>Contrato</label>
+                                    <select id="modEditEmpContrato" class="form-control" name="EditEmpContrato" required=""> 
+                                        <option value="Contrato Ocacional">Contrato Ocacional</option>
+                                        <option value="Nombramiento Provisional">Nombramiento Provisional</option>
+                                        <option value="Nombramiento Definitivo">Nombramiento Definitivo</option>
+                                    </select>
+                                </div>                                
+                                 <div class="col-sm-2">
+                                    <label>Escalafón</label>
+                                    <select id="modEditEmpEscalafon" class="form-control" name="EditEmpEscalafon" required=""> 
+                                        <option value=""></option>
+                                        <option value="CategorÃ­a A">Categoría A</option>
+                                        <option value="CategorÃ­a B">Categoría B</option>
+                                        <option value="CategorÃ­a C">Categoría C</option>
+                                        <option value="CategorÃ­a D">Categoría D</option>
+                                        <option value="CategorÃ­a E">Categoría E</option>
+                                        <option value="CategorÃ­a F">Categoría F</option>
+                                        <option value="CategorÃ­a G">Categoría G</option>
+                                        <option value="CategorÃ­a H">Categoría H</option>
+                                        <option value="CategorÃ­a I">Categoría I</option>
+                                        <option value="CategorÃ­a J">Categoría J</option>
+                                    </select>
+                                </div>                               
+                                <div class="col-sm-2">
+                                    <label>Nacionalidad</label>
+                                     <input type="text" id="modEditEmpNacionalidad" class="form-control" maxlength="20" onkeypress="return soloLetras(event)" required="" name="EditEmpNacionalidad" placeholder="">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" style="margin-left: 4%">
+                                  
+                                <div class="col-sm-3">
+                                    <label>Cambiar Foto</label>
+                                    <input type="file" id="modEditEmpFoto" class="form-control" maxlength="100"  name="EditEmpFoto" >
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Estado civil</label>
+                                    <select id="modEditEmpEstadoCivil" class="form-control" name="EditEmpEstadoCivil" required="">
+                                        <option></option>
+                                        <option value="Soltero">Soltero</option>
+                                        <option value="Casado">Casado</option>
+                                        <option value="Divorciado">Divorciado</option>
+                                        <option value="UniÃ³n de hecho">Unión de hecho</option>
+                                    </select>
+                                </div>                                
+                                 <div class="col-sm-3">
+                                    <label>Fecha de nacimiento</label>
+                                    <input type="date" id="modEditEmpFechaNacimiento" class="form-control"  maxlength="50" required="" name="EditEmpFechaNacimiento">
+                                </div>                                
+                                <div class="col-sm-2">
+                                    <label>Celular</label>
+                                    <input type="text" id="modEditEmpCelular" class="form-control"  maxlength="10" required="" name="EditEmpCelular">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" style="margin-left: 4%">
+                                <div class="col-sm-11">
+                                    <label>Dirección</label>
+                                    <textarea style=" resize: none;" rows="2" id="modEditEmpDireccion" class="form-control"  maxlength="200" required="" name="EditEmpDireccion" onkeypress="return soloLetrasNumerosCaracEspe(event)" placeholder="DirecciÃ³n"></textarea>
+                                    <%--pattern="[A-Za-z0-9Ã±]+"--%>
+                                </div>
+                            </div>
+                            <br>
+                            <center id="modEditTituloTutorias" style="display: none">
+                            <h4><b>TUTORÍAS</b></h4>
+                             </center>
+                            <div class="row" style="margin-left: 4%; display: none" id="modEditTutoria">
+                               <di class="row" style="margin-left: 4%">
+                                <div class="col-sm-5">
+                                    <label>Curso</label>
+                                    <select id="modEditEmpIdCurso" class="form-control" name="EditEmpIdCurso" onchange="validarModificacionTutoresxCurso()">
+                                        <option value=""></option>
+                                        <c:forEach var="cursoEd" items="${listaCursoEducativo}">
+                                            <option value="${cursoEd.id_curso}">${cursoEd.nombre_curso} - ${cursoEd.tipo}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+      
+                                <div class="col-sm-4">
+                                    <label>Paralelo</label>
+                                    <select id="modEditEmpParalelo" class="form-control"  name="EditEmpParalelo" onchange="validarModificacionTutoresxCurso()"> 
+                                        <option value=""></option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                                   <div class="col-sm-2">
+                                       
+                                       <br>
+                                       <button type="button" class="btn btn-primary" id="retirarTutoria" onclick="Remove()">Remover</button>
+                                   </div>
+                            </di> 
+                            </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModificar">Cerrar</button>
+                    <button type="submit" id="btnModificar" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>                                            
