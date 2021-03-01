@@ -124,7 +124,7 @@
                         <li>
                             <a href="/UECGV/srvUsuario?accion=cerrar_sesion">
                                 <i class="ace-icon fa fa-power-off"></i>
-                                Cerrar la sesión
+                                Cerrar la sesiÃ³n
                             </a>
                         </li>
                     </ul>
@@ -146,13 +146,13 @@
     </div><!-- /.navbar-container -->
 </div>
 
-<!Carlos Muñoz-->
+<!Carlos MuÃ±oz-->
 <!Colocar en todas las paginas-->
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/Administracion/js/Validaciones.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/toastr.js" type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/js/toastr.min.css" rel="stylesheet" type="text/css"/>
-<%--<%@include file="../Administracion/validarSesion.jspf" %>  --%>
+<%@include file="../Administracion/validarSesion.jspf" %>
 <%@include file="../Administracion/CambiarClave.jspf"%>  
 <%@include file="../Administracion/modalEditUser.jspf"%> 
 <!--<script src="<%=request.getContextPath()%>/assetsmenu/js/push.min.js"></script>-->
