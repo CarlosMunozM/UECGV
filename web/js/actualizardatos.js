@@ -189,6 +189,31 @@ $(document).ready( function() {
         
         $("#btnCancelar").attr("disabled", false);
         $("#btnGuardar").attr("disabled", false);
+        
+        //Validacion
+        if($("#tipoIdentificacionAlu").val() === 'Cédula'){
+            $("#regidentificacionAlu").attr("maxlength", 10);
+        }else{
+            $("#regidentificacionAlu").attr("maxlength", 15);
+        }
+        
+        if($("#regtipoIdentificacionRep").val() === 'Cédula'){
+            $("#regIdentificacionRep").attr("maxlength", 10);
+        }else{
+            $("#regIdentificacionRep").attr("maxlength", 15);
+        }
+       
+        if($("#regtipoIdentificacionMad").val() === 'Cédula'){
+            $("#regIdentificacionMad").attr("maxlength", 10);
+        }else{
+            $("#regIdentificacionMad").attr("maxlength", 15);
+        }
+        
+        if($("#modEditParentescoRef").val() === 'Cédula'){
+            $("#regtipoIdentificacionRef").attr("maxlength", 10);
+        }else{
+            $("#regtipoIdentificacionRef").attr("maxlength", 15);
+        }
     });
     
     function mostrarPadres(id, modo){
@@ -527,5 +552,55 @@ $(document).ready( function() {
         if(cant <= -1){
             this.value = 0;
         }
+    });
+    
+    $("#tipoIdentificacionAlu").change(function(){
+        if(this.value === 'Cédula'){
+            $("#regidentificacionAlu").attr("maxlength", 10);
+            var input = $("#regidentificacionAlu").val();
+            if(input.length >= 11){
+                $("#regidentificacionAlu").val(input.substring(0, 9));
+            }
+        }else{
+            $("#regidentificacionAlu").attr("maxlength", 15);
+        };
+    });
+                    
+    
+    $("#regtipoIdentificacionRep").change(function(){
+        if(this.value === 'Cédula'){
+            $("#regIdentificacionRep").attr("maxlength", 10);
+            var input = $("#regIdentificacionRep").val();
+            if(input.length >= 11){
+                $("#regIdentificacionRep").val(input.substring(0, 9));
+            }
+        }else{
+            $("#regIdentificacionRep").attr("maxlength", 15);
+        };
+    });
+   
+   
+    $("#regtipoIdentificacionMad").change(function(){
+        if(this.value === 'Cédula'){
+            $("#regIdentificacionMad").attr("maxlength", 10);
+            var input = $("#regIdentificacionMad").val();
+            if(input.length >= 11){
+                $("#regIdentificacionMad").val(input.substring(0, 9));
+            }
+        }else{
+            $("#regIdentificacionMad").attr("maxlength", 15);
+        };
+    });
+        
+    $("#modEditParentescoRef").change(function(){
+        if(this.value === 'Cédula'){
+            $("#regtipoIdentificacionRef").attr("maxlength", 10);
+            var input = $("#regtipoIdentificacionRef").val();
+            if(input.length >= 11){
+                $("#regtipoIdentificacionRef").val(input.substring(0, 9));
+            }
+        }else{
+            $("#regtipoIdentificacionRef").attr("maxlength", 15);
+        };
     });
 });
