@@ -25,7 +25,7 @@ function confirmarEliminacionALU(idPersona)
 
 function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, genero, nombres, apellidos, fecha_nacimiento, nombre_curso,tipo_de_curso, direccion, numero_hermanos, lugar_ocupa,
         carnet_discapacidad, discapacidad, tipo_discapacidad, historia_clinica, apellidosFa, nombresfa, tipo_identificacionFa, cue, celular, ocupacion, lugardeTrabajo, correo, nacionalidad, identificacion,
-        nombreRef, apellidoRef, parentescoRef, celularRef, telefonoRef, correo_personal, celularAl,foto)
+        nombreRef, apellidoRef, parentescoRef, celularRef, telefonoRef, correo_personal, celularAl,foto,fotoDomicilio)
 {
     
     $('#modAluTipoIdentificacion').html(tipoIdentificacion);
@@ -79,10 +79,18 @@ function datosModalMostrarALU(tipoIdentificacion, identificacion, nacionalidad, 
 
   var img = document.getElementById("modVerAluFoto");
     if(foto === ''){
-        var ruta="assets/img/profile-pic.jpg";
+        var ruta="assets/img/user-default.png";
         img.setAttribute("src",ruta);
     }else{
         img.setAttribute("src",foto);
+    }
+    
+      var img2 = document.getElementById("modVerAluFotodomicilio");
+    if(fotoDomicilio === ''){
+        var ruta="assets/img/logo.png";
+        img2.setAttribute("src",ruta);
+    }else{
+        img2.setAttribute("src",fotoDomicilio);
     }
 
     $('#exampleModalLongTitleShow').html("Datos del Alumno: ".bold().concat(nombres, " ", apellidos));
@@ -405,7 +413,7 @@ var input2 = document.getElementById("regDiscapacidadAlu");
 function discapacidad(elemento) {
   d = elemento.value;
   
-  if(d === "1"){
+  if(d === '1'){
     
     //input.style.display ="none";
     //input.label.values("00000");
