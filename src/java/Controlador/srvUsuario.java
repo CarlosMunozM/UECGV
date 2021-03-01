@@ -419,7 +419,7 @@ public class srvUsuario extends HttpServlet {
                             correo = new Correo();
                             correo.setAsunto("Pregunta");
                             correo.setMensaje(estructuraMensaje);
-                            //correo.setDestino("uemcarmelinagranjavquevedo@gmail.com");
+                            //correo.setDestino("sitioweb.uemcgv@gmail.com");
                             correo.setDestino("carlos.munozm@uteq.edu.ec");
                             
                             if (correoDAO.enviarCorreoHTML(correo)) {
