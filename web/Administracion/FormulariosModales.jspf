@@ -27,22 +27,22 @@
                 <form>
                     <div class="row " style="margin-left: 4%">
                         <div class="col-sm-3">
-                            <label>Tipo de Identificaci贸n</label>
+                            <label>Tipo de Identificaci髇</label>
                             <label id="modAluTipoIdentificacion" style="font-size: 14p" class="form-control"></label>
                         </div>
                         <div class="col-sm-3">
-                            <label>Identificaci贸n</label>
+                            <label>Identificaci髇</label>
                             <label id="modVerAludentificacion" style="font-size: 14p" class="form-control" ></label>
                             <span id="erroridentificaciion" style="color: #f00;"></span>
                         </div>
                         <div class="col-sm-3">
-                            <label>Pa铆s</label>
+                            <label>Pa韘</label>
 
                             <label id="modVerAluPais" style="font-size: 14p" class="form-control"></label>                                                 
                         </div>
 
                         <div class="col-sm-2">
-                            <label>G茅nero</label>
+                            <label>G閚ero</label>
                             <label id="modVerALuGenero" style="font-size: 14p" class="form-control"b></label>
                         </div>
 
@@ -92,7 +92,7 @@
                     <br>
                     <div class="row" style="margin-left: 4%">
                         <div class="col-sm-8">
-                            <label>Direcci贸n</label>
+                            <label>Direcci髇</label>
                             <label id="modVerAluDireccion" style="font-size: 14p" class="form-control"></label>
                             <%--pattern="[A-Za-z0-9帽]+"--%>
                         </div>
@@ -131,7 +131,7 @@
 
 
                         <div class="col-sm-3">
-                            <label>Historia cl铆nica</label>
+                            <label>Historia cl韓ica</label>
                             <label id="modVerAluHistClinica" style="font-size: 14p" class="form-control"></label>                                </div>
 
                     </div>  
@@ -142,11 +142,11 @@
                     </center>
                     <div class="row " style="margin-left: 4%">
                         <div class="col-sm-3">
-                            <label>Tipo de Identificaci贸n</label>
+                            <label>Tipo de Identificaci髇</label>
                             <label id="modVerAluTipoidentificacionR" style="font-size: 14p" class="form-control"></label>
                         </div>
                         <div class="col-sm-2">
-                            <label>Identificaci贸n</label>
+                            <label>Identificaci髇</label>
                             <label id="modVerAluIdentificacionR" style="font-size: 14p" class="form-control"></label>                                    <span id="erroridentificaciion" style="color: #f00;"></span>
                         </div>
                         <div class="col-sm-2">
@@ -224,7 +224,7 @@
                         </div>
 
                         <div class="col-sm-2">
-                            <label>Telefono</label>
+                            <label>Tel閒ono</label>
                             <label id="modVerRefTelefono" style="font-size: 14p" class="form-control"></label>
                         </div>
 
