@@ -141,7 +141,7 @@ $(document).ready( function() {
     $("#btnModificar").click(function () {
         $("#regFotoAlu").attr("disabled", false);
         
-        $("#tipoIdentificacionAlu").attr("disabled", false);
+        //$("#tipoIdentificacionAlu").attr("disabled", false);
         $("#regidentificacionAlu").attr("readonly", false);
         $("#regpaisAlu").attr("readonly", false);
         $("#reggeneroAlu").attr("disabled", false);
