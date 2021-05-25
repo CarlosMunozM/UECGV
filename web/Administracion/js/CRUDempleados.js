@@ -395,7 +395,7 @@ function datosModalMostrar(tipoIdentificacion, identificacion, nacionalidad, gen
 
     var img = document.getElementById("modVerEmpFotoPresentacion");
     if (foto === '') {
-        var ruta = "assets/img/profile-pic.jpg";
+        var ruta = "assets/img/user-default.png";
         img.setAttribute("src", ruta);
     } else {
         img.setAttribute("src", foto);
@@ -442,6 +442,8 @@ function datosModalModificar(idEmpleado, tipoIdentificacion, identificacion, nac
     $("#modEditEmpFechaNacimiento").change();
     $("#modEditEmpContrato").val(contrato);
     $("#modEditEmpContrato").change();
+    $("#modEditEmpAuxIDCurso").val(idcurso);
+    $("#modEditEmpAuxParalelo").val(paralelo);
     $("#modEditEmpAuxFoto").val(foto);
     //$("#EditEmpFotoPresentacion");
     $("#modEditEmpCelular").val(celular);

@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,11 +12,12 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
-        <title>Usuarios - U.E.M Carmelina Granja Villanueva</title>
+        <title>Imágenes - U.E.M Carmelina Granja Villanueva</title>
 
         <meta name="description" content="top menu &amp; navigation" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+        <%@include file="../EstructuraAplicacion/head_icono.jsp" %>
         <!-- bootstrap & fontawesome -->
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css" />
@@ -51,7 +53,7 @@
                 }
             </script>
 
-            <div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <script type="text/javascript">
                     try {
                         ace.settings.loadState('sidebar')
@@ -81,13 +83,13 @@
                     <div class="page-content">
 
                         <a href="#" data-toggle="tooltip" title="Actualizar Tabla">
-                            <button  onclick=" location.href = 'srvEventoImagen?accion=Listar'" class="btn btn-primary fa fa-refresh" style="float: left"> Actualizar</button>
+                            <button  onclick=" location.href = 'srvImagenPresentacion?accion=Listar'" class="btn btn-primary fa fa-refresh" style="float: left"> Actualizar</button>
                         </a>
                         <a type="button" data-toggle="modal" data-target="#addImagenSlider" title="Registrar Imagen">
-                            <button  class="btn btn-success fa fa-plus" style="float: right"> Registrar</button>
+                            <button id="btnRegistrarImgPresentacion" class="btn btn-success fa fa-plus" style="float: right"> Registrar</button>
                         </a>
                         <center>
-                            <h3><b>Imagenes</b></h3><br>
+                            <h3><b>Imágenes</b></h3><br>
                         </center>
 
                         <div class="row">
@@ -102,7 +104,7 @@
                             <table id="bootstrap-data-table"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center;">Persona que la subio </th>
+                                        <th style="text-align: center;">Registrado Por </th>
                                         <th style="text-align: center;">Imagen </th>
                                         <th style="text-align: center;"><i class="fa fa-list"></i></th>
                                     </tr>
@@ -111,9 +113,9 @@
                                     <c:forEach var="p" items="${imagenes}">
                                         <tr>
                                             <td>${p.nombre}</td>
-                                            <td><img scr="${p.ruta}"height="70" width="70" /></td>
+                                            <td><img name="" src="${p.ruta}"height="80" width="150" /></td>
                                             <td style="text-align: center;">
-                                                <a href="#" data-toggle="tooltip" title="Eliminar"><button class="btn btn-sm btn-danger" > <i class="zmdi zmdi-delete" ></i></button></a>                                       
+                                                <a href="#" data-toggle="tooltip" title="Eliminar"><button class="btn btn-sm btn-danger" onclick="confirmarEliminacionImg('${p.id_imgpresentacion}');"> <i class="zmdi zmdi-delete" ></i></button></a>                                       
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -138,29 +140,23 @@
             <div class="modal fade" id="addImagenSlider" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <form method="post" action="srvImagenPresentacion?accion=Guardar"enctype="multipart/form-data">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Agregar imagen</h4>
+                        <%-- <form method="post" action="srvImagenPresentacion?accion=Guardar" enctype="multipart/form-data"> --%>
+                        <form autocomplete="off" id="frmImagenPresentacion"  enctype="multipart/form-data">
+                            <div class="modal-header bg-primary">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalmgPresentacion"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title"  style="color: white;text-align: center" id="myModalLabel">Agregar imagen</h4>
                             </div>
                             <div class="modal-body">
 
                                 <div class="form-group">
                                     <label>Imagen</label>
-                                    <input type="file" id="files" name="fileImagen" class="file"  multiple=true placeholder="Seleccione su archivo" required="" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50" data-placement="top" title="Seleccione su archivo">
-                                </div>
-                                <div class="from">
-                                    <label>Estado de imagen</label>          
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="estado">Publicada
-                                    </label>
+                                    <input type="file" id="files" name="RegevtFoto" class="file"  multiple=true placeholder="Seleccione su archivo" required="" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ ]{1,50}" maxlength="50" data-placement="top" title="Seleccione su archivo">
+                                    <small class="text-danger">Dimensiones Ancho (3000px o 3333px) entre Alto (1000px o 1113px)</small>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button class="btn btn-primary" name="accion" value="Guardar">Guardar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                <button id="btn-guardar" type="submit" class="btn btn-primary" name="accion" value="Guardar" disabled>Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -180,8 +176,8 @@
         <script src="assets/js/jquery-1.11.3.min.js"></script>
         <![endif]-->
             <script type="text/javascript">
-                                if ('ontouchstart' in document.documentElement)
-                                    document.write("<script src='/UECGV/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+                if ('ontouchstart' in document.documentElement)
+                    document.write("<script src='/UECGV/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
             </script>
             <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
@@ -194,83 +190,63 @@
 
             <script type="text/javascript">
 
-                                jQuery(function ($) {
-                                    var $sidebar = $('.sidebar').eq(0);
-                                    if (!$sidebar.hasClass('h-sidebar'))
-                                        return;
+                jQuery(function ($) {
+                    var $sidebar = $('.sidebar').eq(0);
+                    if (!$sidebar.hasClass('h-sidebar'))
+                        return;
 
-                                    $(document).on('settings.ace.top_menu', function (ev, event_name, fixed) {
-                                        if (event_name !== 'sidebar_fixed')
-                                            return;
+                    $(document).on('settings.ace.top_menu', function (ev, event_name, fixed) {
+                        if (event_name !== 'sidebar_fixed')
+                            return;
 
-                                        var sidebar = $sidebar.get(0);
-                                        var $window = $(window);
+                        var sidebar = $sidebar.get(0);
+                        var $window = $(window);
 
-                                        //return if sidebar is not fixed or in mobile view mode
-                                        var sidebar_vars = $sidebar.ace_sidebar('vars');
-                                        if (!fixed || (sidebar_vars['mobile_view'] || sidebar_vars['collapsible'])) {
-                                            $sidebar.removeClass('lower-highlight');
-                                            //restore original, default marginTop
-                                            sidebar.style.marginTop = '';
+                        //return if sidebar is not fixed or in mobile view mode
+                        var sidebar_vars = $sidebar.ace_sidebar('vars');
+                        if (!fixed || (sidebar_vars['mobile_view'] || sidebar_vars['collapsible'])) {
+                            $sidebar.removeClass('lower-highlight');
+                            //restore original, default marginTop
+                            sidebar.style.marginTop = '';
 
-                                            $window.off('scroll.ace.top_menu')
-                                            return;
-                                        }
-
-
-                                        var done = false;
-                                        $window.on('scroll.ace.top_menu', function (e) {
-
-                                            var scroll = $window.scrollTop();
-                                            scroll = parseInt(scroll / 4);//move the menu up 1px for every 4px of document scrolling
-                                            if (scroll > 17)
-                                                scroll = 17;
+                            $window.off('scroll.ace.top_menu')
+                            return;
+                        }
 
 
-                                            if (scroll > 16) {
-                                                if (!done) {
-                                                    $sidebar.addClass('lower-highlight');
-                                                    done = true;
-                                                }
-                                            } else {
-                                                if (done) {
-                                                    $sidebar.removeClass('lower-highlight');
-                                                    done = false;
-                                                }
-                                            }
+                        var done = false;
+                        $window.on('scroll.ace.top_menu', function (e) {
 
-                                            sidebar.style['marginTop'] = (17 - scroll) + 'px';
-                                        }).triggerHandler('scroll.ace.top_menu');
+                            var scroll = $window.scrollTop();
+                            scroll = parseInt(scroll / 4);//move the menu up 1px for every 4px of document scrolling
+                            if (scroll > 17)
+                                scroll = 17;
 
-                                    }).triggerHandler('settings.ace.top_menu', ['sidebar_fixed', $sidebar.hasClass('sidebar-fixed')]);
 
-                                    $(window).on('resize.ace.top_menu', function () {
-                                        $(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed', $sidebar.hasClass('sidebar-fixed')]);
-                                    });
-                                });
+                            if (scroll > 16) {
+                                if (!done) {
+                                    $sidebar.addClass('lower-highlight');
+                                    done = true;
+                                }
+                            } else {
+                                if (done) {
+                                    $sidebar.removeClass('lower-highlight');
+                                    done = false;
+                                }
+                            }
+
+                            sidebar.style['marginTop'] = (17 - scroll) + 'px';
+                        }).triggerHandler('scroll.ace.top_menu');
+
+                    }).triggerHandler('settings.ace.top_menu', ['sidebar_fixed', $sidebar.hasClass('sidebar-fixed')]);
+
+                    $(window).on('resize.ace.top_menu', function () {
+                        $(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed', $sidebar.hasClass('sidebar-fixed')]);
+                    });
+                });
             </script>
 
             <script src="/UECGV/js/jquery-3.3.1.min.js" type="text/javascript"></script>
-
-
-
-
-            <!-- inline scripts related to this page -->
-            <script type="text/javascript">
-
-                                $(document).ready(function () {
-                                    var valeditcorreo = true, valeditidentificacion = true;
-
-                                    $('#bootstrap-data-table').DataTable({
-                                        "scrollX": true,
-                                        "language": {
-                                            "url": "/UECGV/Administracion/plugins/dataTable/Spanish.json"
-                                        }
-                                    });
-
-                                });
-
-            </script>
 
             <script src="<%=request.getContextPath()%>/js/toastr.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/css/toastr.min.css" rel="stylesheet" type="text/css"/>
@@ -284,9 +260,99 @@
             <script src="/UECGV/Administracion/js/Validaciones.js" type="text/javascript"></script>
             <script src="/UECGV/Administracion/js/CRUDpersonas.js" type="text/javascript"></script>
 
-
             <script src="/UECGV/Administracion/plugins/dataTable/jquery.dataTables.min.js" type="text/javascript"></script>
             <link href="/UECGV/Administracion/plugins/dataTable/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
+>
+            <script src="/UECGV/js/toastr.js" type="text/javascript"></script>
+            <link href="/UECGV/css/toastr.min.css" rel="stylesheet" type="text/css"/>
+            
+            <script type="text/javascript">
+                
+                 $(document).ready(function () {
+                    
+                    $('#bootstrap-data-table').DataTable({
+                        "scrollX": true,
+                        "language": {
+                            "url": "/UECGV/Administracion/plugins/dataTable/Spanish.json"
+                        }
+                    });
+                    
+                     toastr.options = {
+                        "positionClass": "toast-bottom-right",
+                        "showMethod": "show",
+                        "hideMethod": "hide"
+                    };
+                    
+                    $('#btn-guardar').click(function () {
+                        guardarImagenPresentacion();
+                    });
+                    
+                    $('#btnRegistrarImgPresentacion').click(function () {
+                        //alert('click');
+                        $("#RegevtFoto").val(null);
+                    });
+                    
+                });
+                
+                function guardarImagenPresentacion()
+                {
+                    $('#btn-guardar').text("Registrando...");
+                    $('#btn-guardar').attr("disabled", true);
+
+                    var form = $('#frmImagenPresentacion')[0];
+                    var data = new FormData(form);
+
+                    $.ajax({
+
+                        type: "POST",
+                        enctype: 'multipart/form-data',
+                        data: data,
+                        url: '/UECGV/srvImagenPresentacion?accion=Guardar',
+                        processData: false,  // Important!
+                        contentType: false,
+                        cache: false,
+                        success: function (responseText)
+                        {
+                            if (responseText)
+                            {
+                                toastr.success("Guardado con éxito");                    
+                                $("#btnCerrarModalmgPresentacion").click();
+                                location.href = '/UECGV/srvImagenPresentacion?accion=Listar';
+
+                            } else{
+                                $('#btn-guardar').text("Registrar");
+                                $('#btn-guardar').attr("disabled", false);
+                                //$("#btnCerrarModalmgPresentacion").click();
+                                toastr.error("Error¡ No se logro registrar la presentación.");
+                                
+                            }
+                        }
+                    });
+                }
+               
+                $("#files").change(function () {
+                    var file = this.files[0];
+                    var img = new Image();
+                    img.src = window.URL.createObjectURL(file);
+                    img.onload = function () {
+                        if ((this.width.toFixed(0) >= 3000 && this.width.toFixed(0) <= 3333) && (this.height.toFixed(0) >= 1000 && this.height.toFixed(0) <= 1113)) {
+                            $("#btn-guardar").attr("disabled", false);
+                        } else {
+                            $("#btn-guardar").attr("disabled", true);
+                            toastr.error("Las dimensiones de la imagen no son corresctas");
+                        }
+                    };
+                });
+
+                function confirmarEliminacionImg(idimg) {
+                    alertify.confirm('Confirmación', '¿Está seguro que desea eliminar esta imagen?', function () {
+                        window.location.href = '/UECGV/srvImagenPresentacion?accion=Eliminar&id=' + idimg + '';
+                    }, function () {
+                        toastr.error("Eliminación Cancelada");
+                    }).set('labels', {ok: 'Si', cancel: 'No'});
+                }
+                
+            </script>
     </body>
 </html>

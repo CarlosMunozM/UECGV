@@ -14,7 +14,7 @@
 
         <meta name="description" content="top menu &amp; navigation" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+        <%@include file="../EstructuraAplicacion/head_icono.jsp" %>
         <!-- bootstrap & fontawesome -->
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
         <link rel="stylesheet" href="../css/font-awesome.min.css" />
@@ -50,7 +50,7 @@
                 }
             </script>
 
-            <div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <script type="text/javascript">
                     try {
                         ace.settings.loadState('sidebar')

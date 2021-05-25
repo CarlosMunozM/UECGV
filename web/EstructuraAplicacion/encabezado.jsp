@@ -124,7 +124,7 @@
                         <li>
                             <a href="/UECGV/srvUsuario?accion=cerrar_sesion">
                                 <i class="ace-icon fa fa-power-off"></i>
-                                Cerrar la sesiÃ³n
+                                Cerrar la sesión
                             </a>
                         </li>
                     </ul>

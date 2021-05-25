@@ -33,47 +33,10 @@
 
         <div class="row">
             <div class="col-lg-12">
-
-
-                <div id="slider-ins" class="carousel slide" data-ride="carousel">
-                    <!-- Indicadores -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#slider-ins" data-slide-to="0" class="active"></li>
-                        <li data-target="#slider-ins" data-slide-to="1"></li>
-                        <li data-target="#slider-ins" data-slide-to="2"></li>
-                    </ol>
-
-                    <!-- Imagenes -->
-                    <div class="carousel-inner" role="listbox">
-
-                        <!-- Primera imagen -->
-                        <div class="item active">
-                            <img src="assets/img/Banner_bachillerato_asistente.png" alt="Default">
-                            <div class="carousel-caption">
-                                Imágen 1
-                            </div>
-                        </div>
-
-                        <!-- Segunda imagen -->
-                        <div class="item">
-                            <img src="assets/img/Banner_bachillerato_contador.png" alt="Default">
-                            <div class="carousel-caption">
-                                Imágen 2
-                            </div>
-                        </div>
-
-                        <!-- Tercera imagen -->
-                        <div class="item">
-                            <img src="assets/img/Banner_bachillerato_electro.png" alt="Default">
-                            <div class="carousel-caption">
-                                Imágen 3
-                            </div>
-                        </div>
-
-                    </div>
-
+                <div id="slider-ins" class="carousel slide principal-slide" data-ride="carousel">
+                    
                     <!-- Controles -->
-                    <a class="left carousel-control" href="#slider-ins" role="button" data-slide="prev">
+                    <a id="left-carousel" class="left carousel-control" href="#slider-ins" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
@@ -82,11 +45,8 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-
             </div>
         </div>
-
-
         <div class="divider-general"></div>
         <!--======================================== Video corto & carrusel========================================-->
         <section class="full-reset" style="background-color: rgb(242, 242, 242); padding: 40px 0;">
@@ -224,83 +184,25 @@
         <!--======================================== Acontecer institucional ========================================-->
         <section class="events-ins">
             <div class="container-fluid">
-                <h2 class="text-center titles">ACONTECER INSTITUCIONAL</h2>
+                <h2 id="eventReciente" class="text-center titles" hidden>Eventos Recientes</h2>
                 <br><br>
-                <div class="row">
-                    <!--======================================== Articulo 1 ========================================-->
-                    <article class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="assets/gallery/default.png" alt="IMG" class="img-responsive img-rounded">
-                            <div class="caption">
-                                <h3 class="text-center">Lorem ipsum dolor sit amet</h3>
-                                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quam, incidunt, sapiente id quibusdam voluptatem.</p>
-                                <p class="text-center"><a href="#" class="btn btn-primary" role="button">Ver imágenes</a></p>
-                            </div>
-                        </div>
-                    </article>
-                    <!--======================================== Articulo 2 ========================================-->
-                    <article class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="assets/gallery/default.png" alt="IMG" class="img-responsive img-rounded">
-                            <div class="caption">
-                                <h3 class="text-center">Lorem ipsum dolor sit amet</h3>
-                                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quam, incidunt, sapiente id quibusdam voluptatem.</p>
-                                <p class="text-center"><a href="#" class="btn btn-primary" role="button">Ver imágenes</a></p>
-                            </div>
-                        </div>
-                    </article>
-                    <!--======================================== Articulo 3 ========================================-->
-                    <article class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="assets/gallery/default.png" alt="IMG" class="img-responsive img-rounded">
-                            <div class="caption">
-                                <h3 class="text-center">Lorem ipsum dolor sit amet</h3>
-                                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quam, incidunt, sapiente id quibusdam voluptatem.</p>
-                                <p class="text-center"><a href="#" class="btn btn-primary" role="button">Ver imágenes</a></p>
-                            </div>
-                        </div>
-                    </article>
+                <div id="events-row" class="row">
+                    
                 </div>
             </div>
         </section>
-        <div class="divider-general"></div>
-        <!--======================================== Enlaces importantes ========================================-->
-        <!--section class="text-center important-links-index">
-            <h2 class="titles">Sitios y enlaces importantes</h2>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-graduation-cap"></i>
-                <p>MOODLE</p>
+        <div id="div-contador" style="position: relative; text-align: right; right: 2%; ">
+            <a title="Contador De Visitas">
+                <img style="border: 0px solid; display: inline;" alt="Contador de visitas" 
+                     src="http://www.websmultimedia.com/contador-de-visitas.php?id=291850">
             </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-paw"></i>
-                <p>ARA-MACAO</p>
-            </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-globe"></i>
-                <p>JOVENES A.T.T</p>
-            </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-star-o"></i>
-                <p>Promo. INS</p>
-            </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-file-text-o"></i>
-                <p>Cons.conducta</p>
-            </a>
-
-            <a href="#!" class="open-link-newTab">
-                <i class="fa fa-download"></i>
-                <p>Descargas</p>
-            </a>
-        </section-->
+            <br>
+            <a style="color: white; text-decoration: none;">Contador de visitas</a>
+        </div>
         <!--======================================== Pie de pagina ========================================-->
         <%@include file="estructura/social_bar.jspf" %>
         <%@include file="estructura/pie_pagina_presentacion.jspf" %>
         <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+        <script src="js/eventos_recientes.js"></script>
     </body>
 </html>

@@ -129,7 +129,7 @@ public class srvEmpleado extends HttpServlet {
                             String ext = n.substring(longuitud - 4, longuitud);
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Empleados/");
-                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
+                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -277,14 +277,14 @@ public class srvEmpleado extends HttpServlet {
                         
                         Part arch = request.getPart("EditEmpFoto");
                         String n = arch.getSubmittedFileName();
-                        if(n == null || n == ""){                          
+                        if(n == null || "".equals(n)){                          
                             empleado.setFoto(request.getParameter("EditEmpAuxFoto"));  
                         }else{
                             int longuitud = n.length();
                             String ext = n.substring(longuitud - 4, longuitud);
                             InputStream is = arch.getInputStream();
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Empleados/");
-                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
+                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado(empleado.getIdentificacion(),"Empleado", ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -305,22 +305,32 @@ public class srvEmpleado extends HttpServlet {
                                if(listaCargoEmpleado.get(0).getCargo().getId_cargo() == Integer.parseInt(cargo_actual)){  //comparar si cambia de cargo
                                    if(cargo_actual.equals("5")){
                                        String notutoria = request.getParameter("EditEmpIdCurso");
+                                       String noparalelo = request.getParameter("EditEmpParalelo");
                                        if(!"".equals(notutoria)){
+                                           if(notutoria == null && noparalelo == null){
+                                               notutoria = request.getParameter("EditEmpAuxIDCurso");
+                                               noparalelo = request.getParameter("EditEmpAuxParalelo");
+                                           }
                                            tutores = new Tutores();
                                            tutoresDAO = new TutoresDAO();
                                            String txtidCargEmpl= request.getParameter("EditIDCargoEmpleado");                                      
                                            if(txtidCargEmpl.equals("")){                                               
-                                               int idcar= cargoEmpleadoDAO.obtenerIdCargoEmpleado(Integer.parseInt(request.getParameter("EditEmpIdEmpleado").trim()));
-                                               
-                                               tutores.setParalelo(request.getParameter("EditEmpParalelo"));                                               
+                                               int idcar= cargoEmpleadoDAO.obtenerIdCargoEmpleado(Integer.parseInt(request.getParameter("EditEmpIdEmpleado").trim()));                                              
+                                               tutores.setParalelo(noparalelo);                                               
                                                tutores.getCurso_educativo().setId_curso(Integer.parseInt(notutoria));
-                                               if(tutoresDAO.registrarTutor(tutores, idcar)){                                                                                                                                                        
+                                               int comp = tutoresDAO.mostrarTutoresFiltroPersona(Integer.parseInt(request.getParameter("EditEmpIdEmpleado").trim()));
+                                               if(comp > 0){                                               
                                                    session.setAttribute("actualizar", "ok");                                                                                                                                     
-                                                   response.sendRedirect("srvEmpleado?accion=mostrar_empleados&id=");                                                                                                
-                                               }else{                                                                                                   
-                                                   session.setAttribute("actualizar", "error");                                                                                                                                     
-                                                   response.sendRedirect("srvEmpleado?accion=mostrar_empleados&id=");                                               
-                                               }                                              
+                                                   response.sendRedirect("srvEmpleado?accion=mostrar_empleados"); 
+                                               }else{
+                                                   if(tutoresDAO.registrarTutor(tutores, idcar)){                                                                                                                                                                                                           
+                                                       session.setAttribute("actualizar", "ok");                                                                                                                                     
+                                                       response.sendRedirect("srvEmpleado?accion=mostrar_empleados&id=");                                                                                                
+                                                   }else{                                                                                                                                                      
+                                                       session.setAttribute("actualizar", "error");                                                                                                                                     
+                                                       response.sendRedirect("srvEmpleado?accion=mostrar_empleados&id=");                                               
+                                                   }
+                                               }
                                            }else{
                                                if(tutoresDAO.eliminarTutor(Integer.parseInt(txtidCargEmpl))){                                                       
                                                    int idcar= cargoEmpleadoDAO.obtenerIdCargoEmpleado(Integer.parseInt(request.getParameter("EditEmpIdEmpleado").trim()));
@@ -460,6 +470,7 @@ public class srvEmpleado extends HttpServlet {
                         }
                     } catch (Exception ex) {
                         System.out.println(ex.getMessage());
+                        ;
                     }
                     break;
                 case "eliminar_empleado":
@@ -521,8 +532,10 @@ public class srvEmpleado extends HttpServlet {
     private String f_RutaModificada(String ruta) {
 
         int longuitud = ruta.length();
-        String entrada = ruta.substring(0, longuitud - 29);
-        String rutaConcat = ruta.substring(longuitud - 23, longuitud);
+//        String entrada = ruta.substring(0, longuitud - 29);
+//        String rutaConcat = ruta.substring(longuitud - 23, longuitud);
+        String entrada = ruta.substring(0, longuitud - 19);
+        String rutaConcat = ruta.substring(longuitud - 19, longuitud);
         String modificada = entrada + rutaConcat;
         return modificada;
     }

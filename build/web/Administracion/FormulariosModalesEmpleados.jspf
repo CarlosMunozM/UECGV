@@ -9,22 +9,16 @@
 <div class="modal fade" id="modalDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="navbar navbar-default">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <center>
-                    <br>
-                    <h4 class="modal-title"  style="color: white;text-align: center" id="exampleModalLongTitleShow"></h4>
-               <br>
-                </center>
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"  style="color: white;text-align: center" id="exampleModalLongTitleShow"></h4>
             </div>
             <div class="modal-body">
                 <form>
                     
                     <div class="row ">
                                 <div class="col-sm-4" style="margin-left: 37%;">
-                                    <img src="1206239525.PNG"  title="imagen" id="modVerEmpFotoPresentacion" style="width: 9em; height: 8em;"></img>                                                                                                                                 
+                                    <img src="assets/img/user-default.png"  title="imagen" id="modVerEmpFotoPresentacion" style="width: 9em; height: 8em;"></img>                                                                                                                                 
                                 </div> 
                     </div>
                     <br>
@@ -120,7 +114,7 @@
                                 <div class="col-sm-11">
                                     <label>Dirección</label>
                                     <textarea style=" resize: none;" rows="2" id="modVerDireccion" class="form-control"  maxlength="200" required="" name="txtRegDireccion" onkeypress="return soloLetrasNumerosCaracEspe(event)" placeholder="Dirección"></textarea>
-                                    <%--pattern="[A-Za-z0-9ñ]+"--%>
+                                    <%--pattern="[A-Za-z0-9Ã±]+"--%>
                                 </div>
                             </div>
                             <br>
@@ -143,7 +137,7 @@
                             
                             
                      <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarCarrera">Cerrar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrarCarrera">Cerrar</button>
                     </div>
                  </form>
             </div>
@@ -155,20 +149,16 @@
 <div class="modal fade" id="modalModificarDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="navbar navbar-default">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <center>
-                    <br>
-                    <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalEditLongTitleShow"></h4>
-              <br>
-                </center>
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalEditLongTitleShow"></h4>
             </div>
             <form autocomplete="off" action="srvEmpleado?accion=modificar_empleado" method="post" enctype="multipart/form-data">
                 <input type="text" id="modEditEmpIdEmpleado"  hidden="" name="EditEmpIdEmpleado">
                 <input type="text" id="modEditEmpAuxFoto"  hidden="" name="EditEmpAuxFoto">
                 <input type="text" id="modEditIDCargoEmpleado"  hidden="" name="EditIDCargoEmpleado">
+                <input type="text" id="modEditEmpAuxIDCurso"  hidden="" name="EditEmpAuxIDCurso">
+                <input type="text" id="modEditEmpAuxParalelo"  hidden="" name="EditEmpAuxParalelo">
                 <div class="modal-body">
                     
     
@@ -229,7 +219,7 @@
                                 <div class="col-sm-5">
                                     <label>Correo Personal</label> 
                                     
-                                    <input type="email" id="modEditEmpEmail" class="form-control" style="text-transform:lowercase" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" required="" name="EditEmpEmail" onkeyup="EditValidarCorreoPersonal()" placeholder="E-mail">
+                                    <input type="email" id="modEditEmpEmail" class="form-control" style="text-transform:lowercase" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" maxlength="100" required="" name="EditEmpEmail" onkeyup="EditValidarCorreoPersonal()" placeholder="E-mail">
                                     
                                     <span id="erroremail" style="color: #f00;"></span>
                                 </div>
@@ -251,7 +241,7 @@
                                 <div class="col-sm-4">
                                     <label>Correo Institucional</label>
                                                                     
-                                    <input type="email" id="modEditEmpEmailInstitucional" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" required="" style="text-transform:lowercase" name="EditEmpEmailInstitucional"onkeyup="EditValidarCorreoInstitucional()" placeholder="">
+                                    <input type="email" id="modEditEmpEmailInstitucional" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" maxlength="100" required="" style="text-transform:lowercase" name="EditEmpEmailInstitucional"onkeyup="EditValidarCorreoInstitucional()" placeholder="">
                                    
                                     <span id="erroremail" style="color: #f00;"></span>
                                 </div>                                
@@ -315,7 +305,7 @@
                                 <div class="col-sm-11">
                                     <label>Dirección</label>
                                     <textarea style=" resize: none;" rows="2" id="modEditEmpDireccion" class="form-control"  maxlength="200" required="" name="EditEmpDireccion" onkeypress="return soloLetrasNumerosCaracEspe(event)" placeholder="Dirección"></textarea>
-                                    <%--pattern="[A-Za-z0-9ñ]+"--%>
+                                    <%--pattern="[A-Za-z0-9Ã±]+"--%>
                                 </div>
                             </div>
                             <br>
@@ -353,7 +343,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModificar">Cerrar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrarModificar">Cerrar</button>
                     <button type="submit" id="btnModificar" class="btn btn-primary">Guardar</button>
                 </div>
             </form>

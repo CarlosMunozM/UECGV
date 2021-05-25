@@ -28,8 +28,20 @@
 
         <%@include file="estructura/encabezado_presentacion.jspf" %>
 
+        
+        
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="index.jsp">Inicio</a>
+                <li>
+                    <a href="institucion.jsp">Institución</a>
+                </li>
+            </ul>
+        </div>
         <!--======================================== Contenido de la pagina ========================================-->
-        <section class="full-reset" style="background-color: #fff; padding: 20px 0;">
+        <section class="full-reset" style="background-color: #fff;">
             <div class="container">
                 <div class="row">
                     <section class="col-xs-12 col-sm-8 col-md-9 info-section-ins">

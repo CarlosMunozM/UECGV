@@ -27,10 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -53,6 +49,7 @@ public class srvImagenPresentacion extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            request.setCharacterEncoding("UTF-8");
             /* TODO output your page here. You may use following sample code. */
            String accion = request.getParameter("accion");
             HttpSession session = request.getSession();
@@ -61,6 +58,7 @@ public class srvImagenPresentacion extends HttpServlet {
 
             switch (accion) {
                 case "Guardar":
+                    boolean respuesta = false;
                     ArrayList<String> lista = new ArrayList<>();
                     try {
                         img = new Imagen();
@@ -78,7 +76,7 @@ public class srvImagenPresentacion extends HttpServlet {
                             InputStream is = arch.getInputStream();
 
                             String fileName = this.getServletContext().getRealPath("/Imagenes/Sliders/");
-                            File f = new File(f_RutaModificada(fileName) + "\\" + nombrarImagenEmpleado("as", name, ext));
+                            File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEmpleado("as", name, ext));
                             String ruta = f.toString();
                             FileOutputStream ous = new FileOutputStream(f);
                             //Ruta para base de datos
@@ -103,17 +101,18 @@ public class srvImagenPresentacion extends HttpServlet {
                                 request.setAttribute("imagenes", imgsListar);
                                 
                                 //request.getRequestDispatcher("/Administracion/imagenesSlider1.jsp").forward(request, response);
-                                
+                                respuesta = true;
                             } else {
-                                response.getWriter().write("No se pudo registrar la imagen");
+                                //response.getWriter().write("No se pudo registrar la imagen");
+                                respuesta = false;
                             }
-                            response.sendRedirect("srvImagenPresentacion?accion=Listar");
+                            //response.sendRedirect("srvImagenPresentacion?accion=Listar");
                         }
                         
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-
+                    out.println(respuesta);
                     break;
                 case "Listar":
                     img = new Imagen();
@@ -150,8 +149,7 @@ public class srvImagenPresentacion extends HttpServlet {
             }
         }
     }
-private String f_RutaModificada(String ruta) {
-
+    private String f_RutaModificada(String ruta) {
         int longuitud = ruta.length();
         String entrada = ruta.substring(0, longuitud - 17);
         String rutaConcat = ruta.substring(longuitud - 17, longuitud);

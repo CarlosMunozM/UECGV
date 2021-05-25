@@ -31,6 +31,17 @@
         <i class="btn-up fa fa-arrow-circle-o-up hidden-xs"></i>
         <!--======================================== Navegación ========================================-->
         <%@include file="estructura/encabezado_presentacion.jspf" %>
+        
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="index.jsp">Inicio</a>
+                <li>
+                    <a href="actualizardatos.jsp">Actualizar Datos - Estudiante</a>
+                </li>
+            </ul>
+        </div>
         <!--======================================== Contenido de la pagina ========================================-->
         <section id="section-datos" class="full-reset mb-200" style="background-color: #fff; padding: 20px 0;">
             <div class="container">
@@ -66,7 +77,7 @@
                                 <img id="regImgAlum" src="" height="250"/>
                                 <br>
                                 <label>Foto</label>
-                                <input type="file" id="regFotoAlu" name="regFotoAlu" class="form-control" name="txtRegFoto" placeholder="Foto" disabled accept="image/jpg, image/png, image/jpeg">
+                                <input type="file" id="regFotoAlu" name="regFotoAlu" class="form-control" name="txtRegFoto" placeholder="Foto" disabled accept="image/jpg, image/png">
                                 <input type="hidden" name="idEstd" id="idEstd">
                             </div>
                         </div>
@@ -150,7 +161,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label>Foto del domicilio</label>
-                                <input type="file" id="fotoDomicilioAlu" class="form-control"  name="txtRegFotoDomicilio" placeholder="Foto" disabled accept="image/jpg, image/png, image/jpeg">
+                                <input type="file" id="fotoDomicilioAlu" class="form-control"  name="txtRegFotoDomicilio" placeholder="Foto" disabled accept="image/jpg, image/png">
                             </div>
                             <div class="col-sm-2">
                                 <label>Tipo de discapacidad</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
@@ -222,11 +233,11 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Ocupación</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" id="regOcupacionRep" style="text-transform:uppercase"  class="form-control"   required="" name="txtRegFamiliarOcupacionPadre" placeholder="Ocupación" readonly>
+                                <input type="text" id="regOcupacionRep" style="text-transform:uppercase"  class="form-control"  maxlength="50"  required="" name="txtRegFamiliarOcupacionPadre" placeholder="Ocupación" readonly>
                             </div>
                             <div class="col-sm-3">
                                 <label>Lugar de Trabajo</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" id="regTrabajoRep" style="text-transform:uppercase"  class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosCaracEspe()(event)" required="" name="txtRegFamiliarLugarPadre" placeholder="Lugar de Trabajo" readonly>
+                                <input type="text" id="regTrabajoRep" style="text-transform:uppercase"  class="form-control" maxlength="50" onkeypress="return soloLetrasNumerosCaracEspe()(event)" required="" name="txtRegFamiliarLugarPadre" placeholder="Lugar de Trabajo" readonly>
                             </div>
                         </div>
                         <br>
@@ -283,11 +294,11 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Ocupación</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" id="regOcupacionMad" style="text-transform:uppercase"  class="form-control"   required="" name="txtRegFamiliarOcupacionMadre" placeholder="Ocupación" readonly>
+                                <input type="text" id="regOcupacionMad" style="text-transform:uppercase"  class="form-control"   required="" name="txtRegFamiliarOcupacionMadre" placeholder="Ocupación" readonly maxlength="50">
                             </div>
                             <div class="col-sm-3">
                                 <label>Lugar de Trabajo</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" id="regTrabajoMad" style="text-transform:uppercase"  class="form-control"  required="" name="txtRegFamiliarLugarMadre" placeholder="Lugar de Trabajo" readonly>
+                                <input type="text" id="regTrabajoMad" style="text-transform:uppercase"  class="form-control"  required="" name="txtRegFamiliarLugarMadre" placeholder="Lugar de Trabajo" readonly maxlength="50">
                             </div>
                         </div>
                         <br>
@@ -320,17 +331,17 @@
                             </div>
                             <div class="col-sm-3">
                                 <label>Identificación</label>
-                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"   name="txtRegFamiliarIdentificacionRef" placeholder="IDENTIFICACIÓN" readonly="" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"   name="txtRefFamiliarIdentificacionRef" placeholder="IDENTIFICACIÓN" readonly="" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                 <span id="erroridentificaciion" style="color: #f00;"></span>
                             </div>
                             <div class="col-sm-3">
                                 <label>Nombres</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" id="modEditNonbresRef" style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRegNombres" placeholder="nombres" readonly>
+                                <input type="text" id="modEditNonbresRef" style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRefNombres" placeholder="nombres" readonly>
 
                             </div>
                             <div class="col-sm-3">
                                 <label>Apellidos</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                <input type="text" id="modEditApellidoRef"  style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRegApellidos" placeholder="apellidos" readonly>
+                                <input type="text" id="modEditApellidoRef"  style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRefApellidos" placeholder="apellidos" readonly>
                             </div>
                         </div>
                         <br>
@@ -342,13 +353,13 @@
 
                             <div class="col-sm-3">
                                 <label>Teléfono</label>
-                                <input type="text" id="modEditTelefonoRef" style="text-transform:uppercase" class="form-control"  maxlength="50" name="txtRegtelefono" placeholder="teléfono" readonly>          
+                                <input type="text" id="modEditTelefonoRef" style="text-transform:uppercase" class="form-control"  maxlength="50" name="txtReftelefono" placeholder="teléfono" readonly>          
 
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label>Celular</label><label class="text-danger campo-obligatorios">&nbsp;*</label>
-                                    <input type="text" id="modEditcelularRef" style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRegCelular" placeholder="celular" readonly>
+                                    <input type="text" id="modEditcelularRef" style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRefCelular" placeholder="celular" readonly>
                                 </div>
                             </div>
                         </div>

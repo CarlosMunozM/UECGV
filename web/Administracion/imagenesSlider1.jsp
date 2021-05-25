@@ -12,11 +12,12 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
-        <title>Usuarios - U.E.M Carmelina Granja Villanueva</title>
+        <title>Imágenes - U.E.M Carmelina Granja Villanueva</title>
 
         <meta name="description" content="top menu &amp; navigation" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+        <%@include file="../EstructuraAplicacion/head_icono.jsp" %>
         <!-- bootstrap & fontawesome -->
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css" />
@@ -52,7 +53,7 @@
                 }
             </script>
 
-            <div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <script type="text/javascript">
                     try {
                         ace.settings.loadState('sidebar')
@@ -88,7 +89,7 @@
                             <button id="btnRegistrarImgPresentacion" class="btn btn-success fa fa-plus" style="float: right"> Registrar</button>
                         </a>
                         <center>
-                            <h3><b>Imagenes</b></h3><br>
+                            <h3><b>Imágenes</b></h3><br>
                         </center>
 
                         <div class="row">
@@ -141,9 +142,9 @@
                     <div class="modal-content">
                         <%-- <form method="post" action="srvImagenPresentacion?accion=Guardar" enctype="multipart/form-data"> --%>
                         <form autocomplete="off" id="frmImagenPresentacion"  enctype="multipart/form-data">
-                            <div class="modal-header">
+                            <div class="modal-header bg-primary">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalmgPresentacion"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Agregar imagen</h4>
+                                <h4 class="modal-title"  style="color: white;text-align: center" id="myModalLabel">Agregar imagen</h4>
                             </div>
                             <div class="modal-body">
 
@@ -154,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                 <button id="btn-guardar" type="submit" class="btn btn-primary" name="accion" value="Guardar" disabled>Guardar</button>
                             </div>
                         </form>
@@ -313,24 +314,17 @@
                         cache: false,
                         success: function (responseText)
                         {
-                            var respon = responseText;
-                            if (respon === 'ok')
+                            if (responseText)
                             {
-                                //$('#btn-guardar').text("Registrar");
-                                //$('#btn-guardar').attr("disabled", false);
+                                toastr.success("Guardado con éxito");                    
+                                $("#btnCerrarModalmgPresentacion").click();
+                                location.href = '/UECGV/srvImagenPresentacion?accion=Listar';
 
-                                //location.href = '/UECGV/srvImagenPresentacion?accion=Listar';
-                                //$("#btnCerrarModalmgPresentacion").click();
-                                //toastr.success("Guardado");
-
-                            } else
-                            {
-                                
+                            } else{
                                 $('#btn-guardar').text("Registrar");
                                 $('#btn-guardar').attr("disabled", false);
-
-                                $("#btnCerrarModalmgPresentacion").click();
-                                toastr.error(respon);
+                                //$("#btnCerrarModalmgPresentacion").click();
+                                toastr.error("Error¡ No se logro registrar la presentación.");
                                 
                             }
                         }

@@ -3,556 +3,237 @@
 
 <meta lang="es">
 <meta charset="utf-8">
-                                                                
+
 <!-- Modal para mostrar datos del Usuarios -->
 <div class="modal fade" id="modalDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="navbar navbar-default">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <center>
-                    <br>
-                    <h4 class="modal-title"  style="color: white;text-align: center" id="exampleModalLongTitleShow"></h4>
-               <br>
-                </center>
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"  style="color: white;text-align: center" id="exampleModalLongTitleShow"></h4>
             </div>
             <div class="modal-body">
                 <div class="row ">
-                                <div class="col-sm-4" style="margin-left: 37%;">
-                                    <img src="1206239525.PNG"  title="imagen" id="modVerAluFoto" style="width: 9em; height: 8em;"></img>                                                                                                                                 
-                                </div> 
-                    </div>
+                    <div class="col-sm-4" style="margin-left: 37%;">
+                        <img src=""  title="imagen" id="modVerAluFoto" style="width: 9em; height: 8em;"></img>                                                                                                                                 
+                    </div> 
+                </div>
                 <form>
-                 <div class="row " style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Tipo de Identificación</label>
-                                    <label id="modAluTipoIdentificacion" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Identificación</label>
-                                    <label id="modVerAludentificacion" style="font-size: 14p" class="form-control" ></label>
-                                    <span id="erroridentificaciion" style="color: #f00;"></span>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>País</label>
-                                    
-                                     <label id="modVerAluPais" style="font-size: 14p" class="form-control"></label>                                                 
-                                </div>
+                    <div class="row " style="margin-left: 4%">
+                        <div class="col-sm-3">
+                            <label>Tipo de Identificación</label>
+                            <label id="modAluTipoIdentificacion" style="font-size: 14px" class="form-control"></label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Identificación</label>
+                            <label id="modVerAludentificacion" style="font-size: 14px" class="form-control" ></label>
+                            <span id="erroridentificaciion" style="color: #f00;"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>País</label>
 
-                                <div class="col-sm-3">
-                                    <label>Género</label>
-                                   <label id="modVerALuGenero" style="font-size: 14p" class="form-control"b></label>
-                                </div>
-                                
-                               
+                            <label id="modVerAluPais" style="font-size: 14px" class="form-control"></label>                                                 
+                        </div>
 
-                            </div>
-                            <br>
-                            <div class="row" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Nombres</label>
-                                    <label id="modVerAluNombres" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Apellidos</label>
-                                    <label id="modVerAluApellidos" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Fecha de nacimiento</label>
-                                     <label id="modVerAluFechaNacimiento" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                            
-                                </div>
-                            <br>
-                            <div class="row" style="margin-left: 4%">
+                        <div class="col-sm-2">
+                            <label>Género</label>
+                            <label id="modVerALuGenero" style="font-size: 14px" class="form-control"b></label>
+                        </div>
 
-                                <div class="col-sm-5">
-                                    <label>E-mail</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                        <label id="modVerAluEmail" style="font-size: 14p" class="form-control"></label>
-                                    </div>
-                                    <span id="erroremail" style="color: #f00;"></span>
-                                </div>
-                                
-                                
-                                <div class="col-sm-3">
-                                    <label>Celular</label>                                         
-                                        <label id="modVerAluCelular" style="font-size: 14p" class="form-control"></label>
-                                    
-                                </div>
-                                 <div class="col-sm-3">
-                                    <label>Curso</label>
-                                    <label id="modVerAluCurso" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                                
-                            </div>
-                            <br>
-                            <div class="row" style="margin-left: 4%">
-                                <div class="col-sm-8">
-                                    <label>Dirección</label>
-                                    <label id="modVerAluDireccion" style="font-size: 14p" class="form-control"></label>
-                                    <%--pattern="[A-Za-z0-9ñ]+"--%>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Foto del domicilio</label>
-                                    <label id="modAluFotoDomicio" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Hermanos</label>
-                                    <label id="modVerAluHermanos" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Lugar entre hermanos</label>
-                                    <label id="modAverLugarHermanos" style="font-size: 14p" class="form-control"></label>                                </div>
-                                <div class="col-sm-4">
-                                    <label>Carnet de Discapacidad </label>
-                                    <<label id="modVerAluCarnetDiscapacidad" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                                
-                            </div>
-                            <br>
-                            <div class="row" style="margin-left: 4%">
-                             <div class="col-sm-4">
-                                    <label>Discapacidad</label>
-                                   <label id="modVerAluDiscapacidad" style="font-size: 14p" class="form-control"></label>
-                             </div>
-                                <div class="col-sm-4">
-                                    <label>Tipo de discapacidad</label>
-                                     <label id="modVerAluTipoDiscapacidad" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                            
-                            
-                                <div class="col-sm-3">
-                                    <label>Historia clínica</label>
-                                    <label id="modVerAluHistClinica" style="font-size: 14p" class="form-control"></label>                                </div>
-                                
-                                </div>  
-                            
-                            <br>
-                             <center>
-                            <h4><b>Datos de Representante</b></h4><br>
-                             </center>
-                            <div class="row " style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Tipo de Identificación</label>
-                                    <label id="modVerAluTipoidentificacionR" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>Identificación</label>
-                                    <label id="modVerAluIdentificacionR" style="font-size: 14p" class="form-control"></label>                                    <span id="erroridentificaciion" style="color: #f00;"></span>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>Nacionalidad</label>
-                                    
-                                     <label id="modVerAluPaisR" style="font-size: 14p" class="form-control"></label>                                                 
-                                </div>
 
-                                <div class="col-sm-2">
-                                    <label>Parentesco</label>
-                                    <label id="verAluParentescoR" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                                
-                                <div class="col-sm-2">
-                                    <label>C.U.E</label>
-                                    <label id="modVerAluCueR" style="font-size: 14p" class="form-control"></label>                                </div>
 
-                            </div>
-                            <br>
-                             <div class="row" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Nombres</label>
-                                   <label id="modVerAluNombresR" style="font-size: 14p" class="form-control"></label>                                
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Apellidos</label>
-                                    <label id="modAluVerApellidosR" style="font-size: 14p" class="form-control"></label>                                
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Ocupación</label>
-                                     <label id="modVerALuOcupacionR" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                            
-                            
-                                <div class="col-sm-2">
-                                    <label>Lugar de Trabajo</label>
-                                    <label id="modVerAluLgrDetrabajo" style="font-size: 14p" class="form-control"></label>                                </div>
-                                </div>
-                            <br>
-                             <div class="row" style="margin-left: 4%">
-
-                                <div class="col-sm-8">
-                                    <label>E-mail</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                        <label id="modVerAluEmailR" style="font-size: 14p" class="form-control"></label>                                    </div>
-                                    <span id="erroremail" style="color: #f00;"></span>
-                                </div>
-                                
-                                
-                                <div class="col-sm-3">
-                                    <label>Celular</label>                                         
-                                        <label id="modVerAluCelularR" style="font-size: 14p" class="form-control"></label>                                   
-                                    
-                                </div>
-                                 
-                                
-                            </div>
-                            <br>
-                            <center>
-                            <h4><b>Datos de Contacto</b></h4><br>
-                             </center>
-                            <div class="row" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Nombres</label>
-                                   <label id="modVerRefNombres" style="font-size: 14p" class="form-control"></label>                                
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Apellidos</label>
-                                    <label id="modVerRefApellidos" style="font-size: 14p" class="form-control"></label>                                
-                                </div>
-                                   <div class="col-sm-3">
-                                    <label>Parentesco</label>
-                                    <label id="modVerRefParentesco" style="font-size: 14p" class="form-control"></label>                                
-                                </div>
-                                 <div class="col-sm-3">
-                                    <label>Fecha Modificacion</label>
-                                    <label id="modVerRefModificacion" style="font-size: 14p" class="form-control"></label>                                
-                            </div>
-                            <div class="col-sm-3">
-                                    <label>Telefono</label>
-                                     <label id="modVerRefTelefono" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                            
-                              <div class="col-sm-3">
-                                    <label>Celular</label>
-                                     <label id="modVerRefCeluar" style="font-size: 14p" class="form-control"></label>
-                                </div>
-                           
-                          </div>
-                                <br>
-                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarCarrera">Cerrar</button>
-                </div>
-                    </form>
-            </div>
-        </div>
-    </div>
-</div>                                            
-
-<!-- Modal para modificar datos del Estudiante -->
-<div class="modal fade" id="modalModificarDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="navbar navbar-default">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <center>
-                    <br>
-                    <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalEditLongTitleShow"></h4>
-              <br>
-                </center>
-            </div>
-            <form autocomplete="off" action="../srvUsuarios?accion=modificar" method="post">
-                <input type="text" id="modEditIdPersona"  hidden="" name="txtIdPersona">
-                <div class="modal-body">
-                    <div class="row form" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Tipo de Identificación</label>
-                                    <input type="text" id="modEditAluTipoIdentificacion" class="form-control"  maxlength="15" onkeypress="return soloNumeros(event)" required="" name="txtRegIdentificacion" placeholder=" Tipo de Identificacion">
-
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>Identificación</label>
-                                    <input type="text" id="modEditAludentificacion" class="form-control"  maxlength="15" onkeypress="return soloNumeros(event)" required="" name="txtRegIdentificacion" placeholder="Identificacion">
-                                    <span id="erroridentificaciion" style="color: #f00;"></span>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>Nacionalidad</label>
-                                    
-                                   <input type="text" id="modEditAluPais" class="form-control"  maxlength="15" onkeypress="return soloNumeros(event)" required="" name="txtRegIdentificacion" placeholder="Nacionalidad">
-                                                                                  
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <label>Género</label>
-                                    <select id="modEditALuGenero" class="form-control" name="sltRegGenero" required="">
-                                        <option></option>
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="col-sm-2">
-                                    <label>Foto</label>
-                                    <input type="text" id="modEditrAluFoto" class="form-control"  maxlength="50" required="" name="txtRegFoto" placeholder="Foto">
-                                </div>
                     </div>
                     <br>
-                            <div class="row form" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Nombres</label>
-                                    <input type="text" id="modEditAluNombres" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegNombres" placeholder="Nombres">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Apellidos</label>
-                                    <input type="text" id="modEditAluApellidos" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidos" placeholder="Apellido">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Fecha de nacimiento</label>
-                                     <input type="date" id="modEditAluFechaNacimiento" class="form-control"   required="" name="txtRegFecha" placeholder="">
-                                </div>
-                            
-                            
-                               
-                                </div>
-                            <br>
-                            <div class="row form" style="margin-left: 4%">
+                    <div class="row" style="margin-left: 4%">
+                        <div class="col-sm-4">
+                            <label>Nombres</label>
+                            <label id="modVerAluNombres" style="font-size: 14px" class="form-control"></label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Apellidos</label>
+                            <label id="modVerAluApellidos" style="font-size: 14px" class="form-control"></label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Fecha de nacimiento</label>
+                            <label id="modVerAluFechaNacimiento" style="font-size: 14px" class="form-control"></label>
+                        </div>
 
-                                <div class="col-sm-5">
-                                    <label>E-mail</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                        <input type="email" id="modEditAluEmail" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" required="" name="txtRegEmail" placeholder="E-mail">
-                                    </div>
-                                    <span id="erroremail" style="color: #f00;"></span>
-                                </div>
-                                
-                                
-                                <div class="col-sm-3">
-                                    <label>Celular</label>                                         
-                                        <input type="text" id="modEditAluCelular" placeholder="0000000000" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10" required="" name="txtRegCelular">
-                                   
-                                    
-                                </div>
-                                 <div class="col-sm-3">
-                                    <label>Curso</label>
-                                    
-                                    <input type="text" id="modEditAluCurso" placeholder="0000000000" class="form-control" onkeypress="return soloLetras()" maxlength="10" required="" name="txtRegCelular">
+                    </div>
+                    <br>
+                    <div class="row" style="margin-left: 4%">
 
-                                   
-                                </div>
-                                
+                        <div class="col-sm-5">
+                            <label>Correo Electrónico</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                                <label id="modVerAluEmail" style="font-size: 14px" class="form-control"></label>
                             </div>
-                            
-                            <br>
-                            <div class="row form" style="margin-left: 4%">
-                                <div class="col-sm-8">
-                                    <label>Dirección</label>
-                                    <input type="text" id="modEditAluDireccion" class="form-control" onkeypress="return soloLetrasNumerosCaracEspe(event)" maxlength="100" required="" name="txtRegDireccion" placeholder="Dirección">
-                                    <%--pattern="[A-Za-z0-9ñ]+"--%>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Foto del domicilio</label>
-                                    <input type="text" id="modEditrAluFotoDom" class="form-control"  maxlength="50" required="" name="txtRegFotoDomicilio" placeholder="Foto">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row form" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Hermanos</label>
-                                    <input type="text" id="modEditAluHermanos" class="form-control" maxlength="1" onkeypress="return soloNumeros(event)" required="" name="txtRegNumHermanos" placeholder="0">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Lugar entre hermanos</label>
-                                    <input type="text" id="modEditAluLugarHermanos" class="form-control" maxlength="1" onkeypress="return soloNumeros(event)" required="" name="txtRegNumHermanos" placeholder="0">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Carnet de Discapacidad</label>
-                                    <input type="text" id="modEditAluCarnetDiscapacidad" class="form-control" onkeypress="return soloLetrasNumerosv2(event)" maxlength="20" required="" name="txtRegCarnet" placeholder="Código">
-                                </div>
-                                
-                            </div>
-                            <br>
-                            <div class="row form" style="margin-left: 4%">
-                             <div class="col-sm-4">
-                                    <label>Discapacidad</label>
-                                    <input type="text" id="modEditAluDiscapacidad" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegDiscapacidad" placeholder="Discapacidad">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Tipo de discapacidad</label>
-                                     <input type="text" id="modEditAluTipoDiscapacidad" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegDiscapacidad" placeholder="Discapacidad">
+                            <span id="erroremail" style="color: #f00;"></span>
+                        </div>
 
-                                </div>
-                            
-                            
-                                <div class="col-sm-3">
-                                    <label>Historia clínica</label>
-                                    <input type="text" id="modEditAluHistClinica" class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosv2(event)" required="" name="txtRegHistoriaClinica" placeholder="">
-                                </div>
-                                
-                                </div>  
-                            
-                            <br>
-                             <center>
-                            <h4><b>Datos de Representante</b></h4><br>
-                             </center>
-                            <div class="row form " style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Tipo de Identificación</label>
-                                    <select id="modEditAluTipoidentificacionR" class="form-control" name="sltRegFamiliarTipoIdentificacion" required="">
-                                        <option></option>
 
-                                        <option value="cedula">Cédula</option>
-                                        <option value="pasaporte">Pasaporte</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>Identificación</label>
-                                    <input type="text" id="modEditidentificacionR" class="form-control"  maxlength="15" onkeypress="return soloNumeros(event)" required="" name="txtRegFamiliarIdentificacion" placeholder="Identificacion">
-                                    <span id="erroridentificaciion" style="color: #f00;"></span>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>País</label>
-                                    
-                                    <input type="text" id="modEditNacionalidadR" class="form-control"  maxlength="15" onkeypress="return soloNumeros(event)" required="" name="txtRegFamiliarIdentificacion" placeholder="Identificacion">
-                                                                                   
-                                </div>
+                        <div class="col-sm-3">
+                            <label>Celular</label>                                         
+                            <label id="modVerAluCelular" style="font-size: 14px" class="form-control"></label>
 
-                                <div class="col-sm-2">
-                                    <label>Parentesco</label>
-                                    <select id="modEditparentescoR" class="form-control" name="sltRegParentesco" required="">
-                                        <option></option>
-                                        <option value="MADRE">MADRE</option>
-                                        <option value="PADRE">PADRE</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="col-sm-2">
-                                    <label>C.U.E</label>
-                                    <input type="text" id="modEdidCueR" class="form-control"  maxlength="50" required="" name="txtRegCue" placeholder="codigo">
-                                </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Curso</label>
+                            <label id="modVerAluCurso" style="font-size: 14px" class="form-control"></label>
+                        </div>
 
-                            </div>
-                            <br>
-                             <div class="row form" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Nombres</label>
-                                    <input type="text" id="modEditnombresR" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegNombres" placeholder="Nombres">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Apellidos</label>
-                                    <input type="text" id="modEditapellidosR" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidos" placeholder="Apellido">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Ocupación</label>
-                                     <input type="text" id="modEditOcupacion" class="form-control"   required="" name="txtRegFamiliarOcupacion" placeholder="Ocupación">
-                                </div>
-                            
-                            
-                                <div class="col-sm-2">
-                                    <label>Lugar de Trabajo</label>
-                                    <input type="text" id="modEditLgrTrabajo" class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosCaracEspe()(event)" required="" name="txtRegFamiliarLugar" placeholder="Lugar de Trabajo">
-                                </div>
-                                </div>
-                            <br>
-                             <div class="row form" style="margin-left: 4%">
+                    </div>
+                    <br>
+                    <div class="row" style="margin-left: 4%">
+                        <div class="col-sm-8">
+                            <label>Dirección</label>
+                            <label id="modVerAluDireccion" style="font-size: 14px" class="form-control"></label>
+                            <%--pattern="[A-Za-z0-9Ã±]+"--%>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-3" style="margin-left: 37%;">
+                                <label>Foto Domicilio</label>
+                                <img src=""  title="imagen" id="modVerAluFotodomicilio" style="width: 9em; height: 8em;"></img>                                                                                                                                 
+                            </div> 
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="margin-left: 4%">
+                        <div class="col-sm-3">
+                            <label>Hermanos</label>
+                            <label id="modVerAluHermanos" style="font-size: 14px" class="form-control"></label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Lugar entre hermanos</label>
+                            <label id="modAverLugarHermanos" style="font-size: 14px" class="form-control"></label>                                </div>
+                        <div class="col-sm-4">
+                            <label> Carnet de Discapacidad </label>
+                            <label id="modVerAluCarnetDiscapacidad" style="font-size: 14px" class="form-control"></label>
+                        </div>
 
-                                <div class="col-sm-8">
-                                    <label>E-mail</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                        <input type="email" id="modEditemailR" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" required="" name="txtRegEmail" placeholder="E-mail">
-                                    </div>
-                                    <span id="erroremail" style="color: #f00;"></span>
-                                </div>
-                                
-                                
-                                <div class="col-sm-3">
-                                    <label>Celular</label>                                         
-                                        <input type="text" id="modEditCelularR" placeholder="0000000000" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10" required="" name="txtRegCelular">
-                                   
-                                    
-                                </div>
-                                 
-                                
-                            </div>
-                            <br>
-                            <h4><b>Datos de Contacto</b></h4><br>
-                             </center>
-                            <div class="row" style="margin-left: 4%">
-                                <div class="col-sm-3">
-                                    <label>Nombres</label>
-                                    <input type="text" id="modEditNonbresRef" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidos" placeholder="Apellido">
-                                
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>Apellidos</label>
-                                    <input type="text" id="modEditApellidoRef" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidos" placeholder="Apellido">
-                         
-                                </div>
-                                   <div class="col-sm-3">
-                                    <label>Parentesco</label>
-                                    
-                                    <input type="text" id="modEditParentescoRef" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidos" placeholder="Apellido">                               
-                                </div>
-                  
-                            <div class="col-sm-3">
-                                    <label>Telefono</label>
-                                     
-                                     <input type="text" id="modEditTelefonoRef" class="form-control" onkeypress="return soloLetrasNumerosv2(event)" maxlength="50" required="" name="txtRegApellidos" placeholder="Apellido">                               
+                    </div>
+                    <br>
+                    <div class="row" style="margin-left: 4%">
+                        <div class="col-sm-4">
+                            <label> Discapacidad </label>
+                            <label id="modVerAluDiscapacidad" style="font-size: 14px" class="form-control"></label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Tipo de discapacidad</label>
+                            <label id="modVerAluTipoDiscapacidad" style="font-size: 14px" class="form-control"></label>
+                        </div>
 
-                                </div>
-                                   <div class="col-sm-3">
-                                    <label>Celular</label>
-                                   
-                                    <input type="text" id="modEditcelularRef" class="form-control" onkeypress="return soloLetrasNumerosv2(event)" maxlength="50" required="" name="txtRegApellidos" placeholder="Apellido">                               
 
-                                </div>
-                </div>
-                <div class="modal-footer">
+                        <div class="col-sm-3">
+                            <label>Historia clínica</label>
+                            <label id="modVerAluHistClinica" style="font-size: 14px" class="form-control"></label>                                </div>
 
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModificar">Cerrar</button>
-                    <button type="submit" id="btnModificar" class="btn btn-primary">Guardar</button>
-                </div>
-            </form>
+                    </div>  
+
+                    <br>
+                    <center>
+                        <h4><b>Datos de Representante</b></h4><br>
+                    </center>
+                    <div class="row " style="margin-left: 4%">
+                        <div class="col-sm-3">
+                            <label>Tipo de Identificación</label>
+                            <label id="modVerAluTipoidentificacionR" style="font-size: 14px" class="form-control"></label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label>Identificación</label>
+                            <label id="modVerAluIdentificacionR" style="font-size: 14px" class="form-control"></label>                                    <span id="erroridentificaciion" style="color: #f00;"></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <label>Nacionalidad</label>
+
+                            <label id="modVerAluPaisR" style="font-size: 14px" class="form-control"></label>                                                 
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label>Parentesco</label>
+                            <label id="verAluParentescoR" style="font-size: 14px" class="form-control"></label>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label>C.U.E</label>
+                            <label id="modVerAluCueR" style="font-size: 14px" class="form-control"></label>                                </div>
+
+                    </div>
+                    <br>
+                    <div class="row" style="margin-left: 4%">
+                        <div class="col-sm-3">
+                            <label>Nombres</label>
+                            <label id="modVerAluNombresR" style="font-size: 14px" class="form-control"></label>                                
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Apellidos</label>
+                            <label id="modAluVerApellidosR" style="font-size: 14px" class="form-control"></label>                                
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Ocupación</label>
+                            <label id="modVerALuOcupacionR" style="font-size: 14px" class="form-control"></label>
+                        </div>
+
+
+                        <div class="col-sm-2">
+                            <label>Lugar de Trabajo</label>
+                            <label id="modVerAluLgrDetrabajo" style="font-size: 14px" class="form-control"></label>                                </div>
+                    </div>
+                    <br>
+                    <div class="row" style="margin-left: 4%">
+
+                        <div class="col-sm-8">
+                            <label>Correo Electrónico</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                                <label id="modVerAluEmailR" style="font-size: 14px" class="form-control"></label>                                    </div>
+                            <span id="erroremail" style="color: #f00;"></span>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <label>Celular</label>                                         
+                            <label id="modVerAluCelularR" style="font-size: 14px" class="form-control"></label>                                   
+
+                        </div>
+
+
+                    </div>
+                    <br>
+                    <center>
+                        <h4><b>Datos de Contacto</b></h4><br>
+                    </center>
+                    <div class="row" style="margin-left: 4%">
+                        <div class="col-sm-3">
+                            <label>Nombres</label>
+                            <label id="modVerRefNombres" style="font-size: 14px" class="form-control"></label>                                
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Apellidos</label>
+                            <label id="modVerRefApellidos" style="font-size: 14px" class="form-control"></label>                                
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Parentesco</label>
+                            <label id="modVerRefParentesco" style="font-size: 14px" class="form-control"></label>                                
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label>Teléfono</label>
+                            <label id="modVerRefTelefono" style="font-size: 14px" class="form-control"></label>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label>Celular</label>
+                            <label id="modVerRefCeluar" style="font-size: 14px" class="form-control"></label>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrarCarrera">Cerrar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>                                            
-
-<%--Modal para seleccionar carreras--%>
-<div class="modal fade" id="modalPais" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalCarrera">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <center>
-                    <br>
-                    <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalLongTitleEdit"><b>Selecione su País</b></h4>
-               <br>
-                </center>
-            </div>
-           
-            <div class="modal-body">
-                 <form>
-                <table id="tablaCarrera" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th style="text-align: center;">Nombre</th>
-                            <th style="text-align: center;">Nacionalidad</th>
-                            <th style="text-align: center;">Escoger</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        
-
-                    </tbody>
-                </table>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarCarrera">Cerrar</button>
-                </div>
-                     </form>
-            </div>
-        </div>
-    </div>
-</div>

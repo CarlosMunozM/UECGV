@@ -4,22 +4,23 @@
     <!--======================================== Logo(Nombre INS) ========================================-->
     <div class="full-reset logo">
         <span class="hidden-lg hidden-md col-lg-10">
-            <img src="assets/img/logo_UECGV.png"  width="60" height="60">
+            <a href="index.jsp"><img src="assets/img/logo_UECGV.png"  width="60" height="60"></a>
         </span>
         <span class="hidden-xs hidden-sm">
-            <img src="assets/img/logo_UECGV.png" width="60" height="60">
-            U.E.M Carmelina Granja Villanueva
+            <a href="index.jsp"><img src="assets/img/logo_UECGV.png" width="60" height="60"></a>
+            &nbsp;U.E.M Carmelina Granja Villanueva
         </span>
     </div>
     <!--======================================== Links de navegación ========================================-->
     <nav class="full-reset navigation">
         <ul class="full-reset list-unstyled">
-            <li><a href="index.jsp">Inicio</a></li>
-            <li><a href="institucion.jsp">Institución</a></li>
-            <!--<li><a href="galeria.jsp">Galería</a></li>-->
-            <li><a data-toggle="modal" id="btnAbrirContactenosModal" data-target="#modalcontactenos" href="#modalcontactenos">Contáctenos</a></li>
-            <li><a href="login.jsp">Iniciar Sesión</a></li>
-            <li><a href="#" class="btm-mega-menu">Más &nbsp;<i class="fa fa-caret-down"></i></a></li>
+            <li><a href="index.jsp" class="fa fa-home">&nbsp;Inicio</a></li>
+            <li><a href="institucion.jsp" class="fa fa-university">&nbsp;Institución</a></li>
+            <li><a href="galeria.jsp" class="fa fa-image">&nbsp;Galería</a></li>
+            <li><a href="eventos.jsp" class="fa fa-calendar">&nbsp;Eventos</a></li>
+            <li><a data-toggle="modal" id="btnAbrirContactenosModal" data-target="#modalcontactenos" href="#modalcontactenos" class="fa fa-users">&nbsp;Contáctenos</a></li>
+            <li><a href="login.jsp" class="fa fa-key">&nbsp;Iniciar Sesión</a></li>
+            <li><a href="#" class="btm-mega-menu" class="fa fa-home">Más &nbsp;<i class="fa fa-caret-down"></i></a></li>
         </ul>
     </nav>
     <!--======================================== Mega menu ========================================-->

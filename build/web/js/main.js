@@ -1,6 +1,67 @@
 $(document).ready(function () {
     $('#fr_facebook').hide();
 
+    // Slider 
+    $.ajax({
+        type: 'POST',
+        url: "srvImagenPresentacion",
+        cache: false,
+        data: {accion: "Listar_index"},
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            var li_img = "";
+            var div_img = "";
+            
+            if(data.length == 0){
+                //Indicadores
+                li_img = '<li data-target="#slider-ins" data-slide-to="0" class="active"></li>';
+                ///Imagenes
+                div_img = '<div class="item active">' +
+                        '<img src="assets/img/Banner_bachillerato_asistente.png" alt="Default">' +
+                        '<div class="carousel-caption"></div></div>';
+            }else{
+                $.each(data, function(index, item){
+                    if(index == 0){
+                        //Indicadores
+                        li_img += '<li data-target="#slider-ins" data-slide-to="'+index+'" class="active"></li>';
+                        ///Imagenes
+                        div_img += '<div class="item active">' +
+                                    '<img src="'+item.ruta+'" alt="Default">' +
+                                    '<div class="carousel-caption"></div></div>';
+                    }else{
+                        //Indicadores
+                        li_img += '<li data-target="#slider-ins" data-slide-to="'+index+'"></li>';
+                        ///Imagenes
+                        div_img += '<div class="item">' +
+                                    '<img src="'+item.ruta+'" alt="Default">' +
+                                    '<div class="carousel-caption"></div></div>';
+                    }
+
+                });    
+            }
+            
+            $(".principal-slide").prepend(
+                    $('<div />', {
+                        "class": 'carousel-inner',
+                        html: div_img,
+                        role: "listbox"
+                    })
+            );
+            
+            $(".principal-slide").prepend(
+                    $('<ol />', {
+                        "class": 'carousel-indicators',
+                        html: li_img
+                    })
+            );
+    
+            
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(data);
+        }
+    });
+    
     /***** Mostrar/Ocultar menu mobil *****/
     $(".show-close-menu-m").click(function () {
         var menu = $(".navigation");

@@ -245,68 +245,6 @@ public class ActualizarDatosDAO {
             connecPostgresql.callableStatement.setString(20, datos.getString("txtRegCelular"));
             consulta = connecPostgresql.callableStatement.executeQuery();
             
-            //Actualizar Referencia
-            int id_referencia = 0;
-            if(datos.getInt("id_referencia") == 0){
-                //No existe se registra
-                connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call registrar_referencia(?,?,?,?,?,?)}");
-                connecPostgresql.callableStatement.setString(1, datos.getString("txtRegApellidos")); //apellidos
-                connecPostgresql.callableStatement.setString(2, datos.getString("txtRegNombres")); //nombres
-                connecPostgresql.callableStatement.setString(3, datos.getString("txtRegCelular")); //celular
-                connecPostgresql.callableStatement.setString(4, datos.getString("txtRegtelefono")); //telefono
-                connecPostgresql.callableStatement.setString(5, datos.getString("txtRegFamiliarIdentificacionRef")); //identificacion
-                connecPostgresql.callableStatement.setString(6, datos.getString("txtTipoIdeRef")); //tipo_identificacion
-                consulta = connecPostgresql.callableStatement.executeQuery();    
-                
-                //Consultar ID
-                connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call obtener_idreferencia_filtro_todo(?,?,?,?,?,?)}");
-                connecPostgresql.callableStatement.setString(1, datos.getString("txtRegApellidos")); //apellidos
-                connecPostgresql.callableStatement.setString(2, datos.getString("txtRegNombres")); //nombres
-                connecPostgresql.callableStatement.setString(3, datos.getString("txtRegCelular")); //celular
-                connecPostgresql.callableStatement.setString(4, datos.getString("txtRegtelefono")); //telefono
-                connecPostgresql.callableStatement.setString(5, datos.getString("txtRegFamiliarIdentificacionRef")); //identificacion
-                connecPostgresql.callableStatement.setString(6, datos.getString("txtTipoIdeRef")); //tipo_identificacion
-                consulta = connecPostgresql.callableStatement.executeQuery();       
-                while (consulta.next()) {
-                    id_referencia = consulta.getInt(1);
-                }
-                
-            }else{
-                //Ya existe se actualiza
-                connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call modificar_referencia(?,?,?,?,?,?,?)}");
-                connecPostgresql.callableStatement.setInt(1, datos.getInt("id_referencia")); //ID
-                connecPostgresql.callableStatement.setString(2, datos.getString("txtRegApellidos")); //apellidos
-                connecPostgresql.callableStatement.setString(3, datos.getString("txtRegNombres")); //nombres
-                connecPostgresql.callableStatement.setString(4, datos.getString("txtRegCelular")); //celular
-                connecPostgresql.callableStatement.setString(5, datos.getString("txtRegtelefono")); //telefono
-                connecPostgresql.callableStatement.setString(6, datos.getString("txtRegFamiliarIdentificacionRef")); //identificacion
-                connecPostgresql.callableStatement.setString(7, datos.getString("txtTipoIdeRef")); //tipo_identificacion
-                
-                id_referencia = datos.getInt("id_referencia");
-                consulta = connecPostgresql.callableStatement.executeQuery();
-            }
-            
-            //Insertar Relacion Estudiante_Referencia
-            if(id_referencia != 0){
-                int id_estreferencia = datos.getInt("id_estdReferencia");
-                if(id_estreferencia == 0){
-                    //No existe se registra
-                    connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call registrar_estudiante_referencia(?,?,?)}");
-                    connecPostgresql.callableStatement.setInt(1, datos.getInt("id_estudiante")); //id_estudiante
-                    connecPostgresql.callableStatement.setInt(2, id_referencia); //id_referencia
-                    connecPostgresql.callableStatement.setString(3, datos.getString("txtRefParentesco")); //parentesco
-                    consulta = connecPostgresql.callableStatement.executeQuery();
-                }else{
-                    //Ya existe se actualiza
-                    connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call modificar_estudiante_referencia(?,?,?,?)}");
-                    connecPostgresql.callableStatement.setInt(1, id_estreferencia); //id_estdreferencia
-                    connecPostgresql.callableStatement.setInt(2, datos.getInt("id_estudiante")); //id_estudiante
-                    connecPostgresql.callableStatement.setInt(3, id_referencia); //id_referencia
-                    connecPostgresql.callableStatement.setString(4, datos.getString("txtRefParentesco")); //parentesco
-                    consulta = connecPostgresql.callableStatement.executeQuery();
-                }
-            }
-            
             ///Padre
             int id_padre = 0;
             if(datos.getInt("id_padre") == 0){
@@ -603,12 +541,111 @@ public class ActualizarDatosDAO {
                     connecPostgresql.callableStatement.setInt(2, datos.getInt("SOLO"));
                     consulta = connecPostgresql.callableStatement.executeQuery();
                 }
-            }               
+            } 
+            
+            //Actualizar Referencia
+            int id_referencia = 0;
+            if(datos.getInt("id_referencia") == 0){
+                //Buscamos si ya existe en la tabla
+                //Consultar ID
+                connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call obtener_idreferencia_filtro_todo(?,?,?,?,?,?)}");
+                connecPostgresql.callableStatement.setString(1, datos.getString("txtRefApellidos")); //apellidos
+                connecPostgresql.callableStatement.setString(2, datos.getString("txtRefNombres")); //nombres
+                connecPostgresql.callableStatement.setString(3, datos.getString("txtRefCelular")); //celular
+                connecPostgresql.callableStatement.setString(4, datos.getString("txtReftelefono")); //telefono
+                connecPostgresql.callableStatement.setString(5, datos.getString("txtRefFamiliarIdentificacionRef")); //identificacion
+                connecPostgresql.callableStatement.setString(6, datos.getString("txtTipoIdeRef")); //tipo_identificacion
+                consulta = connecPostgresql.callableStatement.executeQuery();       
+                while (consulta.next()) {
+                    id_referencia = consulta.getInt(1);
+                }
+                
+                if (id_referencia == 0) {
+
+                    //No existe se registra
+                    connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call registrar_referencia(?,?,?,?,?,?)}");
+                    connecPostgresql.callableStatement.setString(1, datos.getString("txtRefApellidos")); //apellidos
+                    connecPostgresql.callableStatement.setString(2, datos.getString("txtRefNombres")); //nombres
+                    connecPostgresql.callableStatement.setString(3, datos.getString("txtRefCelular")); //celular
+                    connecPostgresql.callableStatement.setString(4, datos.getString("txtReftelefono")); //telefono
+                    connecPostgresql.callableStatement.setString(5, datos.getString("txtRefFamiliarIdentificacionRef")); //identificacion
+                    connecPostgresql.callableStatement.setString(6, datos.getString("txtTipoIdeRef")); //tipo_identificacion
+                    consulta = connecPostgresql.callableStatement.executeQuery();
+
+                    //Consultar ID
+                    connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call obtener_idreferencia_filtro_todo(?,?,?,?,?,?)}");
+                    connecPostgresql.callableStatement.setString(1, datos.getString("txtRefApellidos")); //apellidos
+                    connecPostgresql.callableStatement.setString(2, datos.getString("txtRefNombres")); //nombres
+                    connecPostgresql.callableStatement.setString(3, datos.getString("txtRefCelular")); //celular
+                    connecPostgresql.callableStatement.setString(4, datos.getString("txtReftelefono")); //telefono
+                    connecPostgresql.callableStatement.setString(5, datos.getString("txtRefFamiliarIdentificacionRef")); //identificacion
+                    connecPostgresql.callableStatement.setString(6, datos.getString("txtTipoIdeRef")); //tipo_identificacion
+                    consulta = connecPostgresql.callableStatement.executeQuery();
+                    while (consulta.next()) {
+                        id_referencia = consulta.getInt(1);
+                    }
+                }else{
+                    //Ya existe se actualiza
+                    connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call modificar_referencia(?,?,?,?,?,?,?)}");
+                    connecPostgresql.callableStatement.setInt(1, datos.getInt("id_referencia")); //ID
+                    connecPostgresql.callableStatement.setString(2, datos.getString("txtRefApellidos")); //apellidos
+                    connecPostgresql.callableStatement.setString(3, datos.getString("txtRefNombres")); //nombres
+                    connecPostgresql.callableStatement.setString(4, datos.getString("txtRefCelular")); //celular
+                    connecPostgresql.callableStatement.setString(5, datos.getString("txtReftelefono")); //telefono
+                    connecPostgresql.callableStatement.setString(6, datos.getString("txtRefFamiliarIdentificacionRef")); //identificacion
+                    connecPostgresql.callableStatement.setString(7, datos.getString("txtTipoIdeRef")); //tipo_identificacion
+
+                    id_referencia = datos.getInt("id_referencia");
+                    consulta = connecPostgresql.callableStatement.executeQuery();
+                }
+                
+            }else{
+                //Ya existe se actualiza
+                connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call modificar_referencia(?,?,?,?,?,?,?)}");
+                connecPostgresql.callableStatement.setInt(1, datos.getInt("id_referencia")); //ID
+                connecPostgresql.callableStatement.setString(2, datos.getString("txtRegApellidos")); //apellidos
+                connecPostgresql.callableStatement.setString(3, datos.getString("txtRegNombres")); //nombres
+                connecPostgresql.callableStatement.setString(4, datos.getString("txtRegCelular")); //celular
+                connecPostgresql.callableStatement.setString(5, datos.getString("txtRegtelefono")); //telefono
+                connecPostgresql.callableStatement.setString(6, datos.getString("txtRegFamiliarIdentificacionRef")); //identificacion
+                connecPostgresql.callableStatement.setString(7, datos.getString("txtTipoIdeRef")); //tipo_identificacion
+                
+                id_referencia = datos.getInt("id_referencia");
+                consulta = connecPostgresql.callableStatement.executeQuery();
+            }
+            
+            //Insertar Relacion Estudiante_Referencia
+            if(id_referencia != 0){
+                int id_estreferencia = datos.getInt("id_estdReferencia");
+                if(id_estreferencia == 0){
+                    //No existe se registra
+                    connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call registrar_estudiante_referencia(?,?,?)}");
+                    connecPostgresql.callableStatement.setInt(1, datos.getInt("id_estudiante")); //id_estudiante
+                    connecPostgresql.callableStatement.setInt(2, id_referencia); //id_referencia
+                    connecPostgresql.callableStatement.setString(3, datos.getString("txtRefParentesco")); //parentesco
+                    consulta = connecPostgresql.callableStatement.executeQuery();
+                }else{
+                    //Ya existe se actualiza
+                    connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call modificar_estudiante_referencia(?,?,?,?)}");
+                    connecPostgresql.callableStatement.setInt(1, id_estreferencia); //id_estdreferencia
+                    connecPostgresql.callableStatement.setInt(2, datos.getInt("id_estudiante")); //id_estudiante
+                    connecPostgresql.callableStatement.setInt(3, id_referencia); //id_referencia
+                    connecPostgresql.callableStatement.setString(4, datos.getString("txtRefParentesco")); //parentesco
+                    consulta = connecPostgresql.callableStatement.executeQuery();
+                }
+            }
+            
             respuesta = true;
         } catch (SQLException ex) {
             respuesta = false;
             connecPostgresql.getConnection().close();
             System.out.println(ex.getMessage());
+            System.out.println(ex);
+        }catch(Exception ex ){
+            respuesta = false;
+            connecPostgresql.getConnection().close();
+            System.out.println(ex.getMessage());
+            System.out.println(ex);
         }
         connecPostgresql.getConnection().close();
         return respuesta;

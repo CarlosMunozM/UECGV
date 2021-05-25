@@ -16,6 +16,7 @@
         <meta name="description" content="top menu &amp; navigation" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+        <%@include file="../EstructuraAplicacion/head_icono.jsp" %>
         <!-- bootstrap & fontawesome -->
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css" />
@@ -52,7 +53,7 @@
                 }
             </script>
 
-            <div id="sidebar" class="sidebar      h-sidebar                navbar-collapse collapse          ace-save-state">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <script type="text/javascript">
                     try {
                         ace.settings.loadState('sidebar')
@@ -83,6 +84,9 @@
 
                         <a href="#" data-toggle="tooltip" title="Actualizar Tabla">
                             <button  onclick=" location.href = 'srvEmpleado?accion=mostrar_empleados&id='" class="btn btn-primary fa fa-refresh" style="float: left"> Actualizar</button>
+                        </a>
+                        <a href="#" data-toggle="tooltip" title="Descargar Datos">
+                            <button id="descargar_datos" class="btn btn-secondary fa fa-download" style="float: right"></button>
                         </a>
                         <a href="#" data-toggle="tooltip" title="Registrar Usuario">
                             <button  onclick=" location.href = 'srvEmpleado?accion=mostrar_formRegistro&id='" class="btn btn-success fa fa-user" style="float: right"> Registrar</button>
@@ -284,6 +288,13 @@
             <script type="text/javascript">
 
                     $(document).ready(function () {
+                        
+                        toastr.options = {
+                            "positionClass": "toast-bottom-right",
+                            "showMethod": "show",
+                            "hideMethod": "hide"
+                        };
+                        
                         var valeditcorreo = true, valeditidentificacion = true;
                         
                         $('#bootstrap-data-table').DataTable({
@@ -293,9 +304,41 @@
                             }
                         });
                         
+                        $("#descargar_datos").click(function(){
+                            $("#descargar_datos").attr("disabled", true);
+                            $("#descargar_datos").removeClass("fa-download");
+                            $("#descargar_datos").text("...");
+                            
+                            $.ajax({
+                                url: '/UECGV/srvDescargarDatos',
+                                contentType: 'application/vnd.ms-excel',
+                                data: {seccion: 'empleados'},
+                                success: function (data, textStatus, jqXHR) {
+                                    var b64Data = window.atob(data);
+                                    var bin = b64Data;
+                                    
+                                    var link = document.createElement('a');
+                                    link.innerHTML = 'Descargar Datos Empleados';
+                                    link.download = 'Empleados.xlsx';
+                                    link.href = 'data:application/octet-stream;base64,' + data;
+                                    link.click();
+                                    toastr.success("Descarga exitosa.");
+                                    $("#descargar_datos").attr("disabled", false);
+                                    $("#descargar_datos").addClass("fa-download");
+                                    $("#descargar_datos").text("");
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    toastr.error("Error! no se logro descargar el archivo.");
+                                    $("#descargar_datos").attr("disabled", false);
+                                    $("#descargar_datos").addClass("fa-download");
+                                    $("#descargar_datos").text("");
+                                }
+                            });
+                        });
                     });
 
             </script>
+            
             
              <script src="<%=request.getContextPath()%>/js/toastr.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/css/toastr.min.css" rel="stylesheet" type="text/css"/>

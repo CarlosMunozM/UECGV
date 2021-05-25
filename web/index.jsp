@@ -182,51 +182,19 @@
         </section>
         <div class="divider-general"></div>
         <!--======================================== Acontecer institucional ========================================-->
-        <section class="events-ins" hidden="true">
+        <section class="events-ins">
             <div class="container-fluid">
-                <h2 class="text-center titles">ACONTECER INSTITUCIONAL</h2>
+                <h2 id="eventReciente" class="text-center titles" hidden>Eventos Recientes</h2>
                 <br><br>
-                <div class="row">
-                    <!--======================================== Articulo 1 ========================================-->
-                    <article class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="assets/gallery/default.png" alt="IMG" class="img-responsive img-rounded">
-                            <div class="caption">
-                                <h3 class="text-center">Lorem ipsum dolor sit amet</h3>
-                                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quam, incidunt, sapiente id quibusdam voluptatem.</p>
-                                <p class="text-center"><a href="#" class="btn btn-primary" role="button">Ver imágenes</a></p>
-                            </div>
-                        </div>
-                    </article>
-                    <!--======================================== Articulo 2 ========================================-->
-                    <article class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="assets/gallery/default.png" alt="IMG" class="img-responsive img-rounded">
-                            <div class="caption">
-                                <h3 class="text-center">Lorem ipsum dolor sit amet</h3>
-                                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quam, incidunt, sapiente id quibusdam voluptatem.</p>
-                                <p class="text-center"><a href="#" class="btn btn-primary" role="button">Ver imágenes</a></p>
-                            </div>
-                        </div>
-                    </article>
-                    <!--======================================== Articulo 3 ========================================-->
-                    <article class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="assets/gallery/default.png" alt="IMG" class="img-responsive img-rounded">
-                            <div class="caption">
-                                <h3 class="text-center">Lorem ipsum dolor sit amet</h3>
-                                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis quam, incidunt, sapiente id quibusdam voluptatem.</p>
-                                <p class="text-center"><a href="#" class="btn btn-primary" role="button">Ver imágenes</a></p>
-                            </div>
-                        </div>
-                    </article>
+                <div id="events-row" class="row">
+                    
                 </div>
             </div>
         </section>
         <div id="div-contador" style="position: relative; text-align: right; right: 2%; ">
             <a title="Contador De Visitas">
                 <img style="border: 0px solid; display: inline;" alt="Contador de visitas" 
-                     src="http://www.websmultimedia.com/contador-de-visitas.php?id=291139">
+                     src="http://www.websmultimedia.com/contador-de-visitas.php?id=291850">
             </a>
             <br>
             <a style="color: white; text-decoration: none;">Contador de visitas</a>
@@ -235,5 +203,6 @@
         <%@include file="estructura/social_bar.jspf" %>
         <%@include file="estructura/pie_pagina_presentacion.jspf" %>
         <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+        <script src="js/eventos_recientes.js"></script>
     </body>
 </html>

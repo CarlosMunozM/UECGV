@@ -103,11 +103,10 @@ $(document).ready(function () {
                         style: "margin-bottom: 10px; margin-top: 10px"
                         })
                     );
+            $("#section-autoridades").removeClass("mb-200");
         },
         error: function (data) {
             console.log(data);
         }
     });
 });
-
-

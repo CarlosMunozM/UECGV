@@ -19,22 +19,71 @@ function confirmarEliminacion(idPersona)
         toastr.error("Eliminación Cancelada");
     }).set('labels', {ok: 'Si', cancel: 'No'});
 }
-function MostrarTxtRegistroTutoria(){
+
+function deshabilitar() {
+   var tipo = $('#modRegEmpTipoIdentificacion').val();
+   var ident = $('#modRegEmpIdentificacion').val();
+   var cnt =$('#modRegEmpIdCanton').val();
+   var nomb =  $('#modRegEmpNombres').val();
+   var ape = $('#modRegEmpApellidos').val();
+   var carg = $('#modRegEmpIdCargo').val();
+   var correop = $('#modRegEmpCorreoPersonal').val();
+   var genr = $('#modREgEmpGenero').val();
+   var tel = $('#modRegEmpTelefono').val();
+   var correoi = $('#modRegEmpCorreoInstitucional').val();
+   var fot = $('#modRegFoto').val();
+   var escal = $('#modRegEmpEscalafon').val();
+   var cont = $('#modRegEmpContrato').val();
+  // var sex = $('#modRegEmpTipoIdentificacion').val();
+   var nac = $('#modRegEmpNacionalidad').val();
+   var fech = $('#modRegEmpFechaNacimiento').val();
+   var est = $('#modRegEmpEstadoCivil').val();
+   var cel = $('#modRegEmpCelular').val();
+   var dir = $('#modRegEmpDireccion').val();
+    if(tipo !== "" && ident !== "" && cnt !== "" && nomb !== "" && ape !== "" && carg !== "" && correop !== "" && genr !== "" && tel !== "" && correoi !== "" && fot !== "" && escal !== "" && cont !== "" && nac !== "" && fech !== "" && est !== "" && cel !== "" && dir !== ""){
+      //$('#btnRegistrar').text('Enviando');
+      document.getElementById('btnRegistrar').disabled = true;
+    }else{
+       document.getElementById('btnRegistrar').disabled = false; 
+    }
+    
+}
+
+function validarRegistroLongitudIdent() {
+    var v = $('#modRegEmpTipoIdentificacion').val();
+    if (v === "Cédula") {        
+       document.getElementById("modRegEmpIdentificacion").setAttribute("maxlength","10");
+    } else {       
+       document.getElementById("modRegEmpIdentificacion").setAttribute("maxlength","15");
+    }
+}
+function habilitar(){
+    document.getElementById('btnRegistrar').disabled = false;
+}
+function validarActualizacionLongitudIdent() {
+    var v = $('#modEditEmpTipoIdentificacion').val();
+    if (v === "Cédula") {        
+       document.getElementById("modEditEmpIdentificacion").setAttribute("maxlength","10");
+    } else {       
+       document.getElementById("modEditEmpIdentificacion").setAttribute("maxlength","15");
+    }
+}
+function MostrarTxtRegistroTutoria() {
     var idcarg = $('#modRegEmpIdCargo').val();
     //alert(""+idcarg);
-    var c="";
-    if(idcarg == 5){
+    var c = "";
+    if (idcarg == 5) {
         bandera = false;
         $('#RegEmpIdCurso').val(c);
         $('#RegEmpIdCurso').change();
-        controlar=true;
+        controlar = true;
         $('#modRegEmpParalelo').val(c);
         $('#modRegEmpParalelo').change();
-        controlar=true;
-        document.getElementById("RegTituloTutorias").style.display="block";
-        document.getElementById("RegtTutoria").style.display="block";
-        
-    }else{
+        controlar = true;
+        document.getElementById("RegTituloTutorias").style.display = "block";
+        document.getElementById("RegtTutoria").style.display = "block";
+
+    } else {
         bandera = false;
         $('#RegEmpIdCurso').val(c);
         $('#RegEmpIdCurso').change();
@@ -42,270 +91,276 @@ function MostrarTxtRegistroTutoria(){
         $('#modRegEmpParalelo').val(c);
         $('#modRegEmpParalelo').change();
         //controlar = true;
-        document.getElementById("RegTituloTutorias").style.display="none";
-        document.getElementById("RegtTutoria").style.display="none";
-        
+        document.getElementById("RegTituloTutorias").style.display = "none";
+        document.getElementById("RegtTutoria").style.display = "none";
+
     }
 }
-function MostrarTxtActualizarTutoria(){
+function MostrarTxtActualizarTutoria() {
     var idcarg = $('#modEditEmpCargo').val();
 
-    if(idcarg == 5){
-       
-        document.getElementById("modEditTituloTutorias").style.display="block";
-        document.getElementById("modEditTutoria").style.display="block";
-        
-        
-    }else{
-        
-        document.getElementById("modEditTituloTutorias").style.display="none";
-        document.getElementById("modEditTutoria").style.display="none";
-        
+    if (idcarg == 5) {
+
+        document.getElementById("modEditTituloTutorias").style.display = "block";
+        document.getElementById("modEditTutoria").style.display = "block";
+
+
+    } else {
+
+        document.getElementById("modEditTituloTutorias").style.display = "none";
+        document.getElementById("modEditTutoria").style.display = "none";
+
     }
 }
 
-function Remove(){
-    var m="";
+function Remove() {
+    var m = "";
     $('#modEditEmpIdCurso').val(m);
 
     $('#modEditEmpIdCurso').change();
-    
+
     $('#modEditEmpParalelo').val(m);
     $('#modEditEmpParalelo').change();
-    document.getElementById('modEditEmpIdCurso').disabled=false; 
-    document.getElementById('modEditEmpParalelo').disabled=false;
-    document.getElementById('btnModificar').disabled=false;
+    document.getElementById('modEditEmpIdCurso').disabled = false;
+    document.getElementById('modEditEmpParalelo').disabled = false;
+    document.getElementById('btnModificar').disabled = false;
 }
 
-function validarRegistroTutoresxCurso(){
+function validarRegistroTutoresxCurso() {
     var idcurso = $("#RegEmpIdCurso").val();
     var paralelo = $("#modRegEmpParalelo").val();
-    
-    if(idcurso !== "" && paralelo !== ""){
+
+    if (idcurso !== "" && paralelo !== "") {
         bandera = false;
         $.ajax({
             async: true,
             type: "GET",
-            url: '/UECGV/srvTutores?accion=mostrar_tutores_filtro_curso&idCurso='+idcurso+ '&paralelo='+paralelo+'',
+            url: '/UECGV/srvTutores?accion=mostrar_tutores_filtro_curso&idCurso=' + idcurso + '&paralelo=' + paralelo + '',
             success: function (responseText)
             {
                 if (responseText !== "")
                 {
-                     alert("Ya existe un docente asignado a este curso");
-                     $('#modRegIDCargoEmpleado').val(responseText);
-                     var hj = $("#modRegIDCargoEmpleado").val();
-                }else{
-                     $('#modRegIDCargoEmpleado').val(responseText); 
-                } 
+                    alert("Ya existe un docente asignado a este curso");
+                    $('#modRegIDCargoEmpleado').val(responseText);
+                    var hj = $("#modRegIDCargoEmpleado").val();
+                } else {
+                    $('#modRegIDCargoEmpleado').val(responseText);
+                }
             }
         });
-    }else{
-        
-        if(idcurso == "" && paralelo !== "" ){
+    } else {
+
+        if (idcurso == "" && paralelo !== "") {
             //document.getElementById('btnRegistrar').disabled=true;
-              bandera = true;
-            
-        }else{
-            if(idcurso != "" && paralelo == ""){
-              // document.getElementById('btnRegistrar').disabled=false;
-              bandera = true;
-               
+            bandera = true;
+
+        } else {
+            if (idcurso != "" && paralelo == "") {
+                // document.getElementById('btnRegistrar').disabled=false;
+                bandera = true;
+
             }
         }
-        
-      
+
+
     }
-    if(bandera == true){
-           document.getElementById('btnRegistrar').disabled=true;
-    }else{
-           document.getElementById('btnRegistrar').disabled=false; 
+    if (bandera == true) {
+        document.getElementById('btnRegistrar').disabled = true;
+    } else {
+        document.getElementById('btnRegistrar').disabled = false;
     }
 }
 
-function validarModificacionTutoresxCurso(){
+function validarModificacionTutoresxCurso() {
     var validcurso = $("#modEditEmpIdCurso").val();
     var valparalelo = $("#modEditEmpParalelo").val();
-    
-    if(validcurso !== "" && valparalelo !== "" && tienetutoria === false){
+
+    if (validcurso !== "" && valparalelo !== "" && tienetutoria === false) {
         editbandera = false;
         $.ajax({
             async: true,
             type: "GET",
-            url: '/UECGV/srvTutores?accion=mostrar_tutores_filtro_curso&idCurso='+validcurso+ '&paralelo='+valparalelo+'',
+            url: '/UECGV/srvTutores?accion=mostrar_tutores_filtro_curso&idCurso=' + validcurso + '&paralelo=' + valparalelo + '',
             success: function (responseText)
             {
                 if (responseText !== "")
                 {
-                     alert("Ya existe un docente asignado a este curso");
-                     $('#modEditIDCargoEmpleado').val(responseText);
+                    alert("Ya existe un docente asignado a este curso");
+                    $('#modEditIDCargoEmpleado').val(responseText);
                     // var hj = $("#modRegIDCargoEmpleado").val();
-                }else{
-                     $('#modEditIDCargoEmpleado').val(responseText); 
-                } 
+                } else {
+                    $('#modEditIDCargoEmpleado').val(responseText);
+                }
             }
         });
-    }else{
-       // alert(valparalelo);
-        if(validcurso == "" && valparalelo !== "" ){
-            document.getElementById('btnModificar').disabled=true;
-              editbandera = true;
-            
-        }else{
-            if(validcurso != "" && valparalelo == ""){
-              document.getElementById('btnModificar').disabled=true;
-              editbandera = true;
-               
+    } else {
+        // alert(valparalelo);
+        if (validcurso == "" && valparalelo !== "") {
+            document.getElementById('btnModificar').disabled = true;
+            editbandera = true;
+
+        } else {
+            if (validcurso != "" && valparalelo == "") {
+                document.getElementById('btnModificar').disabled = true;
+                editbandera = true;
+
             }
         }
-        
-      
+
+
     }
-    if(editbandera == true){
-           document.getElementById('btnModificar').disabled=true;
-    }else{
-         document.getElementById('btnModificar').disabled=false; 
+    if (editbandera == true) {
+        document.getElementById('btnModificar').disabled = true;
+    } else {
+        document.getElementById('btnModificar').disabled = false;
     }
 }
-function validar(){
+function validar() {
     var ident = $('#modRegEmpIdentificacion').val();
-    if(ident.length >= 10){
-      $.ajax({
+    if (ident.length == 10) {
+        $.ajax({
             async: true,
             type: "GET",
-            url: '/UECGV/srvValidacion?accion=validar_identificacion&valor='+ident+'',
+            url: '/UECGV/srvValidacion?accion=validar_identificacion&valor=' + ident + '',
             success: function (responseText)
             {
                 if (responseText === 'si')
                 {
-                     alert("Ya existe en la base de datos");
-                     document.getElementById('btnRegistrar').disabled=true;
-                     bandera = true;
-                }else{
-                    if(bandera == false){
-                      document.getElementById('btnRegistrar').disabled=false;
-                      bandera = false;
-                    }
-                }
-            }
-        });  
-    }
-}
-function validarCorreoPersonal(){
-    var ident = $('#modRegEmpCorreoPersonal').val();
-      $.ajax({
-            async: true,
-            type: "GET",
-            url: '/UECGV/srvValidacion?accion=validar_correoPersonal&valor='+ident+'',
-            success: function (responseText)
-            {
-                if (responseText === 'si')
-                {
-                     alert("Ya existe este correo en la base de datos");
-                     document.getElementById('btnRegistrar').disabled=true;
-                     bandera = true;
-                }else{
-                    if(bandera==false){
-                       document.getElementById('btnRegistrar').disabled=false;
+                    alert("Ya existe en la base de datos");
+                    document.getElementById('btnRegistrar').disabled = true;
+                    bandera = true;
+                } else {
+                    if (bandera == false) {
+                        document.getElementById('btnRegistrar').disabled = false;
+                        bandera = false;
+                    }else{
                        bandera = false;
-                    }
-                } 
-            }
-        });  
-}
-
-function EditvalidarIdentificacion(){
-    var ident = $('#modEditEmpIdentificacion').val();
-    if(ident.length >= 10){
-      $.ajax({
-            async: true,
-            type: "GET",
-            url: '/UECGV/srvValidacion?accion=validar_identificacion&valor='+ident+'',
-            success: function (responseText)
-            {
-                if (responseText === 'si')
-                {
-                     alert("Ya existe en la base de datos");
-                     document.getElementById('btnModificar').disabled=true;
-                     editbandera = true;
-                }else{
-                    if(editbandera == false){
-                        document.getElementById('btnModificar').disabled=false;
-                        editbandera = false;
+                       document.getElementById('btnRegistrar').disabled = false;
                     }
                 }
             }
-        });  
+        });
+    }
+}
+function validarCorreoPersonal() {
+    var ident = $('#modRegEmpCorreoPersonal').val();
+    $.ajax({
+        async: true,
+        type: "GET",
+        url: '/UECGV/srvValidacion?accion=validar_correoPersonal&valor=' + ident + '',
+        success: function (responseText)
+        {
+            if (responseText === 'si')
+            {
+                alert("Ya existe este correo en la base de datos");
+                document.getElementById('btnRegistrar').disabled = true;
+                bandera = true;
+            } else {
+                if (bandera == false) {
+                    document.getElementById('btnRegistrar').disabled = false;
+                    bandera = false;
+                }
+            }
+        }
+    });
+}
+
+function EditvalidarIdentificacion() {
+    var ident = $('#modEditEmpIdentificacion').val();
+    if (ident.length >= 10) {
+        $.ajax({
+            async: true,
+            type: "GET",
+            url: '/UECGV/srvValidacion?accion=validar_identificacion&valor=' + ident + '',
+            success: function (responseText)
+            {
+                if (responseText === 'si')
+                {
+                    alert("Ya existe en la base de datos");
+                    document.getElementById('btnModificar').disabled = true;
+                    editbandera = true;
+                } else {
+                    if (editbandera == false) {
+                        document.getElementById('btnModificar').disabled = false;
+                        editbandera = false;
+                    }else{
+                       editbandera = false;
+                       document.getElementById('btnModificar').disabled = false;
+                    }
+                }
+            }
+        });
     }
 }
 
-function validarCorreoInstitucional(){
+function validarCorreoInstitucional() {
     var ident = $('#modRegEmpCorreoInstitucional').val();
-      $.ajax({
-            async: true,
-            type: "GET",
-            url: '/UECGV/srvValidacion?accion=validar_correoInstitucional&valor='+ident+'',
-            success: function (responseText)
+    $.ajax({
+        async: true,
+        type: "GET",
+        url: '/UECGV/srvValidacion?accion=validar_correoInstitucional&valor=' + ident + '',
+        success: function (responseText)
+        {
+            if (responseText === 'si')
             {
-                if (responseText === 'si')
-                {
-                     alert("Ya existe este correo en la base de datos");
-                     document.getElementById('btnRegistrar').disabled=true;
-                     bandera = true;
-                }else{
-                    if(bandera == false){
-                      document.getElementById('btnRegistrar').disabled=false;
-                      bandera = false;
-                    }
-                } 
+                alert("Ya existe este correo en la base de datos");
+                document.getElementById('btnRegistrar').disabled = true;
+                bandera = true;
+            } else {
+                if (bandera == false) {
+                    document.getElementById('btnRegistrar').disabled = false;
+                    bandera = false;
+                }
             }
-        });  
+        }
+    });
 }
-function EditValidarCorreoPersonal(){
+function EditValidarCorreoPersonal() {
     var ident = $('#modEditEmpEmail').val();
-      $.ajax({
-            async: true,
-            type: "GET",
-            url: '/UECGV/srvValidacion?accion=validar_correoPersonal&valor='+ident+'',
-            success: function (responseText)
+    $.ajax({
+        async: true,
+        type: "GET",
+        url: '/UECGV/srvValidacion?accion=validar_correoPersonal&valor=' + ident + '',
+        success: function (responseText)
+        {
+            if (responseText === 'si')
             {
-                if (responseText === 'si')
-                {
-                     alert("Ya existe este correo en la base de datos");
-                     document.getElementById('btnModificar').disabled=true;
-                     editbandera=true;
-                }else{
-                    if(editbandera == false){
-                       document.getElementById('btnModificar').disabled=false;
-                       editbandera = false;
-                    }
-                } 
+                alert("Ya existe este correo en la base de datos");
+                document.getElementById('btnModificar').disabled = true;
+                editbandera = true;
+            } else {
+                if (editbandera == false) {
+                    document.getElementById('btnModificar').disabled = false;
+                    editbandera = false;
+                }
             }
-        });  
+        }
+    });
 }
-function EditValidarCorreoInstitucional(){
+function EditValidarCorreoInstitucional() {
     var ident = $('#modEditEmpEmailInstitucional').val();
-      $.ajax({
-            async: true,
-            type: "GET",
-            url: '/UECGV/srvValidacion?accion=validar_correoInstitucional&valor='+ident+'',
-            success: function (responseText)
+    $.ajax({
+        async: true,
+        type: "GET",
+        url: '/UECGV/srvValidacion?accion=validar_correoInstitucional&valor=' + ident + '',
+        success: function (responseText)
+        {
+            if (responseText === 'si')
             {
-                if (responseText === 'si')
-                {
-                     alert("Ya existe este correo en la base de datos");
-                     document.getElementById('btnModificar').disabled=true;
-                     editbandera = true;
-                }else{
-                    if(editbandera == false){
-                      document.getElementById('btnModificar').disabled=false;
-                      editbandera = false;
-                    }
-                } 
+                alert("Ya existe este correo en la base de datos");
+                document.getElementById('btnModificar').disabled = true;
+                editbandera = true;
+            } else {
+                if (editbandera == false) {
+                    document.getElementById('btnModificar').disabled = false;
+                    editbandera = false;
+                }
             }
-        });  
+        }
+    });
 }
-function datosModalMostrar(tipoIdentificacion, identificacion, nacionalidad, genero, nombres, apellidos, celular, emailpersonal, telefono, contrato, 
-escalafon, correoinstitucional,estadocivil,foto,fechanacimiento,direccion,canton,provincia,cargo,nombreCurso,paralelo,tipo)
+function datosModalMostrar(tipoIdentificacion, identificacion, nacionalidad, genero, nombres, apellidos, celular, emailpersonal, telefono, contrato,
+        escalafon, correoinstitucional, estadocivil, foto, fechanacimiento, direccion, canton, provincia, cargo, nombreCurso, paralelo, tipo)
 {
     //alert(""+paralelo);
     $('#modVerTipoIdentificacion').html(tipoIdentificacion);
@@ -319,7 +374,7 @@ escalafon, correoinstitucional,estadocivil,foto,fechanacimiento,direccion,canton
     $('#modVerContrato').html(contrato);
     $('#modVerCelular').html(celular);
     $('#modVerCargo').html(cargo);
-    
+
     if (genero === 'M')
         $('#modVerGenero').html('Masculino');
     else
@@ -327,38 +382,38 @@ escalafon, correoinstitucional,estadocivil,foto,fechanacimiento,direccion,canton
 
     $('#modVerNombres').html(nombres);
     $('#modVerApellidos').html(apellidos);
-    
+
     $('#modVerCanton').html(canton);
     $('#modVerProvincia').html(provincia);
-    
+
     $('#modVerTelefono').html(telefono);
     $('#modVerFechaNacimiento').html(fechanacimiento);
     $('#modVerDireccion').html(direccion);
     $('#modVerCelular').html(celular);
     //$('#modVerCelular').text(celular);
     $('#exampleModalLongTitleShow').html("Datos del Empleado: ".bold().concat(nombres, " ", apellidos));
-    
+
     var img = document.getElementById("modVerEmpFotoPresentacion");
-    if(foto === ''){
-        var ruta="assets/img/profile-pic.jpg";
-        img.setAttribute("src",ruta);
-    }else{
-        img.setAttribute("src",foto);
+    if (foto === '') {
+        var ruta = "assets/img/user-default.png";
+        img.setAttribute("src", ruta);
+    } else {
+        img.setAttribute("src", foto);
     }
-    $('#modVerCurso').html("".bold().concat(nombreCurso," - ", tipo));
+    $('#modVerCurso').html("".bold().concat(nombreCurso, " - ", tipo));
     $('#modVerParalelo').html(paralelo);
-    if(cargo !== "DOCENTE"){
-        document.getElementById("editTituloTutorias").style.display="none";
-        document.getElementById("EditTutoria").style.display="none";
-    }else{
-        document.getElementById("editTituloTutorias").style.display="block";
-        document.getElementById("EditTutoria").style.display="block";
+    if (cargo !== "DOCENTE") {
+        document.getElementById("editTituloTutorias").style.display = "none";
+        document.getElementById("EditTutoria").style.display = "none";
+    } else {
+        document.getElementById("editTituloTutorias").style.display = "block";
+        document.getElementById("EditTutoria").style.display = "block";
     }
-    
+
 }
 
-function datosModalModificar(idEmpleado,tipoIdentificacion, identificacion, nacionalidad, genero, nombres, apellidos, celular, emailpersonal, telefono, contrato, 
-escalafon, correoinstitucional,estadocivil,foto,fechanacimiento,direccion,idcanton,provincia,idcargo, idcurso,paralelo)
+function datosModalModificar(idEmpleado, tipoIdentificacion, identificacion, nacionalidad, genero, nombres, apellidos, celular, emailpersonal, telefono, contrato,
+        escalafon, correoinstitucional, estadocivil, foto, fechanacimiento, direccion, idcanton, provincia, idcargo, idcurso, paralelo)
 {
     $("#modEditEmpIdEmpleado").val(idEmpleado);
     $("#modEditEmpTipoIdentificacion").val(tipoIdentificacion);
@@ -387,53 +442,55 @@ escalafon, correoinstitucional,estadocivil,foto,fechanacimiento,direccion,idcant
     $("#modEditEmpFechaNacimiento").change();
     $("#modEditEmpContrato").val(contrato);
     $("#modEditEmpContrato").change();
+    $("#modEditEmpAuxIDCurso").val(idcurso);
+    $("#modEditEmpAuxParalelo").val(paralelo);
     $("#modEditEmpAuxFoto").val(foto);
     //$("#EditEmpFotoPresentacion");
     $("#modEditEmpCelular").val(celular);
     $("#modEditErroridentificaciion").text("");
     $("#modEditErroremail").text("");
     var idcarg = idcargo;
-    
-    var c="";
-    if(idcarg == 5){
-       // bandera = false;
+
+    var c = "";
+    if (idcarg == 5) {
+        // bandera = false;
         tienetutoria = true;
         $('#modEditEmpIdCurso').val(idcurso);
         $('#modEditEmpIdCurso').change();
-        
+
         $('#modEditEmpParalelo').val(paralelo);
         $('#modEditEmpParalelo').change();
-        
-        document.getElementById("modEditTituloTutorias").style.display="block";
-        document.getElementById("modEditTutoria").style.display="block";
+
+        document.getElementById("modEditTituloTutorias").style.display = "block";
+        document.getElementById("modEditTutoria").style.display = "block";
         var cp = idcurso;
         //respParalelo = paralelo;
         //alert(idcurso);
-        if(cp != 0){
+        if (cp != 0) {
             tienetutoria = true;
-          document.getElementById('modEditEmpIdCurso').disabled=true; 
-          document.getElementById('modEditEmpParalelo').disabled=true; 
-        }else{
+            document.getElementById('modEditEmpIdCurso').disabled = true;
+            document.getElementById('modEditEmpParalelo').disabled = true;
+        } else {
             tienetutoria = false;
-          $('#modEditEmpIdCurso').val("");
-          $('#modEditEmpIdCurso').change();
-        
-          $('#modEditEmpParalelo').val("");
-          $('#modEditEmpParalelo').change();  
-          document.getElementById('modEditEmpIdCurso').disabled=false; 
-          document.getElementById('modEditEmpParalelo').disabled=false; 
+            $('#modEditEmpIdCurso').val("");
+            $('#modEditEmpIdCurso').change();
+
+            $('#modEditEmpParalelo').val("");
+            $('#modEditEmpParalelo').change();
+            document.getElementById('modEditEmpIdCurso').disabled = false;
+            document.getElementById('modEditEmpParalelo').disabled = false;
         }
-    }else{
+    } else {
         $('#modEditEmpIdCurso').val("");
-          $('#modEditEmpIdCurso').change();
-        
-          $('#modEditEmpParalelo').val("");
-          $('#modEditEmpParalelo').change(); 
-        document.getElementById('modEditEmpIdCurso').disabled=false; 
-        document.getElementById('modEditEmpParalelo').disabled=false;
+        $('#modEditEmpIdCurso').change();
+
+        $('#modEditEmpParalelo').val("");
+        $('#modEditEmpParalelo').change();
+        document.getElementById('modEditEmpIdCurso').disabled = false;
+        document.getElementById('modEditEmpParalelo').disabled = false;
     }
     $("#modEditEmpFoto").val("");
-    document.getElementById('btnModificar').disabled=false;
+    document.getElementById('btnModificar').disabled = false;
     valeditcorreo = true;
     valeditidentificacion = true;
 }
@@ -444,93 +501,70 @@ $(document).ready(function () {
     var errorcedula = '';
 
 
- 
+
 
     $("#modEditIdentificacion").focusout(function () {
         buscarIdentificacionModificar($("#modEditIdentificacion").val(), "modEditErroridentificaciion", $("#modEditAuxIdentificacion").val());
     });
 
 
-    $('#modEditEmpFoto').change(function(){
-       
-     //var ruta = $("#modEditEmpFoto").val();
-       var a = document.getElementById('modEditEmpFoto');
-       if(a.value === "")
-       {
-        $("#editfileLabel").html("");
-       // editfileLabel.innerHTML = "";
-       }
-       else
-       {
-        var theSplit = a.value.split('\\');
-        $("#editfileLabel").html(""+theSplit[theSplit.length-1]);
-        
-       }
-    });
-    $('#btnModificar').click(function () {
-        
-    });
+    $('#modEditEmpFoto').change(function () {
 
-
-    $('#btnRegistrar').click(function () {
-
-        if ($('#pais').val() === '1')
+        //var ruta = $("#modEditEmpFoto").val();
+        var a = document.getElementById('modEditEmpFoto');
+        if (a.value === "")
         {
-            errorcedula = validarIdentificacion($('#identificacion').val());
-            if (errorcedula !== 'ok')
-            {
-                alert(errorcedula);
-                return false;
-            }
-        }
-
-        if (valuser && valcorreo && validentificacion)
-        {
-            //alert("Correcto");
-            return true;
+            $("#editfileLabel").html("");
+            // editfileLabel.innerHTML = "";
         } else
         {
-            alert("Corrija los errores");
-            return false;
+            var theSplit = a.value.split('\\');
+            $("#editfileLabel").html("" + theSplit[theSplit.length - 1]);
+
         }
     });
+    $('#btnModificar').click(function () {
+
+    });
+
+
     $('#modRegEmpIdCanton').change(function () {
 
-        var idcanton=$("#modRegEmpIdCanton").val();
-        
+        var idcanton = $("#modRegEmpIdCanton").val();
+
         $.ajax({
             async: true,
             type: "GET",
-            url: '/UECGV/srvProvincia?accion=mostrar_provinciasporcanton&id=' +idcanton + '',
+            url: '/UECGV/srvProvincia?accion=mostrar_provinciasporcanton&id=' + idcanton + '',
             success: function (responseText)
             {
                 //alert(''+responseText);
                 if (responseText !== '')
                 {
-                     $('#modRegEmpProvincia').val(responseText);                   
-                } 
+                    $('#modRegEmpProvincia').val(responseText);
+                }
             }
         });
     });
     $('#modEditEmpCanton').change(function () {
 
-        var idcanton=$("#modEditEmpCanton").val();
-        
+        var idcanton = $("#modEditEmpCanton").val();
+
         $.ajax({
             async: true,
             type: "GET",
-            url: '/UECGV/srvProvincia?accion=mostrar_provinciasporcanton&id=' +idcanton + '',
+            url: '/UECGV/srvProvincia?accion=mostrar_provinciasporcanton&id=' + idcanton + '',
             success: function (responseText)
             {
                 //alert(''+responseText);
                 if (responseText !== '')
                 {
-                     $('#modEditEmpProvincia').val(responseText);                   
-                } 
+                    $('#modEditEmpProvincia').val(responseText);
+                }
             }
         });
     });
-    
+
     function buscarUsuario(nombreUsuario, span) {
 
         $.ajax({
@@ -552,7 +586,7 @@ $(document).ready(function () {
             }
         });
     }
-    
+
     function buscarCorreo(correo, span) {
 
         $.ajax({
@@ -634,8 +668,8 @@ $(document).ready(function () {
         }
     }
 
-    
 
-    
+
+
 });
 

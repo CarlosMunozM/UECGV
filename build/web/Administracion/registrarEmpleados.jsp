@@ -16,6 +16,7 @@
         <meta name="description" content="top menu &amp; navigation" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+        <%@include file="../EstructuraAplicacion/head_icono.jsp" %>
         <!-- bootstrap & fontawesome -->
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css" />
@@ -90,7 +91,7 @@
                             <div class="row " style="margin-left: 4%">
                                 <div class="col-sm-2">
                                     <label>Tipo de Identificación</label>
-                                    <select id="modRegEmpTipoIdentificacion" class="form-control" name="RegEmpTipoIdentificacion" required="" onchange="documetoSeleccionado()">
+                                    <select id="modRegEmpTipoIdentificacion" class="form-control" name="RegEmpTipoIdentificacion" required="">
                                         <option></option>
                                         <option value="Cédula">Cédula</option>
                                         <option value="Pasaporte">Pasaporte</option>
@@ -141,7 +142,7 @@
                                     <label>Correo Personal</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                        <input type="email" id="modRegEmpCorreoPersonal" style="text-transform:lowercase" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="50" required="" name="RegEmpCorreoPersonal" onkeyup="validarCorreoPersonal()" placeholder="E-mail">
+                                        <input type="email" id="modRegEmpCorreoPersonal" style="text-transform:lowercase" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" maxlength="50" required="" name="RegEmpCorreoPersonal" onkeyup="validarCorreoPersonal()" placeholder="E-mail">
                                     </div>
                                     <span id="erroremail" style="color: #f00;"></span>
                                 </div>
@@ -164,7 +165,7 @@
                                     <label>Correo Institucional</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                        <input type="email" id="modRegEmpCorreoInstitucional" style="text-transform:lowercase" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="50" required="" name="RegEmpCorreoInstitucional" onkeyup="validarCorreoInstitucional()" placeholder="E-mail Institucional">
+                                        <input type="email" id="modRegEmpCorreoInstitucional" style="text-transform:lowercase" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" maxlength="50" required="" name="RegEmpCorreoInstitucional" onkeyup="validarCorreoInstitucional()" placeholder="E-mail Institucional">
                                     </div>
                                     <span id="erroremail" style="color: #f00;"></span>
                                 </div>                                
@@ -204,7 +205,7 @@
                                     <label>Foto</label>
                                     
                                         
-                                        <input type="file" class="form-control" maxlength="100" required="" name="RegEmpFoto" placeholder="Seleccione su archivo"/>
+                                        <input type="file" class="form-control" maxlength="100" id="modRegFoto" name="RegEmpFoto" placeholder="Seleccione su archivo"/>
                                     
                                     <span id="erroremail" style="color: #f00;"></span>
                                 </div>                                
@@ -231,7 +232,7 @@
                             <div class="row" style="margin-left: 4%">
                                 <div class="col-sm-11">
                                     <label>Dirección</label>
-                                    <textarea  rows="2" id="modRegEmpDireccion" class="form-control"  maxlength="100" required="" name="RegEmpDireccion" placeholder="Dirección"></textarea>
+                                    <textarea id="modRegEmpDireccion" class="form-control"  maxlength="100" onkeypress="return soloLetrasNumerosCaracEspe(event)" required="" name="RegEmpDireccion" placeholder="Dirección"></textarea>
                                     <%--pattern="[A-Za-z0-9ñ]+"--%>
                                 </div>
                             </div>
@@ -266,7 +267,7 @@
    
                             
                             <center>
-                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnRegistrar">Registrar</button>                        
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnRegistrar" >Registrar</button>                        
                             </center>
                         </form>
 

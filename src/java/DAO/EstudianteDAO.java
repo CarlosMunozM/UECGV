@@ -93,7 +93,6 @@ public class EstudianteDAO {
                 estudiante.setNacionalidad(consulta.getString("nacionalidad"));
                 estudiante.setFoto_domicilio(consulta.getString("foto_domicilio"));
                 
-
                 ResultSet consulta_familiar;
                 int id = estudiante.getId_estudiante();
                 connecPostgresql.callableStatement = connecPostgresql.connection.prepareCall("{call mostrar_estudiante_familiar_filtro_persona(?)}");
@@ -101,6 +100,7 @@ public class EstudianteDAO {
                 consulta_familiar = connecPostgresql.callableStatement.executeQuery();
 
                 while (consulta_familiar.next()) {
+                    bandera = "OK";
                     estudiante.getFamiliar().setId_familiar(consulta_familiar.getInt("id_familiar"));
                     estudiante.getFamiliar().setNombres(consulta_familiar.getString("nombres_fam"));
                     estudiante.getFamiliar().setApellidos(consulta_familiar.getString("apellidos_fam"));
@@ -137,9 +137,11 @@ public class EstudianteDAO {
                     lista.add(estudiante);
                     break;
                 }
-
+                if(bandera.equals("OK")){
+                }else{
+                    lista.add(estudiante);
+                }
             }
-
         } catch (SQLException ex) {
             connecPostgresql.getConnection().close();
             System.out.println(ex.getMessage());

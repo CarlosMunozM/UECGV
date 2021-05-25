@@ -16,6 +16,7 @@
         <meta name="description" content="top menu &amp; navigation" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+        <%@include file="../EstructuraAplicacion/head_icono.jsp" %>
         <!-- bootstrap & fontawesome -->
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css" />
@@ -90,7 +91,7 @@
                             <div class="row " style="margin-left: 4%">
                                 <div class="col-sm-2">
                                     <label>Tipo de Identificación</label>
-                                    <select id="modRegEmpTipoIdentificacion" class="form-control" name="RegEmpTipoIdentificacion" required="" onchange="validarRegistroLongitudIdent()">
+                                    <select id="modRegEmpTipoIdentificacion" class="form-control" name="RegEmpTipoIdentificacion" required="">
                                         <option></option>
                                         <option value="Cédula">Cédula</option>
                                         <option value="Pasaporte">Pasaporte</option>

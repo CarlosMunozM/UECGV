@@ -8,15 +8,9 @@
 <div class="modal fade" id="modalDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="navbar navbar-default">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <center>
-                    <br>
-                    <h4 class="modal-title"  style="color: white;text-align: center" id="exampleModalLongTitleShow"></h4>
-                    <br>
-                </center>
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"  style="color: white;text-align: center" id="exampleModalLongTitleShow"></h4>
             </div>
             <div class="modal-body">
                 <div class="row ">
@@ -28,22 +22,22 @@
                     <div class="row " style="margin-left: 4%">
                         <div class="col-sm-3">
                             <label>Tipo de Identificaci髇</label>
-                            <label id="modAluTipoIdentificacion" style="font-size: 14p" class="form-control"></label>
+                            <label id="modAluTipoIdentificacion" style="font-size: 14px" class="form-control"></label>
                         </div>
                         <div class="col-sm-3">
                             <label>Identificaci髇</label>
-                            <label id="modVerAludentificacion" style="font-size: 14p" class="form-control" ></label>
+                            <label id="modVerAludentificacion" style="font-size: 14px" class="form-control" ></label>
                             <span id="erroridentificaciion" style="color: #f00;"></span>
                         </div>
                         <div class="col-sm-3">
                             <label>Pa韘</label>
 
-                            <label id="modVerAluPais" style="font-size: 14p" class="form-control"></label>                                                 
+                            <label id="modVerAluPais" style="font-size: 14px" class="form-control"></label>                                                 
                         </div>
 
                         <div class="col-sm-2">
                             <label>G閚ero</label>
-                            <label id="modVerALuGenero" style="font-size: 14p" class="form-control"b></label>
+                            <label id="modVerALuGenero" style="font-size: 14px" class="form-control"b></label>
                         </div>
 
 
@@ -53,15 +47,15 @@
                     <div class="row" style="margin-left: 4%">
                         <div class="col-sm-4">
                             <label>Nombres</label>
-                            <label id="modVerAluNombres" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluNombres" style="font-size: 14px" class="form-control"></label>
                         </div>
                         <div class="col-sm-4">
                             <label>Apellidos</label>
-                            <label id="modVerAluApellidos" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluApellidos" style="font-size: 14px" class="form-control"></label>
                         </div>
                         <div class="col-sm-3">
                             <label>Fecha de nacimiento</label>
-                            <label id="modVerAluFechaNacimiento" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluFechaNacimiento" style="font-size: 14px" class="form-control"></label>
                         </div>
 
                     </div>
@@ -69,10 +63,10 @@
                     <div class="row" style="margin-left: 4%">
 
                         <div class="col-sm-5">
-                            <label>E-mail</label>
+                            <label>Correo Electr髇ico</label>
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                <label id="modVerAluEmail" style="font-size: 14p" class="form-control"></label>
+                                <label id="modVerAluEmail" style="font-size: 14px" class="form-control"></label>
                             </div>
                             <span id="erroremail" style="color: #f00;"></span>
                         </div>
@@ -80,12 +74,12 @@
 
                         <div class="col-sm-3">
                             <label>Celular</label>                                         
-                            <label id="modVerAluCelular" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluCelular" style="font-size: 14px" class="form-control"></label>
 
                         </div>
                         <div class="col-sm-3">
                             <label>Curso</label>
-                            <label id="modVerAluCurso" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluCurso" style="font-size: 14px" class="form-control"></label>
                         </div>
 
                     </div>
@@ -93,7 +87,7 @@
                     <div class="row" style="margin-left: 4%">
                         <div class="col-sm-8">
                             <label>Direcci髇</label>
-                            <label id="modVerAluDireccion" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluDireccion" style="font-size: 14px" class="form-control"></label>
                             <%--pattern="[A-Za-z0-9帽]+"--%>
                         </div>
                         <div class="row ">
@@ -107,14 +101,14 @@
                     <div class="row" style="margin-left: 4%">
                         <div class="col-sm-3">
                             <label>Hermanos</label>
-                            <label id="modVerAluHermanos" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluHermanos" style="font-size: 14px" class="form-control"></label>
                         </div>
                         <div class="col-sm-4">
                             <label>Lugar entre hermanos</label>
-                            <label id="modAverLugarHermanos" style="font-size: 14p" class="form-control"></label>                                </div>
+                            <label id="modAverLugarHermanos" style="font-size: 14px" class="form-control"></label>                                </div>
                         <div class="col-sm-4">
                             <label> Carnet de Discapacidad </label>
-                            <label id="modVerAluCarnetDiscapacidad" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluCarnetDiscapacidad" style="font-size: 14px" class="form-control"></label>
                         </div>
 
                     </div>
@@ -122,17 +116,17 @@
                     <div class="row" style="margin-left: 4%">
                         <div class="col-sm-4">
                             <label> Discapacidad </label>
-                            <label id="modVerAluDiscapacidad" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluDiscapacidad" style="font-size: 14px" class="form-control"></label>
                         </div>
                         <div class="col-sm-4">
                             <label>Tipo de discapacidad</label>
-                            <label id="modVerAluTipoDiscapacidad" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluTipoDiscapacidad" style="font-size: 14px" class="form-control"></label>
                         </div>
 
 
                         <div class="col-sm-3">
                             <label>Historia cl韓ica</label>
-                            <label id="modVerAluHistClinica" style="font-size: 14p" class="form-control"></label>                                </div>
+                            <label id="modVerAluHistClinica" style="font-size: 14px" class="form-control"></label>                                </div>
 
                     </div>  
 
@@ -143,63 +137,63 @@
                     <div class="row " style="margin-left: 4%">
                         <div class="col-sm-3">
                             <label>Tipo de Identificaci髇</label>
-                            <label id="modVerAluTipoidentificacionR" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerAluTipoidentificacionR" style="font-size: 14px" class="form-control"></label>
                         </div>
                         <div class="col-sm-2">
                             <label>Identificaci髇</label>
-                            <label id="modVerAluIdentificacionR" style="font-size: 14p" class="form-control"></label>                                    <span id="erroridentificaciion" style="color: #f00;"></span>
+                            <label id="modVerAluIdentificacionR" style="font-size: 14px" class="form-control"></label>                                    <span id="erroridentificaciion" style="color: #f00;"></span>
                         </div>
                         <div class="col-sm-2">
                             <label>Nacionalidad</label>
 
-                            <label id="modVerAluPaisR" style="font-size: 14p" class="form-control"></label>                                                 
+                            <label id="modVerAluPaisR" style="font-size: 14px" class="form-control"></label>                                                 
                         </div>
 
                         <div class="col-sm-2">
                             <label>Parentesco</label>
-                            <label id="verAluParentescoR" style="font-size: 14p" class="form-control"></label>
+                            <label id="verAluParentescoR" style="font-size: 14px" class="form-control"></label>
                         </div>
 
                         <div class="col-sm-2">
                             <label>C.U.E</label>
-                            <label id="modVerAluCueR" style="font-size: 14p" class="form-control"></label>                                </div>
+                            <label id="modVerAluCueR" style="font-size: 14px" class="form-control"></label>                                </div>
 
                     </div>
                     <br>
                     <div class="row" style="margin-left: 4%">
                         <div class="col-sm-3">
                             <label>Nombres</label>
-                            <label id="modVerAluNombresR" style="font-size: 14p" class="form-control"></label>                                
+                            <label id="modVerAluNombresR" style="font-size: 14px" class="form-control"></label>                                
                         </div>
                         <div class="col-sm-3">
                             <label>Apellidos</label>
-                            <label id="modAluVerApellidosR" style="font-size: 14p" class="form-control"></label>                                
+                            <label id="modAluVerApellidosR" style="font-size: 14px" class="form-control"></label>                                
                         </div>
                         <div class="col-sm-3">
-                            <label>Ocupaci贸n</label>
-                            <label id="modVerALuOcupacionR" style="font-size: 14p" class="form-control"></label>
+                            <label>Ocupaci髇</label>
+                            <label id="modVerALuOcupacionR" style="font-size: 14px" class="form-control"></label>
                         </div>
 
 
                         <div class="col-sm-2">
                             <label>Lugar de Trabajo</label>
-                            <label id="modVerAluLgrDetrabajo" style="font-size: 14p" class="form-control"></label>                                </div>
+                            <label id="modVerAluLgrDetrabajo" style="font-size: 14px" class="form-control"></label>                                </div>
                     </div>
                     <br>
                     <div class="row" style="margin-left: 4%">
 
                         <div class="col-sm-8">
-                            <label>E-mail</label>
+                            <label>Correo Electr髇ico</label>
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                <label id="modVerAluEmailR" style="font-size: 14p" class="form-control"></label>                                    </div>
+                                <label id="modVerAluEmailR" style="font-size: 14px" class="form-control"></label>                                    </div>
                             <span id="erroremail" style="color: #f00;"></span>
                         </div>
 
 
                         <div class="col-sm-3">
                             <label>Celular</label>                                         
-                            <label id="modVerAluCelularR" style="font-size: 14p" class="form-control"></label>                                   
+                            <label id="modVerAluCelularR" style="font-size: 14px" class="form-control"></label>                                   
 
                         </div>
 
@@ -212,392 +206,34 @@
                     <div class="row" style="margin-left: 4%">
                         <div class="col-sm-3">
                             <label>Nombres</label>
-                            <label id="modVerRefNombres" style="font-size: 14p" class="form-control"></label>                                
+                            <label id="modVerRefNombres" style="font-size: 14px" class="form-control"></label>                                
                         </div>
                         <div class="col-sm-3">
                             <label>Apellidos</label>
-                            <label id="modVerRefApellidos" style="font-size: 14p" class="form-control"></label>                                
+                            <label id="modVerRefApellidos" style="font-size: 14px" class="form-control"></label>                                
                         </div>
                         <div class="col-sm-3">
                             <label>Parentesco</label>
-                            <label id="modVerRefParentesco" style="font-size: 14p" class="form-control"></label>                                
+                            <label id="modVerRefParentesco" style="font-size: 14px" class="form-control"></label>                                
                         </div>
 
                         <div class="col-sm-2">
                             <label>Tel閒ono</label>
-                            <label id="modVerRefTelefono" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerRefTelefono" style="font-size: 14px" class="form-control"></label>
                         </div>
 
                         <div class="col-sm-3">
                             <label>Celular</label>
-                            <label id="modVerRefCeluar" style="font-size: 14p" class="form-control"></label>
+                            <label id="modVerRefCeluar" style="font-size: 14px" class="form-control"></label>
                         </div>
 
                     </div>
                     <br>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarCarrera">Cerrar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrarCarrera">Cerrar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>                                            
-
-<!-- Modal para modificar datos del Estudiante -->
-<div class="modal fade" id="modalModificarDatos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="navbar navbar-default">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <center>
-                    <br>
-                    <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalEditLongTitleShow"></h4>
-                    <br>
-                </center>
-            </div>
-            <form id="formEstudiante" autocomplete="on"  action="" method="post" enctype="multipart/form-data" class="mt-25" style="margin-left: 10%; margin-right: 10%" >
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <img id="regImgAlum" src="" height="250"/>
-                                <br>
-                                <label>Foto</label>
-                                <input type="file" id="regFotoAlu" name="regFotoAlu" class="form-control" maxlength="50" required="" name="txtRegFoto" placeholder="Foto"  accept="image/jpg, image/png, image/jpeg">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <label>Tipo de Identificaci贸n</label>
-                                <select id="tipoIdentificacionAlu" style="text-transform:uppercase" class="form-control" name="sltRegTipoIdentificacion" required>
-                                    <option></option>
-                                    <option value="C茅dula">C茅dula</option>
-                                    <option value="Pasaporte">Pasaporte</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Identificaci贸n</label>
-                                <input type="text" style="text-transform:uppercase" id="regidentificacionAlu" class="form-control"  maxlength="20" required="" name="txtRegIdentificacion" placeholder="Identificacion" >
-                                <span id="erroridentificaciion" style="color: #f00;"></span>
-                            </div>
-                            <div class="col-sm-2">
-                                <label>Nacionalidad</label>
-                                <input type="text" style="text-transform:uppercase" id="regpaisAlu" class="form-control" maxlength="50" required="" name="txtRegNacionalidad" placeholder="nacionalidad" >
-                            </div>
-                            <div class="col-sm-2">
-                                <label>G茅nero</label>
-                                <select id="reggeneroAlu" style="text-transform:uppercase;" class="form-control" name="sltRegGenero" required="">
-                                    <option></option>
-                                    <option value="M">Masculino</option>
-                                    <option value="F">Femenino</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Fecha de nacimiento</label>
-                                <input type="date" id="regfechaNacimientoAlu" class="form-control" required name="txtRegFecha">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label>Nombres</label>
-                                <input type="text" style="text-transform:uppercase" id="regnombresAlu" class="form-control" maxlength="50" required="" name="txtRegNombres" placeholder="Nombres">
-                            </div>
-                            <div class="col-sm-4">
-                                <label>Apellidos</label>
-                                <input type="text" style="text-transform:uppercase" id="regapellidosAlu" class="form-control"  maxlength="50" required="" name="txtRegApellidos" placeholder="Apellidos" >
-                            </div>
-                            <div class="col-sm-4">
-                                <label>Correo Electr贸nico</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                    <input type="email" style="text-transform:lowercase"  id="emailAlu" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="50" name="txtRegEmail" >
-                                </div>
-                                <span id="erroremail" style="color: #f00;"></span>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row" >
-                            <div class="col-sm-2">
-                                <label>Celular</label>                                         
-                                <input type="text" id="regCelularAlu" class="form-control" maxlength="10" name="txtRegCelular">
-                            </div>
-                            <div class="col-sm-2">
-                                <label>Curso</label>
-                                <select id="regCursoAlu" style="text-transform:uppercase" class="form-control" name="sltRegCurso" required="" >
-                                    <option></option> 
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <label>Direcci贸n</label>
-                                <input type="text" id="regDireccionAlu" style="text-transform:uppercase"  class="form-control" maxlength="50" required="" name="txtRegDireccion" placeholder="Direcci贸n" >
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <label>N煤mero de Hermanos</label>
-                                <input type="number" id="regHermanoAlu" class="form-control" maxlength="1" required="" name="txtRegNumHermanos"  >
-                            </div>
-                            <div class="col-sm-2">
-                                <label>Lugar que ocupa</label>
-                                <input type="number" id="regLugarHnosAlu" class="form-control" maxlength="1"  required="" name="txtRegLugHermanos" >
-                            </div>
-                            <div class="col-sm-6">
-                                <label>Foto del domicilio</label>
-                                <input type="file" id="fotoDomicilioAlu" class="form-control"  maxlength="50" name="txtRegFotoDomicilio" placeholder="Foto"  accept="image/jpg, image/png, image/jpeg">
-                            </div>
-                            <div class="col-sm-2">
-                                <label>Tipo de discapacidad</label>
-                                <select id="regTipoDiscAlu" style="text-transform:uppercase" class="form-control" name="sltRegTipoDiscp" required disabled>
-                                    <option value="NINGUNA">Ninguna</option>
-                                    <option value="FIS脥CA">Fis铆ca</option>
-                                    <option value="MENTAL">Mental</option>
-                                </select>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row discapacidad-seccion">
-                            <div class="col-sm-4">
-                                <label>Discapacidad</label>
-                                <input type="text" id="regDiscapacidadAlu" name="regDiscapacidadAlu" style="text-transform:uppercase" class="form-control" maxlength="50" name="txtRegDiscapacidad" placeholder="Discapacidad" >
-                            </div>
-                            <div class="col-sm-4">
-                                <label>Carnet de Discapacidad</label>
-                                <input type="text" id="regCrntDiscAlu" name="regCrntDiscAlu" class="form-control" maxlength="20" readonly>
-                            </div>
-                            <div class="col-sm-4">
-                                <label>Historia cl铆nica</label>
-                                <input type="text" style="text-transform:uppercase" id="regHistClinicaAlu" class="form-control" name="txtRegHistoriaClinica" maxlength="30" >
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" >
-                                <br>
-                                <label>驴Qui茅n Vive Con usted?</label>
-                                <div id="check-convivencia" class="checkbox">
-                                </div>
-                            </div>
-                        </div>
-                        <center>
-                            <h4><b>Datos del Padre</b></h4><br>
-                        </center>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Tipo de Identificaci贸n</label>
-                                <select id="regtipoIdentificacionRep" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdePadre" required="" disabled>
-                                    <option></option>
-                                    <option value="C茅dula">C茅dula</option>
-                                    <option value="Pasaporte">Pasaporte</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Identificaci贸n</label>
-                                <input type="text" id="regIdentificacionRep" class="form-control"  maxlength="20"  required=""  name="txtRegFamiliarIdentificacionPadre" placeholder="IDENTIFICACI脫N" >
-                                <span id="erroridentificaciion" style="color: #f00;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Nacionalidad</label>
-                                <input type="text" style="text-transform:uppercase" id="regNacionalidadRep" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadPadre"  placeholder="NACIONALIDAD">
-                            </div>
-                            <div class="col-sm-3">
-                                <label>C.U.E</label>
-                                <input type="text" id="regCueRep" class="form-control"  maxlength="50" name="txtRegCuePadre" placeholder="C贸digo 煤nico electr贸nico" >
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Nombres</label>
-                                <input type="text" id="regnombresRep" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegNombresPadre" placeholder="Nombres" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Apellidos</label>
-                                <input type="text" id="regApellidosRep" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidosPadre" placeholder="Apellido" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Ocupaci贸n</label>
-                                <input type="text" id="regOcupacionRep" style="text-transform:uppercase"  class="form-control"   required="" name="txtRegFamiliarOcupacionPadre" placeholder="Ocupaci贸n" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Lugar de Trabajo</label>
-                                <input type="text" id="regTrabajoRep" style="text-transform:uppercase"  class="form-control" maxlength="10" onkeypress="return soloLetrasNumerosCaracEspe()(event)" required="" name="txtRegFamiliarLugarPadre" placeholder="Lugar de Trabajo" >
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <label>Correo Electr贸nico</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                    <input type="email" id="regEmailRep" style="text-transform:lowercase"  class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" name="txtRegEmailPadre" >
-                                </div>
-                                <span id="erroremail" style="color: #f00;"></span>
-                            </div>
-                            <div class="col-sm-4">
-                                <label>Celular</label>                                         
-                                <input type="text" id="regCelularRep" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10" name="txtRegCelularPadre" >
-                            </div>
-                        </div>
-                        <br>
-                        <center>
-                            <h4><b>Datos de la Madre</b></h4><br>
-                        </center>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Tipo de Identificaci贸n</label>
-                                <select id="regtipoIdentificacionMad" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdePadre" required="" >
-                                    <option></option>
-                                    <option value="C茅dula">C茅dula</option>
-                                    <option value="Pasaporte">Pasaporte</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Identificaci贸n</label>
-                                <input type="text" id="regIdentificacionMad" class="form-control"  maxlength="20"  required=""  name="txtRegFamiliarIdentificacionPadre" placeholder="IDENTIFICACI脫N" >
-                                <span id="erroridentificaciion" style="color: #f00;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Nacionalidad</label>
-                                <input type="text" style="text-transform:uppercase" id="regNacionalidadMad" class="form-control"  maxlength="50" required="" name="txtRegNacionalidadPadre" placeholder="NACIONALIDAD"  >
-                            </div>
-                            <div class="col-sm-3">
-                                <label>C.U.E</label>
-                                <input type="text" id="regCueMad" class="form-control"  maxlength="50" name="txtRegCuePadre" placeholder="C贸digo 煤nico electr贸nico" >
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Nombres</label>
-                                <input type="text" id="regnombresMad" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegNombresPadre" placeholder="Nombres" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Apellidos</label>
-                                <input type="text" id="regApellidosMad" style="text-transform:uppercase" class="form-control" onkeypress="return soloLetrasv2(event)" maxlength="50" required="" name="txtRegApellidosPadre" placeholder="Apellidos" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Ocupaci贸n</label>
-                                <input type="text" id="regOcupacionMad" style="text-transform:uppercase"  class="form-control"   required="" name="txtRegFamiliarOcupacionPadre" placeholder="Ocupaci贸n" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Lugar de Trabajo</label>
-                                <input type="text" id="regTrabajoMad" style="text-transform:uppercase"  class="form-control"  required="" name="txtRegFamiliarLugarPadre" placeholder="Lugar de Trabajo" >
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <label>Correo Electr贸nico</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                    <input type="email" id="regEmailMad" style="text-transform:lowercase"  class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" maxlength="100" name="txtRegEmailPadre" >
-                                </div>
-                                <span id="erroremail" style="color: #f00;"></span>
-                            </div>
-                            <div class="col-sm-4">
-                                <label>Celular</label>                                         
-                                <input type="text" id="regCelularMad" class="form-control" onkeypress="return soloNumeros(event)" maxlength="10" name="txtRegCelularPadre" >
-                            </div>
-                        </div>
-                        <br>
-                        <center>
-                            <h4><b>Datos de una Persona de Referencia</b></h4><br>
-                        </center>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Tipo de Identificaci贸n</label>
-                                <select id="regtipoIdentificacionRef" style="text-transform:uppercase"  onchange="documetoSeleccionado()" class="form-control" name="txtTipoIdeRef" >
-                                    <option></option>
-                                    <option value="C茅dula">C茅dula</option>
-                                    <option value="Pasaporte">Pasaporte</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Identificaci贸n</label>
-                                <input type="text" id="regIdentificacionRef" class="form-control"  maxlength="20"   name="txtRegFamiliarIdentificacionRef" placeholder="IDENTIFICACI脫N" ="">
-                                <span id="erroridentificaciion" style="color: #f00;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Nombres</label>
-                                <input type="text" id="modEditNonbresRef" style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRegNombres" placeholder="nombres" >
-
-                            </div>
-                            <div class="col-sm-3">
-                                <label>Apellidos</label>
-                                <input type="text" id="modEditApellidoRef"  style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRegApellidos" placeholder="apellidos" >
-
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label>Parentesco</label>
-
-                                <input type="text" id="modEditParentescoRef"  style="text-transform:uppercase" class="form-control" maxlength="50" required=""  placeholder="parentesco"  name="txtRefParentesco">                               
-                            </div>
-
-                            <div class="col-sm-3">
-                                <label>Tel茅fono</label>
-                                <input type="text" id="modEditTelefonoRef" style="text-transform:uppercase" class="form-control"  maxlength="50" name="txtRegtelefono" placeholder="tel茅fono" >          
-
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <label>Celular</label>
-                                    <input type="text" id="modEditcelularRef" style="text-transform:uppercase" class="form-control" maxlength="50" required="" name="txtRegCelular" placeholder="celular" >
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <center>
-                            <button type="button" class="btn btn-secondary btn-flat m-b-30 m-t-30" id="btnCancelar"><i class="fa fa-times"></i>&nbsp; Cancelar</button>                        
-                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="btnGuardar"><i class="fa fa-save"></i>&nbsp; Guardar</button
-                        </center>
-                    </form>
-        </div>
-    </div>
-</div>                                            
-
-<%--Modal para seleccionar carreras--%>
-<div class="modal fade" id="modalPais" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCerrarModalCarrera">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <center>
-                    <br>
-                    <h4 class="modal-title" style="color: white;text-align: center" id="exampleModalLongTitleEdit"><b>Selecione su Pa铆s</b></h4>
-                    <br>
-                </center>
-            </div>
-
-            <div class="modal-body">
-                <form>
-                    <table id="tablaCarrera" class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th style="text-align: center;">Nombre</th>
-                                <th style="text-align: center;">Nacionalidad</th>
-                                <th style="text-align: center;">Escoger</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-
-                        </tbody>
-                    </table>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarCarrera">Cerrar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>

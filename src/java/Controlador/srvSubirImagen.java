@@ -44,6 +44,7 @@ public class srvSubirImagen extends HttpServlet {
         //response.setContentType("text/html;charset=UTF-8");
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            request.setCharacterEncoding("UTF-8");
             /* TODO output your page here. You may use following sample code. */
             boolean respuesta = false;
             ActualizarDatosDAO actualizarDatosDAO = new ActualizarDatosDAO();
@@ -57,7 +58,7 @@ public class srvSubirImagen extends HttpServlet {
                     InputStream inputStream = fotoPerfil.getInputStream();
                     String fileName = this.getServletContext().getRealPath("/Imagenes/Alumnos/");
                     // poner los cositos de manera local (//)
-                    File f = new File(f_RutaModificada(fileName) + "//" + nombrarImagenEstudiante(request.getParameter("txtRegIdentificacion"), "Estudiante", ext));
+                    File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEstudiante(request.getParameter("txtRegIdentificacion"), "Estudiante", ext));
                     String ruta = f.toString();
                     FileOutputStream outputStream = new FileOutputStream(f);
                     //Ruta para base de datos
@@ -89,7 +90,7 @@ public class srvSubirImagen extends HttpServlet {
                     InputStream inputStream = fotoDomicilio.getInputStream();
                     String fileName = this.getServletContext().getRealPath("/Imagenes/Alumnos/");
                     // poner los cositos de manera local (//)
-                    File f = new File(f_RutaModificada(fileName) + "//" + nombrarImagenEstudiante(request.getParameter("txtRegIdentificacion"), "Domicilio", ext));
+                    File f = new File(f_RutaModificada(fileName) + "" + nombrarImagenEstudiante(request.getParameter("txtRegIdentificacion"), "Domicilio", ext));
                     String ruta = f.toString();
                     FileOutputStream outputStream = new FileOutputStream(f);
                     //Ruta para base de datos

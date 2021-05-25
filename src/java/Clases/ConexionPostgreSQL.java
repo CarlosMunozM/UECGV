@@ -30,9 +30,9 @@ public class ConexionPostgreSQL {
     String password = "Pa$$w0rd.uemcgv";
     String urlDatabase = "jdbc:postgresql://localhost/uemcarmz_ue_carmelina";
 //    String user = "postgres";
-//    String password = "1234";
+//    String password = "1207025824";
 //    String urlDatabase = "jdbc:postgresql://localhost/ue_carmelina";
-    
+//    
    
     public Connection connection;
     Statement statement;

@@ -503,6 +503,7 @@ $(document).ready( function() {
                                     $("#btnGuardar").text("Guardar");
                                     $("#fotoDomicilioAlu").val("");
                                     $("#regFotoAlu").val("");
+                                    $("#txtIdentificacion").val("");
                                 }else{
                                     toastr.success("Datos Actualizados");
                                     toastr.error("Error Actualización de Imagen");

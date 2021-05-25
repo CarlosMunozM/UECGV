@@ -52,6 +52,7 @@ public class srvActualizarDatos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            request.setCharacterEncoding("UTF-8");
             String modo = request.getParameter("modo");
             ActualizarDatosDAO actualizarDatosDAO = new ActualizarDatosDAO();
             switch(modo){
